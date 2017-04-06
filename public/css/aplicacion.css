@@ -1,0 +1,32 @@
+html, body{
+	height: 100vh;
+}
+
+body{
+	padding-top: 70px;
+}
+
+#contenido{
+	min-height: calc(100vh - 135px);
+}
+
+#pie{
+	background: #000;
+	color: #fff;
+}
+
+.form-eliminar{
+	display: inline-block;
+}
+
+.error-cod{
+	font-size: 35px;
+}
+
+.error-icon{
+	font-size: 85px;
+}
+
+.user-icon{
+	font-size: 48px;
+}
