@@ -13,7 +13,7 @@ class UsuarioController extends Controller
     public function __construct()
     {
         $this->middleware('autentificado', [
-            'except' => ['login', 'logear', 'registro', 'registrar']
+            'except' => ['login', 'logear', 'registro', 'registrar', 'edit',]
         ]);
         $this->middleware('adm', ['only' => [
             'index', 'create', 'store', 'edit', 'update', 'destroy',
@@ -77,6 +77,11 @@ class UsuarioController extends Controller
      */
     public function edit($id)
     {
+        
+        if(auth()->user()->esAdministrador()){
+
+            
+        }
         $usuario = Usuario::findOrFail($id);
         return view('usuarios.edit', compact('usuario'));
     }

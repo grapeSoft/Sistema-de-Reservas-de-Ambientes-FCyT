@@ -1,8 +1,9 @@
 @extends('plantillas.principal')
 
 @section('contenido')
-<div class="col-md-4 col-md-offset-4">
-	<div class="panel panel-info">
+
+<div class="col-md-4 col-md-offset-8">
+	<div class="panel panel-primary">
 		<div class="panel-heading">
 			<h4>Perfil</h4>
 		</div>
@@ -14,7 +15,9 @@
 				<b class="glyphicon glyphicon-user user-icon"></b>
 				@endif
 			</div>
-			<ul class="list-group text-center">
+			<ul class="text-center">
+
+
 				<li class="list-group-item active">
 					<strong>Nombre</strong>
 				</li>
@@ -39,7 +42,13 @@
 					<strong>Tipo de usuario</strong>
 				</li>
 				<li class="list-group-item">{{ $usuario->tipo }}</li>
+
 			</ul>
+		</div>
+		<div class="panel-footer">
+			<a href="{{ route('usuarios.edit', ['id' => $usuario->id_usuario]) }}" class="btn btn-raised btn-warning">
+				Editar
+			</a>
 		</div>
 	</div>
 </div>
