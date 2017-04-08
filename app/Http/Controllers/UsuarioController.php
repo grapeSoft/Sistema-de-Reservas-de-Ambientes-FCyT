@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\InvitacionUsuario;
 use Illuminate\Http\Request;
 use App\Model\Usuario;
 use App\Http\Requests\StoreUsuario;
 use App\Http\Requests\UpdateUsuario;
+use Illuminate\Support\Facades\Mail;
 
 
 class UsuarioController extends Controller
@@ -52,9 +54,15 @@ class UsuarioController extends Controller
     {
         $valores = $request->all();
         $usuario = Usuario::create($valores);
+        $this->enviarEmail($usuario);
         return redirect()
             ->route('usuarios.show', ['id' => $usuario->id_usuario])
             ->with('mensaje', 'El usuario se ha creado con éxito');
+    }
+
+    private function enviarEmail(Usuario $usuario)
+    {
+        Mail::to($usuario->email)->queue(new InvitacionUsuario($usuario));//
     }
 
     /**
