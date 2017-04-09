@@ -13,15 +13,17 @@ class InvitacionUsuario extends Mailable
     use Queueable, SerializesModels;
 
     protected $usuario;
+    protected $password;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($usuario)
+    public function __construct($usuario, $password)
     {
         $this->usuario = $usuario;
+        $this->password = $password;
     }
 
     /**
@@ -34,7 +36,7 @@ class InvitacionUsuario extends Mailable
         return $this->markdown('emails.usuarios.invitacion')
             ->with([
                 'username' => $this->usuario->username,
-                'password' => $this->usuario->password,
+                'password' => $this->password,
             ]);
     }
 }

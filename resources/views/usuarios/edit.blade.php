@@ -12,7 +12,12 @@
 				'method' => 'put',
 				'files' => true,
 				]) !!}
-				@include('usuarios.form')		
+				@if(Auth::user()->tipo === 'administrador')
+				@include('usuarios.form-edit')
+				@endif
+				@if(Auth::user()->tipo === 'autorizado')
+				@include('usuarios.form-edit-perfil')
+				@endif
 				<div class="text-center">
 					<button type="submit" class="btn btn-primary">
 						<b class="glyphicon glyphicon-edit"></b> Actualizar

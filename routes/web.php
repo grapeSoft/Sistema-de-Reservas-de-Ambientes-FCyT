@@ -16,9 +16,10 @@ Route::get('/', 'PrincipalController@inicio')->name('principal.inicio');
 Route::get('login', 'UsuarioController@login')->name('usuarios.login');
 Route::post('logear', 'UsuarioController@logear')->name('usuarios.logear');
 Route::get('logout', 'UsuarioController@logout')->name('usuarios.logout');
-Route::get('usuarios/registro', 'UsuarioController@registro')->name('usuarios.registro');
-Route::post('usuarios/registrar', 'UsuarioController@registrar')->name('usuarios.registrar');
 Route::get('usuarios/perfil', 'UsuarioController@perfil')->name('usuarios.perfil');
-//Route::get('usuarios/{id}/foto', 'UsuarioController@foto')
-//    ->name('usuarios.foto');
+Route::get('usuarios/{id}/foto', 'UsuarioController@foto')
+    ->name('usuarios.foto');
 Route::resource('usuarios', 'UsuarioController');
+
+
+

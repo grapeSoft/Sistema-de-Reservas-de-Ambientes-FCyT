@@ -32,9 +32,6 @@
 						<b class="glyphicon glyphicon-log-in"></b> Ingresar
 					</button>
 				</div>
-				<div>
-					<a href="{{ route('usuarios.registro') }}">Registrarse</a>
-				</div>
 			{!! Form::close() !!}
 		</div>
 	</div>
