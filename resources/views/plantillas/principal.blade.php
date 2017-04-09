@@ -19,7 +19,8 @@
   	@endunless
 </head>
 <body>
-	@if(Auth::check())	
+	@if(Auth::check())
+	@include('plantillas.cabecera')	
 		@if(Auth::user()->tipo === 'administrador')
 		@include('plantillas.menu-adm')
 		@elseif(Auth::user()->tipo === 'autorizado')
@@ -33,12 +34,9 @@
 		@yield('contenido')		
 		</div>
 	</article>
-	<footer class="text-center" id="pie">
-		<div class="container-fluid">
-			<h4>Sistema de Reservas para la FCyT - UMSS</h4>
-			<h5>2017</h5>
-		</div>
-	</footer>
+	@if(Auth::check())
+	@include('plantillas.pie')	
+	@endif
 	<script src="{!! asset('js/jquery-3.1.1.min.js') !!}"></script>
 	<script src="{!! asset('js/bootstrap.min.js') !!}"></script>
 	<!-- Material Design for Bootstrap -->
