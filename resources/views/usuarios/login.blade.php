@@ -1,7 +1,7 @@
-@extends('plantillas.home')
+@extends('plantillas.principal')
 
 @section('contenido')
-<div class="col-md-4 col-md-offset-4">
+<div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
 	<div class="panel panel-primary">
 		<div class="panel-heading">
 			<h4>Iniciar sesión</h4>
@@ -32,9 +32,9 @@
 						<b class="glyphicon glyphicon-log-in"></b> Ingresar
 					</button>
 				</div>
-				<div>
+				<!-- <div>
 					<a href="{{ route('usuarios.registro') }}">Registrarse</a>
-				</div>
+				</div> -->
 			{!! Form::close() !!}
 		</div>
 	</div>
