@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\InvitacionUsuario;
 use Illuminate\Http\Request;
 use App\Model\Usuario;
 use App\Http\Requests\StoreUsuario;
 use App\Http\Requests\UpdateUsuario;
+use Illuminate\Support\Facades\Mail;
 
 
 class UsuarioController extends Controller
@@ -50,11 +52,27 @@ class UsuarioController extends Controller
     //public function store(Request $request)
     public function store(StoreUsuario $request)
     {
-        $valores = $request->all();
-        $usuario = Usuario::create($valores);
+        //$valores = $request->all();
+        //$usuario = Usuario::create($valores);
+        $usuario = new Usuario;
+        $usuario->nombre = $request->nombre;
+        $usuario->apellido_paterno = $request->apellido_paterno;
+        $usuario->apellido_materno = $request->apellido_materno;
+        $usuario->email = $request->email;
+        $usuario->username = uniqid(str_random(3));
+        $password = uniqid();
+        $usuario->password = $password;
+        $usuario->tipo = $request->tipo;
+        $usuario->save();
+        $this->enviarEmail($usuario, $password);
         return redirect()
             ->route('usuarios.show', ['id' => $usuario->id_usuario])
             ->with('mensaje', 'El usuario se ha creado con éxito');
+    }
+
+    private function enviarEmail(Usuario $usuario, $password)
+    {
+        Mail::to($usuario->email)->queue(new InvitacionUsuario($usuario, $password));//
     }
 
     /**
@@ -145,19 +163,6 @@ class UsuarioController extends Controller
     {
         auth()->logout();
         return redirect()->route('principal.inicio');
-    }
-
-    public function registro()
-    {
-        return view('usuarios.registro');
-    }
-
-    public function registrar(StoreUsuario $request)
-    {
-        $usuario = Usuario::create($request->all());
-        return redirect()->route('usuarios.login')->with([
-            'mensaje' => 'Se ha registrado con exito'
-        ]);
     }
 
     public function perfil()

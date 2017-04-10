@@ -28,8 +28,8 @@ class StoreUsuario extends FormRequest
             'apellido_paterno' => 'required',
             'apellido_materno' => 'required',
             'email' => 'required|email',
-            'username' => 'required',
-            'password' => 'required|min:6|confirmed',
+//            'username' => 'required',
+//            'password' => 'required|min:6|confirmed',
             'foto' => 'image',
         ];
     }
