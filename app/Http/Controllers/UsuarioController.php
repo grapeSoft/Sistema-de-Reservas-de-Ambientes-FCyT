@@ -15,11 +15,16 @@ class UsuarioController extends Controller
     public function __construct()
     {
         $this->middleware('autentificado', [
-            'except' => ['login', 'logear', 'registro', 'registrar', 'edit',]
+            'except' => ['login', 'logear', 'registro', 'registrar',]
         ]);
-        $this->middleware('adm', ['only' => [
-            'index', 'create', 'store', 'edit', 'update', 'destroy',
+        $this->middleware('autorizado', ['only' => [
+            'edit', 'update', 'show',
         ]]);
+        $this->middleware('adm', ['only' => [
+            'index', 'create', 'store', 'destroy',
+        ]]);
+
+
     }
 
     /**

@@ -33,8 +33,11 @@ class Usuario extends User
         return $this->attributes['tipo'] === 'administrador';
     }
 
-    public function esAutentificado()
+    public function esAutorizado()
     {
-        return $this->attributes['tipo'] === 'autentificado';
+        return $this->attributes['tipo'] === 'autorizado';
+    }
+    public function id(){
+        return $this->attributes['id_usuario'];
     }
 }
