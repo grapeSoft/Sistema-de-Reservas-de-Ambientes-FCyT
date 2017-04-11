@@ -14,8 +14,8 @@ Sistema de Reservas de Ambientes de la FCyT - UMSS
 Su nombre de usuario es: {{ $username }} y su contraseña: {{ $password }} <br>
 Puede cambiar su contraseña con el siguiente enlace
 
-@component('mail::button', ['url' => 'http://localhost:8000/login'])
-Login de acceso
+@component('mail::button', ['url' => 'http://localhost:8000/'])
+Presione aqui
 @endcomponent
 
 {{-- Subcopy --}}

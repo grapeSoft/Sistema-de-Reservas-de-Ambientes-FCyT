@@ -52,14 +52,12 @@ class UsuarioController extends Controller
     //public function store(Request $request)
     public function store(StoreUsuario $request)
     {
-        //$valores = $request->all();
-        //$usuario = Usuario::create($valores);
         $usuario = new Usuario;
         $usuario->nombre = $request->nombre;
         $usuario->apellido_paterno = $request->apellido_paterno;
         $usuario->apellido_materno = $request->apellido_materno;
         $usuario->email = $request->email;
-        $usuario->username = uniqid(str_random(3));
+        $usuario->username = $request->email;
         $password = uniqid();
         $usuario->password = $password;
         $usuario->tipo = $request->tipo;
@@ -67,7 +65,7 @@ class UsuarioController extends Controller
         $this->enviarEmail($usuario, $password);
         return redirect()
             ->route('usuarios.show', ['id' => $usuario->id_usuario])
-            ->with('mensaje', 'El usuario se ha creado con éxito');
+            ->with('mensaje', 'El usuario se ha creado con exito');
     }
 
     private function enviarEmail(Usuario $usuario, $password)
@@ -152,7 +150,7 @@ class UsuarioController extends Controller
         else return redirect()
             ->route('usuarios.login')
             ->withErrors([
-                'login' => 'Usuario o contraseña incorrectos'
+                'login' => 'Usuario o clave incorrectos'
             ])
             ->withInput([
                 'username' => $request->input('username'),
