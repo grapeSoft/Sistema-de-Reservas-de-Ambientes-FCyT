@@ -17,6 +17,7 @@
   	@unless(Auth::check())
   	<link href="{!! asset('css/style.css') !!}" rel="stylesheet">
   	@endunless
+  	<link href="{!! asset('css/materialStyle.css') !!}" rel="stylesheet">
 </head>
 <body>
 	@if(Auth::check())
@@ -30,9 +31,9 @@
 		@endif
 	@endif
 	<article id="contenido">
-		<div class="container">
+		<!-- <div class="container"> -->
 		@yield('contenido')		
-		</div>
+		<!-- </div> -->
 	</article>
 	@if(Auth::check())
 	@include('plantillas.pie')	
