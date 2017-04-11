@@ -13,7 +13,7 @@
 			@endif
 
 			@if($errors->has('login'))
-			<div class="alert alert-danger">
+			<div class="alert alert-danger" role="alert">
 				{{ $errors->first('login') }}
 			</div>
 			@endif
