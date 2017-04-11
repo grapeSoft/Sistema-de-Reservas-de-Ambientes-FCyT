@@ -26,8 +26,8 @@
 						role="button" 
 						aria-haspopup="true" 
 						aria-expanded="false">
-						<b class="glyphicon glyphicon-user"></b>
-						{{ Auth::user()->username }}&nbsp;
+						<i class="material-icons">account_circle</i>
+						&nbsp;{{ Auth::user()->username }}&nbsp;
 						<span class="caret"></span>
 					</a>
 		          	<ul class="dropdown-menu">

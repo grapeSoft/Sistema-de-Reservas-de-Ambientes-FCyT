@@ -1,7 +1,7 @@
 @extends('plantillas.principal')
 
 @section('contenido')
-<div class="container">
+<div class="container-fluid">
 	<div class="col-md-6 col-md-offset-3">
 		<div class="row">
 			<div class="text-center">

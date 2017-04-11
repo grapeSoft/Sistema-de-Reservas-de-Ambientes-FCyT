@@ -2,7 +2,7 @@
 
 @section('contenido')
 
-<div class="col-md-4 col-md-offset-8">
+<div class="col-sm-4 col-sm-offset-8 col-md-3 col-md-offset-9">
 	<div class="panel panel-primary">
 		<div class="panel-heading">
 			<h4>Perfil</h4>
@@ -12,10 +12,10 @@
 				@if($usuario->foto !== null)
 				<img src="{{ route('usuarios.foto', ['id' => $usuario->id_usuario]) }}">
 				@else
-				<i class="material-icons">account_circle</i>
+				<i class="material-icons md-48 text-primary">face</i>
 				@endif
 			</div>
-			<ul class="text-center">
+			<div class="text-center">
 
 
 				<li class="list-group-item list-group-item-success">
@@ -44,7 +44,7 @@
 				</li>
 				<li class="list-group-item">{{ $usuario->tipo }}</li>
 
-			</ul>
+			</div>
 		</div>	
 		<div class="panel-footer">
 
