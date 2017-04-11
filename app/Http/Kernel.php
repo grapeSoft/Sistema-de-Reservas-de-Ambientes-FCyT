@@ -59,5 +59,6 @@ class Kernel extends HttpKernel
 
         'autentificado' => \App\Http\Middleware\Autentificado::class,
         'adm' => \App\Http\Middleware\Administrador::class,
+        'autorizado' => \App\http\Middleware\Autorizado::class,
     ];
 }

@@ -17,6 +17,7 @@ class Administrador
     {
         if(auth()->user()->esAdministrador())
             return $next($request);
-        else abort(403);
+        else
+            abort(403);
     }
 }
