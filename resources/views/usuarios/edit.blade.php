@@ -24,7 +24,7 @@
 							<i class="material-icons">done</i> Actualizar
 						</button>
 						<a class="btn btn-primary" 
-							href="{{ route('usuarios.index') }}">
+							href="{{ back()->getTargetUrl() }}">
 							<i class="material-icons">close</i> Salir
 						</a>
 					</div>
