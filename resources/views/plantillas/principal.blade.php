@@ -7,7 +7,8 @@
     <title>Sistema de Reservas</title>
     <!-- Material Design fonts -->
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!-- Material Design icons -->
+	<link href="{!! asset('css/material-iconfont.css') !!}" rel="stylesheet">
 	<!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" href="{!! asset('css/bootstrap.min.css') !!}">
     <!-- <link rel="stylesheet" type="text/css" href="{!! asset('css/bootstrap-theme.min.css') !!}"> -->
