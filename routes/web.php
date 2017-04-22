@@ -27,6 +27,7 @@ Route::group(['middleware' => 'autentificado'], function(){
 	    ->name('usuarios.foto');
 	Route::resource('usuarios', 'UsuarioController');	
 });
+Route::get('usuario/reserva', 'UsuarioController@reserva')->name('usuarios.reserva');
 
 
 

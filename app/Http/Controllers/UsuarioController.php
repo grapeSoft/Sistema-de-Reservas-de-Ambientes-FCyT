@@ -8,6 +8,7 @@ use App\Model\Usuario;
 use App\Http\Requests\StoreUsuario;
 use App\Http\Requests\UpdateUsuario;
 use Illuminate\Support\Facades\Mail;
+use App\Reserva;
 
 
 class UsuarioController extends Controller
@@ -179,5 +180,15 @@ class UsuarioController extends Controller
         $usuario = Usuario::findOrFail($id);
         $ruta = storage_path($usuario->foto);
         return file_get_contents($ruta);
+    }
+
+    public function reserva()
+    {
+        $usuarioAdmin = auth()->user();
+        $id_us = $usuarioAdmin->id_usuario;
+        $reservas = Reserva::where('id_usuario', '=', $id_us)->get();
+        $todasLasReservas = Reserva::where('id_usuario', '<>', $id_us)->get();
+        $usuarios = Usuario::where('id_usuario', '<>', $id_us)->get();
+        return view('Reservas.reserva', compact('reservas'), compact('todasLasReservas'));
     }
 }
