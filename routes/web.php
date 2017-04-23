@@ -25,7 +25,8 @@ Route::group(['middleware' => 'autentificado'], function(){
 	Route::get('usuarios/perfil', 'UsuarioController@perfil')->name('usuarios.perfil');
 	Route::get('usuarios/{id}/foto', 'UsuarioController@foto')
 	    ->name('usuarios.foto');
-	Route::resource('usuarios', 'UsuarioController');	
+	Route::resource('usuarios', 'UsuarioController');
+	Route::resource('reservas', 'ReservaController');	
 });
 
 
