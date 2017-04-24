@@ -19,4 +19,9 @@ class Reserva extends Model
     	return $this->belongsTo('app/Model/Usuario');
     }
 
+    public function eventos()
+    {
+        return $this->hasMany('app/Evento');
+    }
+
 }
