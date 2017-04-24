@@ -18,15 +18,24 @@ Route::get('login', 'UsuarioController@login')->name('usuarios.login');
 //validara los datos del login
 Route::post('logear', 'UsuarioController@logear')->name('usuarios.logear');
 
-//rutas que se mostraran cuando el usuario inicie sesion
-Route::group(['middleware' => 'autentificado'], function(){
-	Route::get('/', 'PrincipalController@inicio')->name('principal.inicio');
-	Route::get('logout', 'UsuarioController@logout')->name('usuarios.logout');
-	Route::get('usuarios/perfil', 'UsuarioController@perfil')->name('usuarios.perfil');
-	Route::get('usuarios/{id}/foto', 'UsuarioController@foto')
-	    ->name('usuarios.foto');
-	Route::resource('usuarios', 'UsuarioController');	
-});
+Route::get('/', 'PrincipalController@inicio')->name('principal.inicio');
+Route::get('logout', 'UsuarioController@logout')->name('usuarios.logout');
+Route::get('usuarios/perfil', 'UsuarioController@perfil')->name('usuarios.perfil');
+Route::get('usuarios/{id}/foto', 'UsuarioController@foto')
+    ->name('usuarios.foto');
+Route::resource('usuarios', 'UsuarioController');
+
+
+Route::resource('reservas', 'ReservaController');
+
+Route::get('/ambientes/{id_ambiente}/fechas/{fecha}/horarios', 'AmbienteController@horarios')->name('ambiente.horarios');
+
+
+
+
+
+
+
 
 
 

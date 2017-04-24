@@ -15,7 +15,7 @@ class UsuarioController extends Controller
     public function __construct()
     {
         $this->middleware('autentificado', [
-            'except' => ['login', 'logear', 'registro', 'registrar',]
+            'except' => ['login', 'logear', ]
         ]);
         $this->middleware('autorizado', ['only' => [
             'edit', 'update', 'show',
@@ -35,6 +35,7 @@ class UsuarioController extends Controller
     public function index()
     {
         $usuarios = Usuario::all();
+        //dd(compact($usuarios));
         return view('usuarios.index', compact('usuarios'));
     }
 

@@ -15,7 +15,7 @@
 		</div>
 		<div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-			<li><a href="#">Reservas</a></li>
+			<li><a href="{{ route('reservas.index') }}">Reservas</a></li>
 			@yield('menu')
 			</ul>
 			<ul class="nav navbar-nav navbar-right">

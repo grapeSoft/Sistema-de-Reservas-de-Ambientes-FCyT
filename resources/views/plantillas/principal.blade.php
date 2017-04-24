@@ -27,7 +27,7 @@
 		@elseif(Auth::user()->tipo === 'autorizado')
 		@include('plantillas.menu-aut')
 		@elseif((Auth::user()->tipo === 'docente'))
-		@include('plantillas.menu-est')
+		@include('plantillas.menu-doc')
 		@endif
 	@endif
 	<article id="contenido">
