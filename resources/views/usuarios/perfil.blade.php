@@ -10,7 +10,12 @@
 		<div class="panel-body center-block">
 			<div class="text-center">
 				@if($usuario->foto !== null)
-				<img src="{{ route('usuarios.foto', ['id' => $usuario->id_usuario]) }}">
+				<!-- <img src="{{ route('usuarios.foto', ['id' => $usuario->id_usuario]) }}"> -->
+				<div class="list-group-item">
+					<div class="row-picture">
+						<img class="img-circle" src="{{ asset('foto-usuario/'.$usuario->foto) }}" alt="Foto Usuario" height="100px" width="100px">
+					</div>
+				</div>
 				@else
 				<i class="material-icons md-48 text-primary">face</i>
 				@endif

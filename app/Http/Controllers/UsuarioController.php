@@ -66,6 +66,11 @@ class UsuarioController extends Controller
         $password = uniqid();
         $usuario->password = $password;
         $usuario->tipo = $request->tipo;
+        if($request->hasFile('foto')){
+            $foto = $request->file('foto');
+            $foto->move(public_path().'/foto-usuario/',$foto->getClientOriginalName());
+            $usuario->foto = $foto->getClientOriginalName();
+        }
         $usuario->save();
         $this->enviarEmail($usuario, $password);
         return redirect()

@@ -11,6 +11,7 @@
 				{!! Form::open([
 						'route' => 'usuarios.store', 
 						'files' => true,
+						'class' => 'form-horizontal'
 						]) !!}
 					@include('usuarios.form')		
 					<div class="text-center">

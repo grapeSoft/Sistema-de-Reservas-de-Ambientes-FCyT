@@ -12,6 +12,7 @@
 					'route' => ['usuarios.update', $usuario->id_usuario],
 					'method' => 'put',
 					'files' => true,
+					'class' => 'form-horizontal'
 					]) !!}
 					@if(Auth::user()->tipo === 'administrador')
 					@include('usuarios.form-edit')

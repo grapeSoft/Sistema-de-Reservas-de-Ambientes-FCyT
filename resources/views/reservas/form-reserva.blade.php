@@ -1,4 +1,5 @@
-<div class="modal fade" id="formularioReserva">
+{!! Form::open(['route' => 'reservas.store', 'role' => 'form']) !!}
+<div class="modal fade" id="formularioReserva" role="dialog">
 	<div class="modal-dialog">
 	    <div class="modal-content">
 	      	<div class="modal-header">
@@ -15,8 +16,9 @@
 	      	</div> 	
 	      	<div class="modal-footer">
 	        	<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-	        	<button type="button" class="btn btn-primary">Guardar</button>
+	        	<button type="submit" class="btn btn-primary">Guardar</button>
 	      	</div>
 	    </div>
 	</div>
 </div>
+{!! Form::close() !!}

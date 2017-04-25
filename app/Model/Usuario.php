@@ -12,7 +12,7 @@ class Usuario extends User
     public $fillable = [
         'nombre', 'apellido_paterno', 'apellido_materno',
         'email', 'username', 'password',
-        'tipo'
+        'tipo','foto'
     ];
 
     public function setPasswordAttribute($value)

@@ -7,8 +7,10 @@
         @else
             <div class="form-group">
                 @endif
-                {!! Form::label('username', 'Nombre de usuario', ['class' => 'control-label']) !!}
-                {!! Form::text('username', null, ['class' => 'form-control']) !!}
+                {!! Form::label('username', 'Nombre de usuario', ['class' => 'control-label col-md-2']) !!}
+                <div class="col-md-10">
+                    {!! Form::text('username', null, ['class' => 'form-control']) !!}
+                </div>
             </div>
             @if($errors->has('password'))
                 <div class="form-group has-error">
@@ -18,14 +20,18 @@
                     @else
                         <div class="form-group">
                             @endif
-                            {!! Form::label('password', 'Clave', ['class' => 'control-label']) !!}
-                            {!! Form::password('password', ['class' => 'form-control']) !!}
+                            {!! Form::label('password', 'Clave', ['class' => 'control-label col-md-2']) !!}
+                            <div class="col-md-10">
+                                {!! Form::password('password', ['class' => 'form-control']) !!}
+                            </div>
                         </div>
                         @if($errors->has('password'))
                             <div class="form-group has-error">
                                 @else
                                     <div class="form-group">
                                         @endif
-                                        {!! Form::label('password_confirmation', 'Repita su clave', ['class' => 'control-label']) !!}
-                                        {!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
+                                        {!! Form::label('password_confirmation', 'Repita su clave', ['class' => 'control-label col-md-2']) !!}
+                                        <div class="col-md-10">
+                                            {!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
+                                        </div>
                                     </div>

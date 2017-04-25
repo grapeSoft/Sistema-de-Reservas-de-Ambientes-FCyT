@@ -1,13 +1,15 @@
 @include('usuarios.form-edit-perfil')
 <div class="form-group">
     {!! Form::label('tipo', 'Tipo de usuario', [
-        'class' => 'control-label'
+        'class' => 'control-label col-md-2'
     ]) !!}
-    {!! Form::select('tipo',
+    <div class="col-md-10">
+        {!! Form::select('tipo',
         config('sistema-reservas.usuarios'),
         null,
         [
         'class' => 'form-control',
         'placeholder' => 'Seleccione un tipo de usuario',
         ]) !!}
+    </div>
 </div>
