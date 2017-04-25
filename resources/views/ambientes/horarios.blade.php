@@ -35,6 +35,14 @@
                     </table>
 
                 </div>
+                <div class="panel-footer">
+                    <div class="btn-group">
+                        <div>
+                            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#formularioReserva">Siguiente</button>
+                        </div>
+                    </div>
+                    @include('reservas.form-reserva')
+                </div>
             </div>
         </div>
     </div>
