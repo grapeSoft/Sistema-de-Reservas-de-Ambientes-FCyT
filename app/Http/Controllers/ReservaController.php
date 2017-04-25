@@ -13,8 +13,14 @@ class ReservaController extends Controller
      */
     public function index()
     {
-        return view('reservas.inicio');
+
+        /*return view('reservas.inicio');*/
+
+        //$reservas = Reserva::getReservas()//reservas del usuario;
+        $reservas = null;
+        return view('reservas.index', compact($reservas));
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -24,6 +30,7 @@ class ReservaController extends Controller
     {
         return view('reservas.create');
     }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -44,6 +51,7 @@ class ReservaController extends Controller
     {
         //
     }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -54,6 +62,7 @@ class ReservaController extends Controller
     {
         //
     }
+
     /**
      * Update the specified resource in storage.
      *
@@ -65,6 +74,7 @@ class ReservaController extends Controller
     {
         //
     }
+
     /**
      * Remove the specified resource from storage.
      *
