@@ -1,4 +1,4 @@
-{!! Form::open(['route' => 'reservas.store', 'role' => 'form']) !!}
+v{!! Form::open(['route' => 'reservas.store', 'role' => 'form']) !!}
 <div class="modal fade" id="formularioReserva" role="dialog">
 	<div class="modal-dialog">
 	    <div class="modal-content">
@@ -8,10 +8,10 @@
 	      	</div>
 	      	<div class="modal-body">
 	      		@if(Auth::user()->tipo === 'docente')
-				@include('reservas.form-reserva-doc')
+				@include('reservas.formularios.docente')
 				@endif
 				@if(Auth::user()->tipo === 'autorizado')
-				@include('reservas.form-reserva-aut')
+				@include('reservas.formularios.autorizado')
 				@endif
 	      	</div> 	
 	      	<div class="modal-footer">

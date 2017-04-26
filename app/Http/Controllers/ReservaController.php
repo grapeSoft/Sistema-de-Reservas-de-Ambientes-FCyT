@@ -13,9 +13,6 @@ class ReservaController extends Controller
      */
     public function index()
     {
-
-        /*return view('reservas.inicio');*/
-
         //$reservas = Reserva::getReservas()//reservas del usuario;
         $reservas = null;
         return view('reservas.index', compact($reservas));
