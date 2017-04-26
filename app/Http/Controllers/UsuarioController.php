@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\InvitacionUsuario;
+use App\Mail\RecuperarContrasea;
 use Illuminate\Http\Request;
 use App\Model\Usuario;
 use App\Http\Requests\StoreUsuario;
@@ -15,7 +16,7 @@ class UsuarioController extends Controller
     public function __construct()
     {
         $this->middleware('autentificado', [
-            'except' => ['login', 'logear', ]
+            'except' => ['login', 'logear', 'recuperarContrasea', 'enviarContrasea', ]
         ]);
         $this->middleware('autorizado', ['only' => [
             'edit', 'update', 'show',
@@ -83,6 +84,11 @@ class UsuarioController extends Controller
     {
         Mail::to($usuario->email)->queue(new InvitacionUsuario($usuario, $password));//
     }
+     private function enviarEmail2(Usuario $usuario, $password)
+    {
+        Mail::to($usuario->email)->queue(new RecuperarContrasea($usuario, $password));//
+    }
+
 
     /**
      * Display the specified resource.
@@ -186,4 +192,43 @@ class UsuarioController extends Controller
         $ruta = storage_path($usuario->foto);
         return file_get_contents($ruta);
     }
+
+     public function recuperarContrasea()
+    {
+        //$usuario = auth()->user();
+        return view('usuarios.recuperarC');
+    }
+
+    public function enviarContrasea(Request $request){
+
+  
+        
+
+
+        
+        $usuario = Usuario::where('email',$request->email)->first();
+
+        //dd(compact('usuario'));
+        if(empty($usuario))
+            return redirect()
+            ->route('usuarios.recuperarC')
+            ->withErrors([
+                'recuperarC' => 'Email Incorrecto'
+            ])
+            ->withInput([
+                'email' => $request->input('email'),
+            ]);
+
+        else {
+        $password = uniqid();
+        $usuario->password = $password;
+        $usuario->save();
+        $this->enviarEmail2($usuario,$password);
+        return redirect()
+            ->route('usuarios.login')
+            ->with('mensaje', 'Se le envio mensaje con sus datos revise su email..¡¡');
+
+    }
+}
+
 }
