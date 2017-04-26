@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -16,7 +16,7 @@ class Materia extends Model
 
     public function grupo()
     {
-    	return $this->hasMany('app/Grupo');
+    	return $this->hasMany('app/Model/Grupo');
     }
 
     public function perteneceUsuario()

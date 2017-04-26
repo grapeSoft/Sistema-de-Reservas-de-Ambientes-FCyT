@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,13 +13,13 @@ class Ambiente extends Model
         'nombre_ambiente', 'ubicacion_ambiente'
     ];
 
-    public function horarios()
+    public function disponibilidad()
     {
-    	return $this->hasMany('app/Horario');
+    	return $this->hasMany('app/Model/Disponibilidad');
     }
 
     public function eventos()
     {
-    	return $this->hasMany('app/Evento');
+    	return $this->hasMany('app/Model/Evento');
     }
 }

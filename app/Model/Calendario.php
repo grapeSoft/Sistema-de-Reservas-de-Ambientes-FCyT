@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,6 +15,6 @@ class Calendario extends Model
 
     public function fechas()
     {
-    	return $this->hasMany('app/Fecha');
+    	return $this->hasMany('app/Model/Fecha');
     }
 }

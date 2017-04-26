@@ -41,8 +41,8 @@ class Usuario extends User
         return $this->attributes['id_usuario'];
     }
 
-     public function reserva()
+    public function reserva()
     {
-        return $this->hasMany('app/Reserva');
+        return $this->hasMany('app/Model/Reserva');
     }
 }

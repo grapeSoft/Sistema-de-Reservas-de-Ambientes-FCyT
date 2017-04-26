@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,7 +21,7 @@ class Reserva extends Model
 
     public function eventos()
     {
-        return $this->hasMany('app/Evento');
+        return $this->hasMany('app/Model/Evento');
     }
 
 }

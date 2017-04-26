@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,11 +10,11 @@ class Grupo extends Model
     protected $primaryKey = 'id_grupo';
 
     public $fillable = [
-        'id_materia', 'nro_grupo'
+        'id_materia', 'numero'
     ];
 
     public function peteneceMateria()
     {
-    	return $this->belongsTo('app/Materia');
+    	return $this->belongsTo('app/Model/Materia');
     }
 }

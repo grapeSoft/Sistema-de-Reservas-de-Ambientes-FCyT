@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,16 +10,16 @@ class Fecha extends Model
     protected $primaryKey = 'id_fecha';
 
     public $fillable = [
-        'id_calendario'
+        'id_calendario', 'tipo'
     ];
 
     public function peteneceCalendario()
     {
-    	return $this->belongsTo('app/Calendario');
+    	return $this->belongsTo('app/Model/Calendario');
     }
 
-    public function horarios()
+    public function fechaHorario()
     {
-    	return $this->hasMany('app/Horario');
+    	return $this->hasMany('app/Model/Fecha_Horario');
     }
 }
