@@ -24,5 +24,6 @@ Route::get('usuarios/perfil', 'UsuarioController@perfil')->name('usuarios.perfil
 Route::get('usuarios/{id}/foto', 'UsuarioController@foto')
     ->name('usuarios.foto');
 Route::resource('usuarios', 'UsuarioController');
+
+Route::get('reservas/horarios', 'ReservaController@horarios')->name('reservas.horarios');
 Route::resource('reservas', 'ReservaController');
-Route::get('/ambiente/horarios', 'AmbienteController@horarios')->name('ambiente.horarios');

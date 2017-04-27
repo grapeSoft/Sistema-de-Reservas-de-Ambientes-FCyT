@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Model\Ambiente;
 
 class ReservaController extends Controller
 {
@@ -81,5 +82,16 @@ class ReservaController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function horarios(Request $request)
+    {
+        $ambiente = $request->ambiente;
+        $fecha = $request->fecha;
+        $ambiente = Ambiente::findOrFail($ambiente);
+        //dd($ambiente);
+        $ambiente->setFecha($fecha);
+        $horarios = $ambiente->horarios;
+        return view('reservas.horarios', compact('horarios', 'ambiente', 'fecha'));
     }
 }

@@ -9,7 +9,7 @@
                 </div>
                 <div class="panel-body">
                     {!! Form::open([
-						'route' => ['ambiente.horarios'],
+						'route' => ['reservas.horarios'],
 					    'method' => 'get',
 						'files' => true,
 						]) !!}
@@ -19,9 +19,9 @@
                             'class' => 'control-label col-md-2'
                         ]) !!}
                         <div class="col-md-10">
-                            {!! Form::select('ambiente', ['1' => 'Auditorio', '2' => 'Laboratorio 1'],
+                            {!! Form::select('ambiente', ['1' => 'Auditorio',],
                             null,
-                            ['class' => 'form-control', ])
+                            ['class' => 'form-control', 'onchange' => "this.form.submit()"])
                             !!}
                         </div>
                         {!! Form::label('fecha', 'Fecha', ['class' => 'control-label col-md-2']) !!}
