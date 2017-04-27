@@ -1,4 +1,4 @@
-v{!! Form::open(['route' => 'reservas.store', 'role' => 'form']) !!}
+{!! Form::open(['route' => 'reservas.store', 'role' => 'form']) !!}
 <div class="modal fade" id="formularioReserva" role="dialog">
 	<div class="modal-dialog">
 	    <div class="modal-content">

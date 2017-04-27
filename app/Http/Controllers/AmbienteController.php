@@ -12,6 +12,6 @@ class AmbienteController extends Controller
         $ambiente = Ambiente::findOrFail($id_ambiente);
         $ambiente->setFecha($fecha);
         $horarios = $ambiente->horarios;
-        return view('ambientes.horarios', compact('horarios'));
+        return view('reservas.horarios', compact('horarios'));
     }
 }
