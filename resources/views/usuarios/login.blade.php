@@ -27,6 +27,9 @@
 						<!-- {!! Form::label('password', 'Contraseña', ['class' => 'control-label']) !!} -->
 						{!! Form::password('password', ['class' => 'form-control', 'placeholder' => 'Contraseña']) !!}
 					</div>
+					<div>
+						<a href="{{ route('usuarios.recuperarC') }}" class="label-link"> Olvidate tu contraseña? </a>
+					</div>
 					<div class="text-center">
 						<button type="submit" class="btn btn-primary">Ingresar</button>
 					</div>

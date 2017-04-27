@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Model\Reserva;
+use DB;
 class ReservaController extends Controller
 {
     /**
@@ -46,7 +47,9 @@ class ReservaController extends Controller
      */
     public function show($id)
     {
-        //
+        $resultado = DB::table('reserva')->select('id_usuario','id_reserva')->first();
+             
+        return view('reservas.vista.view', compact('resultado'));
     }
 
     /**
