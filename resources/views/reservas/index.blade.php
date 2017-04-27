@@ -18,7 +18,20 @@
                         <a href="{{ route('reservas.create') }}" class="btn btn-primary">
                             <i class="material-icons">person_add</i> Crear reserva
                         </a>
+
+                         <!-- <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#formularioReserva">Siguiente</button> -->
+
+                         <button type="button" class="btn btn-primary btn-lg" data-toggle="modal">Siguiente</button> 
+                        <!-- $reserva->id_reserva (1) -->
+                        <a href="{{ route('reservas.show', 
+                                        ['id' => 1]) }}" 
+                                    class="btn btn-xs btn-info" title="Ver">
+                                        <i class="material-icons md-18">open_in_new</i>
+                        </a>
+                        
                     </div>
+
+
                     <div class="table-responsive">
                         <table class="table table-striped table-hover ">
                             <thead>

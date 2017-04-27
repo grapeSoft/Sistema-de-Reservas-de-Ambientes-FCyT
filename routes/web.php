@@ -20,6 +20,7 @@ Route::post('logear', 'UsuarioController@logear')->name('usuarios.logear');
 Route::get('recuperarC', 'UsuarioController@recuperarContrasea')->name('usuarios.recuperarC');
 Route::post('enviar', 'UsuarioController@enviarContrasea')->name('usuarios.enviarContrasea');
 
+
 Route::get('/', 'PrincipalController@inicio')->name('principal.inicio');
 Route::get('logout', 'UsuarioController@logout')->name('usuarios.logout');
 Route::get('usuarios/perfil', 'UsuarioController@perfil')->name('usuarios.perfil');
