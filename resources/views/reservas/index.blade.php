@@ -36,29 +36,38 @@
 										</tr>
 									</thead>
 									<tbody>
-									
+										@foreach($reservas as $reserva)
+										<tr>
+											<td>{{ $reserva->id_fecha }}</td>
+											<td>{{ $reserva->hora_inicio }}</td>
+											<td>{{ $reserva->hora_fin }}</td>
+											<td>
+												<a href="#" 
+												class="btn btn-xs btn-info" title="Ver">
+													<i class="material-icons md-18">open_in_new</i>
+												</a>
+											</td>
+											<td>
+												<a href="#" 
+													class="btn btn-xs btn-success" title="Editar">
+													<i class="material-icons md-18">mode_edit</i>
+												</a>
+											</td>
+											<td>
+												<a href="#" 
+												class="btn btn-xs btn-danger" title="Eliminar">
+													<i class="material-icons md-18">delete</i>
+												</a>
+											</td>
+										</tr>
+										@endforeach
 									</tbody>
 								</table>
 							</div>	
 						</div>	
 		            
 		            	<div class="tab-pane fade" id="todasLasReservas">
-							<div class="">
-								<table class="table table-striped table-hover table-bordered table-responsive">
-									<thead>
-										<tr class="success">
-											<th>Reservado por:</th>
-											<th>Fecha</th>
-											<th>Hora inicio</th>
-											<th>Hora fin</th>
-											<th class="text-center">Opciones</th>
-										</tr>
-									</thead>
-									<tbody>
-									
-									</tbody>
-								</table>
-							</div>	
+		            		
 						</div>	
 					</div>
 	            </div>
