@@ -25,4 +25,4 @@ Route::get('usuarios/{id}/foto', 'UsuarioController@foto')
     ->name('usuarios.foto');
 Route::resource('usuarios', 'UsuarioController');
 Route::resource('reservas', 'ReservaController');
-Route::get('/ambientes/{id_ambiente}/fechas/{fecha}/horarios', 'AmbienteController@horarios')->name('ambiente.horarios');
+Route::get('/ambiente/horarios', 'AmbienteController@horarios')->name('ambiente.horarios');

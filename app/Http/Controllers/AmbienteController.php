@@ -7,11 +7,13 @@ use Illuminate\Http\Request;
 
 class AmbienteController extends Controller
 {
-    public function horarios($id_ambiente, $fecha)
+    public function horarios(Request $request)
     {
-        $ambiente = Ambiente::findOrFail($id_ambiente);
+        $ambiente = $request->ambiente;
+        $fecha = $request->fecha;
+        $ambiente = Ambiente::findOrFail($ambiente);
         $ambiente->setFecha($fecha);
         $horarios = $ambiente->horarios;
-        return view('reservas.horarios', compact('horarios'));
+        return view('reservas.horarios', compact('horarios', 'ambiente', 'fecha'));
     }
 }

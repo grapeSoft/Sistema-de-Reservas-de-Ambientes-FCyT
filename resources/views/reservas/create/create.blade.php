@@ -8,28 +8,33 @@
                     <h4>Crear Reserva</h4>
                 </div>
                 <div class="panel-body">
-                    {{--{!! Form::open([--}}
-						{{--'route' => ['ambiente.horarios',1,'2017-04-02'],--}}
-						{{--'files' => true,--}}
-						{{--]) !!}--}}
-                    {{--@include('reservas.create.form-select-dates')--}}
+                    {!! Form::open([
+						'route' => ['ambiente.horarios'],
+					    'method' => 'get',
+						'files' => true,
+						]) !!}
 
                     <div class="form-group">
-                        <label for="fecha">Seleccione una fecha:</label>
-                        <input type="date" class="form-control" id="fecha">
+                        {!! Form::label('ambiente', 'Ambiente', [
+                            'class' => 'control-label col-md-2'
+                        ]) !!}
+                        <div class="col-md-10">
+                            {!! Form::select('ambiente', ['1' => 'Auditorio', '2' => 'Laboratorio 1'],
+                            null,
+                            ['class' => 'form-control', ])
+                            !!}
+                        </div>
+                        {!! Form::label('fecha', 'Fecha', ['class' => 'control-label col-md-2']) !!}
+                        <div class="col-md-10">
+                            {{--{!! Form::text('nombre', null, ['class' => 'form-control']) !!}--}}
+                            @if(empty($fecha))
+                                {!! Form::date('fecha', null, ['class' => 'form-control', 'onchange' => "this.form.submit()"]) !!}
+                            @else
+                                {!! Form::date('fecha', $fecha, ['class' => 'form-control', 'onchange' => "this.form.submit()"]) !!}
+                            @endif
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <select onChange="window.location.href=this.value">
-                            <option disabled selected value> -- Seleccione un ambiente -- </option>
-                            <option value="http://localhost:8000/ambientes/1/fechas/2017-04-01/horarios">Auditorio</option>
-                        </select>
-                    </div>
-
-                    {{--<article id="content">--}}
-                        {{--<!-- <div class="container"> -->--}}
-                        {{--@yield('content')--}}
-                                {{--<!-- </div> -->--}}
-                    {{--</article>--}}
+                    {!! Form::close() !!}
 
                     @yield('content')
 
