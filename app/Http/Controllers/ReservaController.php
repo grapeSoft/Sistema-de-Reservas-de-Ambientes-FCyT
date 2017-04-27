@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Model\Reserva;
 use DB;
+use Illuminate\Support\Facades\DB;
 
 class ReservaController extends Controller
 {
@@ -17,7 +18,20 @@ class ReservaController extends Controller
     {
         //$reservas = Reserva::getReservas()//reservas del usuario;
         $reservas = null;
-        return view('reservas.index', compact($reservas));
+        $usuarioAdmin = auth()->user();
+        $id_us = $usuarioAdmin->id_usuario;
+        $reservas = DB::table('USUARIO')
+            ->join('reserva', 'USUARIO.id_usuario', '=', 'reserva.id_usuario')
+            ->join('evento' , 'reserva.id_reserva', '=', 'evento.id_reserva')
+            ->join('ambiente', 'evento.id_ambiente', '=', 'ambiente.id_ambiente')
+            ->join('disponibilidad', 'ambiente.id_ambiente', '=', 'disponibilidad.id_ambiente')
+            ->join('horario', 'disponibilidad.id_horario', '=', 'horario.id_horario')
+            ->join('fecha', 'disponibilidad.id_fecha', '=', 'fecha.id_fecha')
+            ->select('fecha.id_fecha', 'horario.hora_inicio', 'horario.hora_fin', 'reserva.id_reserva')
+            ->where('USUARIO.id_usuario', '=', $id_us)
+            ->get();
+        return view('Reservas.index', compact('reservas'));
+        
     }
 
     /**
