@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Model\Reserva;
-use DB;
+use App\Model\Ambiente;
+/*use DB;*/
 use Illuminate\Support\Facades\DB;
 
 class ReservaController extends Controller
@@ -18,7 +18,7 @@ class ReservaController extends Controller
     {
         //$reservas = Reserva::getReservas()//reservas del usuario;
         $reservas = null;
-        $usuarioAdmin = auth()->user();
+        /*$usuarioAdmin = auth()->user();
         $id_us = $usuarioAdmin->id_usuario;
         $reservas = DB::table('USUARIO')
             ->join('reserva', 'USUARIO.id_usuario', '=', 'reserva.id_usuario')
@@ -29,7 +29,7 @@ class ReservaController extends Controller
             ->join('fecha', 'disponibilidad.id_fecha', '=', 'fecha.id_fecha')
             ->select('fecha.id_fecha', 'horario.hora_inicio', 'horario.hora_fin', 'reserva.id_reserva')
             ->where('USUARIO.id_usuario', '=', $id_us)
-            ->get();
+            ->get();*/
         return view('Reservas.index', compact('reservas'));
         
     }

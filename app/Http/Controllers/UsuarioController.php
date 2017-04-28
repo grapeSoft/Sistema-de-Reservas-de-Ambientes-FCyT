@@ -224,5 +224,6 @@ class UsuarioController extends Controller
             ->route('usuarios.login')
             ->with('mensaje', 'Se le envio mensaje con sus datos revise su email..¡¡');
 
+        }
     }
 }
