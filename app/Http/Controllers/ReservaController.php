@@ -17,20 +17,20 @@ class ReservaController extends Controller
     public function index()
     {
         // $reservas = Reserva::getReservas()//reservas del usuario;
-        $reservas = null;
-        $usuarioAdmin = auth()->user();
-        $id_us = $usuarioAdmin->id_usuario;
-        $reservas = DB::table('USUARIO')
-            ->join('reserva', 'USUARIO.id_usuario', '=', 'reserva.id_usuario')
-            ->join('evento' , 'reserva.id_reserva', '=', 'evento.id_reserva')
-            ->join('ambiente', 'evento.id_ambiente', '=', 'ambiente.id_ambiente')
-            ->join('disponibilidad', 'ambiente.id_ambiente', '=', 'disponibilidad.id_ambiente')
-            ->join('horario', 'disponibilidad.id_horario', '=', 'horario.id_horario')
-            ->join('fecha', 'disponibilidad.id_fecha', '=', 'fecha.id_fecha')
-            ->select('fecha.id_fecha', 'horario.hora_inicio', 'horario.hora_fin', 'reserva.id_reserva')
-            ->where('USUARIO.id_usuario', '=', $id_us)
-            ->get();
-        return view('Reservas.index', compact('reservas'));
+        // $reservas = null;
+        // $usuarioAdmin = auth()->user();
+        // $id_us = $usuarioAdmin->id_usuario;
+        // $reservas = DB::table('USUARIO')
+        //     ->join('reserva', 'USUARIO.id_usuario', '=', 'reserva.id_usuario')
+        //     ->join('evento' , 'reserva.id_reserva', '=', 'evento.id_reserva')
+        //     ->join('ambiente', 'evento.id_ambiente', '=', 'ambiente.id_ambiente')
+        //     ->join('disponibilidad', 'ambiente.id_ambiente', '=', 'disponibilidad.id_ambiente')
+        //     ->join('horario', 'disponibilidad.id_horario', '=', 'horario.id_horario')
+        //     ->join('fecha', 'disponibilidad.id_fecha', '=', 'fecha.id_fecha')
+        //     ->select('fecha.id_fecha', 'horario.hora_inicio', 'horario.hora_fin', 'reserva.id_reserva')
+        //     ->where('USUARIO.id_usuario', '=', $id_us)
+        //     ->get();
+        return view('Reservas.index');
         
     }
 
@@ -62,39 +62,19 @@ class ReservaController extends Controller
      */
     public function show($id)
     {
-     // $reservas = null;
+    
 
         $reservas= DB::table('reserva')
-                    ->join('USUARIO','reserva.id_usuario','=','USUARIO.id_usuario')
-                    ->join('materia', 'USUARIO.id_usuario','=','materia.id_usuario') 
+                    ->join('USUARIO','reserva.id_usuario','=','USUARIO.id_usuario')                    
                     ->select('reserva.id_reserva', 'USUARIO.id_usuario', 'USUARIO.apellido_paterno', 'USUARIO.apellido_materno','USUARIO.email')
                      ->first(); 
-        $materias= DB::table('materia')
-                    ->join('USUARIO', 'materia.id_usuario','=','USUARIO.id_usuario') 
-                    ->select('materia.nombre')
-                    ->get()->toArray();
-
-
-
-
-        
-          
-        // $usuarioAdmin = auth()->user();
-        // $id_us = $usuarioAdmin->id_usuario;
-        // $reservas = DB::table('USUARIO')
-        //     ->join('reserva', 'USUARIO.id_usuario', '=', 'reserva.id_usuario')
-        //     ->join('evento' , 'reserva.id_reserva', '=', 'evento.id_reserva')
-        //     ->join('ambiente', 'evento.id_ambiente', '=', 'ambiente.id_ambiente')
-        //     ->join('disponibilidad', 'ambiente.id_ambiente', '=', 'disponibilidad.id_ambiente')
-        //     ->join('horario', 'disponibilidad.id_horario', '=', 'horario.id_horario')
-        //     ->join('fecha', 'disponibilidad.id_fecha', '=', 'fecha.id_fecha')
-        //     ->join('materia', 'USUARIO.id_usuario', '=', 'materia.id_usuario')
-        //     ->select('fecha.id_fecha', 'horario.hora_inicio', 'horario.hora_fin', 'reserva.id_reserva', 'USUARIO.id_usuario', 'USUARIO.*', 'materia.nombre' )            
-        //     ->where('USUARIO.id_usuario', '=', $id_us)
-        //     ->first();
-         //dd($reservas,$materias);
-        
-           return view('reservas.vista.view', compact('reservas','materias'));
+        $materias= DB::table('usuario_materia')
+                    ->join('USUARIO', 'usuario_materia.id_usuario','=','USUARIO.id_usuario') 
+                    ->join('materia', 'usuario_materia.id_usuario_materia','=','materia.id_materia')
+                    ->select('materia.nombre','usuario_materia.grupo')
+                    ->get()->toArray();      
+               
+        return view('reservas.vista.view', compact('reservas','materias'));
     }
     
 

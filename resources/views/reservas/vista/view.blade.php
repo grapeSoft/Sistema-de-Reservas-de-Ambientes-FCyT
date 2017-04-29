@@ -1,8 +1,8 @@
-@extends('plantillas.principal')
+@extends('reservas.principal')
 
-@section('contenido')
+@section('contenido-principal')
 
-<div class="container">
+
 	<div class="col-md-8 col-md-offset-2">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
@@ -26,7 +26,7 @@
 				
 			</div>
 		</div>
-	</div>
+	
 </div>
 	      	
 

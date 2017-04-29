@@ -22,6 +22,9 @@ class UsuarioController extends Controller
         $this->middleware('autorizado', ['only' => [
             'edit', 'update', 'show',
         ]]);
+        $this->middleware('docente', ['only' => [
+            'edit', 'update', 'show',
+        ]]);
         $this->middleware('adm', ['only' => [
             'index', 'create', 'store', 'destroy',
         ]]);

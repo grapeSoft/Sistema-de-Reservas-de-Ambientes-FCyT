@@ -37,6 +37,10 @@ class Usuario extends User
     {
         return $this->attributes['tipo'] === 'autorizado';
     }
+    public function esDocente()
+    {
+        return $this->attributes['tipo'] === 'docente';
+    }
     public function id(){
         return $this->attributes['id_usuario'];
     }

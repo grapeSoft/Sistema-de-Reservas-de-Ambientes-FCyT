@@ -24,7 +24,11 @@
 					<tr>
 						<td><strong>Materias</strong></td>				               
                         <td>@foreach($materias as $item) // {{ $item->nombre }} @endforeach</td>                                   
-                    </tr>                  		
+                    </tr> 
+                    <tr>
+						<td><strong>Grupos</strong></td>				               
+                        <td>@foreach($materias as $item) // {{ $item->grupo }} @endforeach</td>                                   
+                    </tr>                 		
 					
 					
 				</table>
