@@ -18,19 +18,16 @@ class ReservaController extends Controller
     {
         //$reservas = Reserva::getReservas()//reservas del usuario;
         $reservas = null;
-        /*$usuarioAdmin = auth()->user();
+        $usuarioAdmin = auth()->user();
         $id_us = $usuarioAdmin->id_usuario;
         $reservas = DB::table('USUARIO')
             ->join('reserva', 'USUARIO.id_usuario', '=', 'reserva.id_usuario')
-            ->join('evento' , 'reserva.id_reserva', '=', 'evento.id_reserva')
-            ->join('ambiente', 'evento.id_ambiente', '=', 'ambiente.id_ambiente')
-            ->join('disponibilidad', 'ambiente.id_ambiente', '=', 'disponibilidad.id_ambiente')
-            ->join('horario', 'disponibilidad.id_horario', '=', 'horario.id_horario')
-            ->join('fecha', 'disponibilidad.id_fecha', '=', 'fecha.id_fecha')
-            ->select('fecha.id_fecha', 'horario.hora_inicio', 'horario.hora_fin', 'reserva.id_reserva')
+            ->join('horario' , 'reserva.id_reserva', '=', 'horario.id_reserva')
+            ->join('horas', 'horario.id_horas', '=', 'horas.id_horas')
+            ->select('horario.id_fecha', 'horas.hora_inicio', 'horas.hora_fin', 'reserva.id_reserva')
             ->where('USUARIO.id_usuario', '=', $id_us)
-            ->get();*/
-        return view('Reservas.index', compact('reservas'));
+            ->get();
+        return view('reservas.index', compact('reservas'));
         
     }
 

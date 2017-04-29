@@ -15,10 +15,11 @@
 				</tr>
 			</thead>
 			<tbody>
+				@foreach($reservas as $reserva)
 				<tr>
-					<td>xxxxxxxxxxxxxxxxxxxx</td>
-					<td>xxxxxxxxxxxxxxxxxxxx</td>
-					<td>xxxxxxxxxxxxxxxxxxxx</td>
+					<td>$reserva->id_fecha</td>
+					<td>$reserva->hora_inicio</td>
+					<td>$reserva->hora_fin</td>
 					<td>
 						<div class="text-center">
 							<a href="javascript:void(0)" class="btn btn-fab btn-fab-mini btn-info">
@@ -32,7 +33,8 @@
 							</a>
 						</div>
 					</td>
-				</tr>			
+				</tr>
+				@endforeach			
 			</tbody>
 		</table>
 	</div>	
