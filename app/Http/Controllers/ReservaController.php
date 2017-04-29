@@ -52,7 +52,10 @@ class ReservaController extends Controller
      */
     public function store(Request $request)
     {
-        echo "Reserva Almacenada";
+        dd(compact('request'));
+        return redirect()
+            ->route('eventos.create')
+            ->with('mensaje', 'Se han registrado los horarios para la reserva');
     }
     /**
      * Display the specified resource.
@@ -106,7 +109,6 @@ class ReservaController extends Controller
         $ambiente = $request->ambiente;
         $fecha = $request->fecha;
         $ambiente = Ambiente::findOrFail($ambiente);
-        //dd($ambiente);
         $ambiente->setFecha($fecha);
         $horarios = $ambiente->horarios;
         return view('reservas.horarios', compact('horarios', 'ambiente', 'fecha'));

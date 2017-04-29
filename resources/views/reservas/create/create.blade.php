@@ -23,8 +23,7 @@
             </div>
             <div class="form-group col-md-6">
                 {!! Form::label('fecha', 'Fecha', ['class' => 'control-label col-md-4']) !!}
-                <div class="col-md-7 col-md-offset-1"">
-                    {{--{!! Form::text('nombre', null, ['class' => 'form-control']) !!}--}}
+                <div class="col-md-7 col-md-offset-1>
                     @if(empty($fecha))
                         {!! Form::date('fecha', null, ['class' => 'form-control', 'onchange' => "this.form.submit()"]) !!}
                     @else
