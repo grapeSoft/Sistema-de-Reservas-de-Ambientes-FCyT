@@ -8,12 +8,8 @@
 						<td>{{ $reservas->id_reserva }}</td>
 					</tr>
 					<tr>
-						<td><strong>Apellido </strong></td>
-						<td>{{ $reservas->apellido_paterno }}</td>
-					</tr>
-					<tr>
-						<td><strong>Apellido Materno</strong></td>
-						<td>{{ $reservas->apellido_materno }}</td>
+						<td><strong>Nombre</strong></td>
+						<td>{{ $reservas->nombre }} {{ $reservas->apellido_paterno }} {{ $reservas->apellido_materno }} </td>
 					</tr>
 					<tr>
 						<td><strong>Email</strong></td>
@@ -23,7 +19,10 @@
 						<td><strong>Materias</strong></td>				               
                         <td>@foreach($materias as $item) // {{ $item->nombre }}   @endforeach</td>                                   
                     </tr>                  		
-					
+					<tr>
+						<td><strong>Grupos</strong></td>				               
+                        <td>@foreach($materias as $item) // {{ $item->grupo }} @endforeach</td>                                   
+                    </tr>
 					
 				</table>
 			
