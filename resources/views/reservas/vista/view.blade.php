@@ -6,7 +6,7 @@
 	<div class="col-md-8 col-md-offset-2">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<h4>Detalle de usuario</h4>
+				<h4>Detalle de Reserva</h4>
 			</div>
 			<div class="panel-body">
 				@if(session('mensaje'))

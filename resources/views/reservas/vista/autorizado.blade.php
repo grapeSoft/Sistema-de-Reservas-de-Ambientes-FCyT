@@ -1,32 +1,31 @@
-
-				
-				
+	
 				
 				<table class="table table-bordered table-hover">
 					<tr>
 						<td><strong>Id. de Usuario</strong></td>
-						<td>{{ $resultado->id_usuario }}</td>
+						<td>{{ $reservas->id_usuario }}</td>
 					</tr>
 					<tr>
 						<td><strong>Id de Reserva</strong></td>
-						<td>{{ $resultado->id_reserva }}</td>
+						<td>{{ $reservas->id_reserva }}</td>
 					</tr>
 					<tr>
-						<td><strong>Apellido Paterno</strong></td>
-						<td>--</td>
+						<td><strong>Apellido </strong></td>
+						<td>{{ $reservas->apellido_paterno }}</td>
 					</tr>
 					<tr>
 						<td><strong>Apellido Materno</strong></td>
-						<td>--</td>
+						<td>{{ $reservas->apellido_materno }}</td>
 					</tr>
 					<tr>
 						<td><strong>Email</strong></td>
-						<td>--</td>
+						<td>{{ $reservas->email }}</td>
 					</tr>
 					<tr>
-						<td><strong>Nombre de usuario</strong></td>
-						<td>--</td>
-					</tr>
+						<td><strong>Materias</strong></td>				               
+                        <td>@foreach($materias as $item) // {{ $item->nombre }} @endforeach</td>                                   
+                    </tr>                  		
+					
 					
 				</table>
 			

@@ -21,7 +21,7 @@
 					<td>xxxxxxxxxxxxxxxxxxxx</td>
 					<td>
 						<div class="text-center">
-							<a href="javascript:void(0)" class="btn btn-fab btn-fab-mini btn-info">
+							<a href="{{ route('reservas.show',['id' => 1]) }}"class="btn btn-xs btn-info" title="Ver">
 								<i class="material-icons md-18">open_in_new</i>
 							</a>
 							<a href="javascript:void(0)" class="btn btn-fab btn-fab-mini btn-success">
