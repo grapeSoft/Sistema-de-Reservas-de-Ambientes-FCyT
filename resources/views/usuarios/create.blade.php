@@ -18,10 +18,10 @@
 						<button type="submit" class="btn btn-primary">
 							<b class="glyphicon glyphicon-new-window"></b> Crear
 						</button>
-						<a class="btn btn-primary" 
-							href="{{ route('usuarios.index') }}">
-							<b class="glyphicon glyphicon-remove"></b> Salir
-						</a>
+						{{--<a class="btn btn-primary" --}}
+							{{--href="{{ route('usuarios.index') }}">--}}
+							{{--<b class="glyphicon glyphicon-remove"></b> Salir--}}
+						{{--</a>--}}
 					</div>
 				{!! Form::close() !!}	
 			</div>

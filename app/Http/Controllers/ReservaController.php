@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Model\Horario;
 use Illuminate\Http\Request;
 use App\Model\Reserva;
 use App\Model\Ambiente;
@@ -52,9 +53,21 @@ class ReservaController extends Controller
      */
     public function store(Request $request)
     {
-        dd(compact('request'));
+
+        $reserva = new Reserva();
+        $reserva->id_usuario = auth()->user()->id_usuario;
+        $reserva->save();
+
+        $ambiente = Ambiente::findOrFail(1);
+        $ambiente->setFecha($request->id_fecha);
+        $ids_horas = $request->except('_token');
+
+        foreach ($ids_horas as $id){
+            $ambiente->horarios()->updateExistingPivot($id,['id_reserva' => $reserva->id_reserva , 'estado' => 'Ocupado' ]);
+        }
+
         return redirect()
-            ->route('eventos.create')
+            ->route('reservas.index')
             ->with('mensaje', 'Se han registrado los horarios para la reserva');
     }
     /**

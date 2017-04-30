@@ -27,10 +27,11 @@ class Ambiente extends Model
 
     public function horarios()
     {
-            return $this->belongsToMany('App\Model\Horario', 'DISPONIBILIDAD', 'id_ambiente', 'id_horario')
-            ->withPivot('estado')
+            return $this->belongsToMany('App\Model\Horas', 'HORARIO', 'id_ambiente', 'id_horas')
+            ->withPivot('estado', 'id_fecha')
             ->wherePivot('id_fecha', $this->fecha);
     }
+
     public function eventos()
     {
     	return $this->hasMany('app/Model/Evento');
