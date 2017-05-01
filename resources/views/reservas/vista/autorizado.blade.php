@@ -1,32 +1,32 @@
-
-				
-				
+	
 				
 				<table class="table table-bordered table-hover">
 					<tr>
 						<td><strong>Id. de Usuario</strong></td>
-						<td>{{ $resultado->id_usuario }}</td>
+						<td>{{ $reservas->id_usuario }}</td>
 					</tr>
 					<tr>
 						<td><strong>Id de Reserva</strong></td>
-						<td>{{ $resultado->id_reserva }}</td>
+						<td>{{ $reservas->id_reserva }}</td>
 					</tr>
 					<tr>
-						<td><strong>Apellido Paterno</strong></td>
-						<td>--</td>
-					</tr>
-					<tr>
-						<td><strong>Apellido Materno</strong></td>
-						<td>--</td>
+						<td><strong>Nombre</strong></td>
+						<td>{{ $reservas->nombre }} {{ $reservas->apellido_paterno }} {{ $reservas->apellido_materno }} </td>
 					</tr>
 					<tr>
 						<td><strong>Email</strong></td>
-						<td>--</td>
+						<td>{{ $reservas->email }}</td>
 					</tr>
 					<tr>
-						<td><strong>Nombre de usuario</strong></td>
-						<td>--</td>
-					</tr>
+						<td><strong>Tipo de Reserva</strong></td>				               
+                        <td>{{ $reservas->tipo }}</td>                                   
+                    </tr> 
+                    <tr>
+						<td><strong>Descripcion</strong></td>				               
+                        <td>{{ $reservas->descripcion }}</td>                                   
+                    </tr> 
+                                     		
+					
 					
 				</table>
 			

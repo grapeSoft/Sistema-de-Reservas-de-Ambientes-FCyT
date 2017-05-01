@@ -22,7 +22,7 @@
 					<td>{{ $reserva->hora_fin }}</td>
 					<td>
 						<div class="text-center">
-							<a href="javascript:void(0)" class="btn btn-fab btn-fab-mini btn-info" title="Ver">
+							<a href="{{ route('reservas.show',['id' => $reservas]) }}" class="btn btn-fab btn-fab-mini btn-info" >
 								<i class="material-icons md-18">open_in_new</i>
 							</a>
 							<a href="javascript:void(0)" class="btn btn-fab btn-fab-mini btn-success" title="Editar">

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Model\Reserva;
 use App\Model\Ambiente;
-/*use DB;*/
+
 use Illuminate\Support\Facades\DB;
 
 class ReservaController extends Controller
@@ -28,8 +28,7 @@ class ReservaController extends Controller
             ->select('horario.id_fecha', 'horas.hora_inicio', 'horas.hora_fin', 'reserva.id_reserva')
             ->where('USUARIO.id_usuario', '=', $id_us)
             ->get();
-        return view('reservas.index', compact('reservas'));
-        
+        return view('reservas.index', compact('reservas'));  
     }
 
     /**
@@ -60,10 +59,26 @@ class ReservaController extends Controller
      */
     public function show($id)
     {
-        $resultado = DB::table('reserva')->select('id_usuario','id_reserva')->first();
-             
-        return view('reservas.vista.view', compact('resultado'));
+    
+
+        $reservas= DB::table('reserva')
+                    ->where('reserva.id_reserva','=',$id)
+                    ->join('USUARIO','reserva.id_usuario','=','USUARIO.id_usuario') 
+                    ->join('evento','reserva.id_reserva' ,'=','evento.id_reserva')                   
+                    ->select('reserva.id_reserva','USUARIO.nombre', 'USUARIO.id_usuario', 'USUARIO.apellido_paterno', 'USUARIO.apellido_materno',
+                        'USUARIO.email','evento.tipo','evento.descripcion')
+                    ->first(); 
+        $materias= DB::table('reserva')
+                    ->where('reserva.id_reserva','=',$id)
+                    ->join('USUARIO','reserva.id_usuario','=','USUARIO.id_usuario') 
+                    ->join('usuario_materia','USUARIO.id_usuario','=','usuario_materia.id_usuario')
+                    ->join('materia', 'usuario_materia.id_usuario_materia','=','materia.id_materia')                   
+                    ->select('materia.nombre','usuario_materia.grupo')
+                    ->get()->toArray();                    
+                     
+          return view('reservas.vista.view', compact('reservas','materias'));
     }
+    
 
     /**
      * Show the form for editing the specified resource.
