@@ -25,7 +25,11 @@
                                 <td>{{ $horario->hora_inicio }}</td>
                                 <td>{{ $horario->hora_fin }}</td>
                                 <td>{{ $horario->pivot->estado }}</td>
-                                <td>{!! Form::checkbox($horario->id_horas, $horario->id_horas) !!}</td>
+                                @if($horario->pivot->estado == "Libre")
+                                    <td>{!! Form::checkbox($horario->id_horas, $horario->id_horas) !!}</td>
+                                @else
+                                    <td></td>
+                                @endif
                             </tr>
                         @endforeach
                         {{--@endif--}}
@@ -36,17 +40,11 @@
                 <button type="submit" class="btn btn-primary">
                 <b class="glyphicon glyphicon-new-window"></b> Crear
                 </button>
-                {{--<a class="btn btn-primary"--}}
-                   {{--href="{{ route('reservas.store') }}">--}}
-                    {{--<b class="glyphicon glyphicon-new-window"></b> Crear--}}
-                {{--</a>--}}
-                {{--<a class="btn btn-primary"--}}
-                   {{--href="{{ route('reservas.index') }}">--}}
-                    {{--<b class="glyphicon glyphicon-remove"></b> Salir--}}
-                {{--</a>--}}
             </div>
         </div>
+        @if(!empty($horario))
         {!! Form::hidden('id_fecha', $horario->pivot->id_fecha, ['class' => 'form-control', 'onchange' => "this.form.submit()"]) !!}
+        @endif
         {!! Form::close() !!}
     </div>
 </div>

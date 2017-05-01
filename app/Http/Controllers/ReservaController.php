@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\HorariosReserva;
+use App\Http\Requests\StoreReserva;
+use App\Model\Fecha;
 use App\Model\Horario;
 use Illuminate\Http\Request;
 use App\Model\Reserva;
@@ -51,9 +54,8 @@ class ReservaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreReserva $request)
     {
-
         $reserva = new Reserva();
         $reserva->id_usuario = auth()->user()->id_usuario;
         $reserva->save();
@@ -117,7 +119,7 @@ class ReservaController extends Controller
         //
     }
 
-    public function horarios(Request $request)
+    public function horarios(HorariosReserva $request)
     {
         $ambiente = $request->ambiente;
         $fecha = $request->fecha;

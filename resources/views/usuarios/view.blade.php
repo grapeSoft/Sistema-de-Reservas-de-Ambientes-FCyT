@@ -16,7 +16,7 @@
 				<table class="table table-bordered table-hover">
 					<tr>
 						<td><strong>Id. de Usuario</strong></td>
-						<td>{{ $resultado->id_usuario }}</td>
+						<td>{{ $usuario->id_usuario }}</td>
 					</tr>
 					<tr>
 						<td><strong>Nombre</strong></td>
