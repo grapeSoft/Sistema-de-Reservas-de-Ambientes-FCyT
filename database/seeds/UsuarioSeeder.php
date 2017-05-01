@@ -71,5 +71,14 @@ class UsuarioSeeder extends Seeder
             'password' => '123456',
             'tipo' => 'autorizado',
         ]);
+         Usuario::create([
+            'nombre' => 'Boris',
+            'apellido_paterno' => 'calancha',
+            'apellido_materno' => 'navia',
+            'email' => 'boris@gmail.com',
+            'username' => 'boris',
+            'password' => '123456',
+            'tipo' => 'docente',
+        ]);
     }
 }
