@@ -28,5 +28,11 @@ Route::get('usuarios/{id}/foto', 'UsuarioController@foto')
     ->name('usuarios.foto');
 Route::resource('usuarios', 'UsuarioController');
 
+Route::get('reservas/{reserva}/eventos', 'EventoController@oferta')->name('eventos.oferta');
+Route::post('reservas/{reserva}/eventos', 'EventoController@almacenar')->name('eventos.almacenar');
 Route::get('reservas/horarios', 'ReservaController@horarios')->name('reservas.horarios');
 Route::resource('reservas', 'ReservaController');
+
+//Route::resource('eventos', 'EventoController');
+
+

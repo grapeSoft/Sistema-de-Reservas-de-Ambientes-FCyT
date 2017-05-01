@@ -8,6 +8,7 @@ class Fecha extends Model
 {
     protected $table = 'fecha';
     protected $primaryKey = 'id_fecha';
+    public $timestamps = false;
 
     public $fillable = [
         'id_calendario', 'tipo'
@@ -18,8 +19,8 @@ class Fecha extends Model
     	return $this->belongsTo('app/Model/Calendario');
     }
 
-    public function fechaHorario()
+    public function horas()
     {
-    	return $this->hasMany('app/Model/Fecha_Horario');
+        return $this->belongsToMany('App\Model\Horas', 'HORARIO', 'id_fecha', 'id_horas');
     }
 }

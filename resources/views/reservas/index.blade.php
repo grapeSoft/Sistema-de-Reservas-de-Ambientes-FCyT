@@ -1,7 +1,12 @@
 @extends('reservas.principal')
 
 @section('contenido-principal-offbody')						
-<div class="panel-body">						
+<div class="panel-body">
+	@if(session('mensaje'))
+		<div class="alert alert-danger">
+			{{ session('mensaje') }}
+		</div>
+	@endif
 	<div class="table-responsive">
 		<table class="table table-striped table-hover table-bordered">
 			<thead>
@@ -37,6 +42,7 @@
 				@endforeach			
 			</tbody>
 		</table>
-	</div>	
+	</div>
+
 </div>            
 @endsection

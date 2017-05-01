@@ -1,6 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\HorariosReserva;
+use App\Http\Requests\StoreReserva;
+use App\Model\Fecha;
+use App\Model\Horario;
 use Illuminate\Http\Request;
 use App\Model\Reserva;
 use App\Model\Ambiente;
@@ -47,9 +51,23 @@ class ReservaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreReserva $request)
     {
-        echo "Reserva Almacenada";
+        $reserva = new Reserva();
+        $reserva->id_usuario = auth()->user()->id_usuario;
+        $reserva->save();
+
+        $ambiente = Ambiente::findOrFail(1);
+        $ambiente->setFecha($request->id_fecha);
+        $ids_horas = $request->except('_token');
+
+        foreach ($ids_horas as $id){
+            $ambiente->horarios()->updateExistingPivot($id,['id_reserva' => $reserva->id_reserva , 'estado' => 'Ocupado' ]);
+        }
+
+        return redirect()
+            ->route('eventos.oferta', $reserva->id_reserva)
+            ->with('mensaje', 'Se han registrado los horarios para la reserva');
     }
     /**
      * Display the specified resource.
@@ -114,12 +132,11 @@ class ReservaController extends Controller
         //
     }
 
-    public function horarios(Request $request)
+    public function horarios(HorariosReserva $request)
     {
         $ambiente = $request->ambiente;
         $fecha = $request->fecha;
         $ambiente = Ambiente::findOrFail($ambiente);
-        //dd($ambiente);
         $ambiente->setFecha($fecha);
         $horarios = $ambiente->horarios;
         return view('reservas.horarios', compact('horarios', 'ambiente', 'fecha'));

@@ -51,4 +51,10 @@ class Usuario extends User
     {
         return $this->hasMany('app/Model/Reserva');
     }
+
+    public function materias()
+    {
+        return $this->belongsToMany('App\Model\Materia', 'USUARIO_MATERIA', 'id_usuario', 'id_materia')
+            ->withPivot('grupo', 'id_usuario_materia');
+    }
 }
