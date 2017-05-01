@@ -38,7 +38,7 @@
             </div>
             <div class="text-center">
                 <button type="submit" class="btn btn-primary">
-                <b class="glyphicon glyphicon-new-window"></b> Crear
+                <b class="glyphicon glyphicon-new-window"></b> Siguiente
                 </button>
             </div>
         </div>

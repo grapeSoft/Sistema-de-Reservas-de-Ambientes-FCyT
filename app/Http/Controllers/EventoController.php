@@ -2,83 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Evento;
+use App\Model\Reserva;
+use App\Model\Usuario;
 use Illuminate\Http\Request;
 
 class EventoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function oferta($id)
     {
-        //
+        $reserva = Reserva::findOrFail($id);
+        $usuario = auth()->user();
+        $materias = $usuario->materias;
+        return view('eventos.create', compact('materias', 'id'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function almacenar($id, Request $request)
     {
-        return view('eventos.create');
-    }
+        $reserva = Reserva::findOrFail($id);
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        $ids_usuario_materias = $request->except('_token');
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        foreach ($ids_usuario_materias as $id){
+            $evento = new Evento();
+            $evento->id_reserva = $id;
+            $evento->id_usuario_materia = $id;
+            $evento->save();
+        }
+        return redirect()->route('reservas.index')->with('mensaje', 'La reserva se ha creado con exito');;
     }
 }

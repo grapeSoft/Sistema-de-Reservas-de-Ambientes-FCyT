@@ -69,7 +69,7 @@ class ReservaController extends Controller
         }
 
         return redirect()
-            ->route('reservas.index')
+            ->route('eventos.oferta', $reserva->id_reserva)
             ->with('mensaje', 'Se han registrado los horarios para la reserva');
     }
     /**
