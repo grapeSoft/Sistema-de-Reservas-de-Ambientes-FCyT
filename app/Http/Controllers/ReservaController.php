@@ -20,6 +20,7 @@ class ReservaController extends Controller
         $reservas = null;
         $usuarioAdmin = auth()->user();
         $id_us = $usuarioAdmin->id_usuario;
+        //$reservas = Reserva::findOrFail($id_us);
         $reservas = DB::table('USUARIO')
             ->join('reserva', 'USUARIO.id_usuario', '=', 'reserva.id_usuario')
             ->join('horario' , 'reserva.id_reserva', '=', 'horario.id_reserva')

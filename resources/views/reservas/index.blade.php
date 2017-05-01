@@ -17,18 +17,18 @@
 			<tbody>
 				@foreach($reservas as $reserva)
 				<tr>
-					<td>$reserva->id_fecha</td>
-					<td>$reserva->hora_inicio</td>
-					<td>$reserva->hora_fin</td>
+					<td>{{ $reserva->id_fecha }}</td>
+					<td>{{ $reserva->hora_inicio }}</td>
+					<td>{{ $reserva->hora_fin }}</td>
 					<td>
 						<div class="text-center">
-							<a href="javascript:void(0)" class="btn btn-fab btn-fab-mini btn-info">
+							<a href="javascript:void(0)" class="btn btn-fab btn-fab-mini btn-info" title="Ver">
 								<i class="material-icons md-18">open_in_new</i>
 							</a>
-							<a href="javascript:void(0)" class="btn btn-fab btn-fab-mini btn-success">
+							<a href="javascript:void(0)" class="btn btn-fab btn-fab-mini btn-success" title="Editar">
 								<i class="material-icons md-18">mode_edit</i>
 							</a>
-							<a href="javascript:void(0)" class="btn btn-fab btn-fab-mini btn-danger">
+							<a href="javascript:void(0)" class="btn btn-fab btn-fab-mini btn-danger" title="Eliminar">
 								<i class="material-icons md-18">delete</i>
 							</a>
 						</div>
