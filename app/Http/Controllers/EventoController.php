@@ -23,10 +23,10 @@ class EventoController extends Controller
 
         $ids_usuario_materias = $request->except('_token');
 
-        foreach ($ids_usuario_materias as $id){
-            $evento = new Evento();
+        foreach ($ids_usuario_materias as $id1){
+            $evento = new Evento;
             $evento->id_reserva = $id;
-            $evento->id_usuario_materia = $id;
+            $evento->id_usuario_materia = $id1;
             $evento->save();
         }
         return redirect()->route('reservas.index')->with('mensaje', 'La reserva se ha creado con exito');;

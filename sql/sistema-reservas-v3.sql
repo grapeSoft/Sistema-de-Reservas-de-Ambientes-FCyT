@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-05-2017 a las 02:07:35
+-- Tiempo de generación: 02-05-2017 a las 07:19:57
 -- Versión del servidor: 10.1.21-MariaDB
--- Versión de PHP: 7.1.1
+-- Versión de PHP: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `sistema-reservas-v1`
+-- Base de datos: `sistema-reservas-v3`
 --
 
 -- --------------------------------------------------------
@@ -85,7 +85,22 @@ INSERT INTO `evento` (`id_evento`, `id_reserva`, `tipo`, `descripcion`, `id_usua
 (4, 4, NULL, NULL, 4),
 (5, 4, NULL, NULL, 4),
 (6, 5, NULL, NULL, 5),
-(7, 5, NULL, NULL, 5);
+(7, 5, NULL, NULL, 5),
+(8, 28, '2', 'Descripcion pequeña', NULL),
+(9, 29, '0', 'asdfaseasef', NULL),
+(10, 30, 'Cursos', 'cursoso sdsad', NULL),
+(11, 31, 'Cursos', 'cursoso sdsad', NULL),
+(12, 32, 'Charlas', 'charla siobreasdfasdf', NULL),
+(13, 33, 'otros', 'erdgsgdsf', NULL),
+(14, 34, NULL, NULL, NULL),
+(15, 5, NULL, NULL, 5),
+(16, 35, NULL, NULL, NULL),
+(17, 5, NULL, NULL, 5),
+(18, 36, NULL, NULL, NULL),
+(19, 5, NULL, NULL, 5),
+(20, 37, 'Charlas', 'dfasdfasdfasdf', NULL),
+(21, 38, NULL, NULL, NULL),
+(22, 5, NULL, NULL, 5);
 
 -- --------------------------------------------------------
 
@@ -106,7 +121,8 @@ CREATE TABLE `fecha` (
 INSERT INTO `fecha` (`id_fecha`, `id_calendario`, `tipo`) VALUES
 ('2017-04-01', 1, 'Normal'),
 ('2017-04-02', 1, 'Normal'),
-('2017-05-01', 1, 'Normal');
+('2017-05-01', 1, 'Normal'),
+('2017-05-03', 1, 'Normal');
 
 -- --------------------------------------------------------
 
@@ -157,7 +173,18 @@ INSERT INTO `horario` (`id_fecha`, `id_horas`, `id_ambiente`, `id_reserva`, `est
 ('2017-05-01', 8, 1, 18, 'Ocupado'),
 ('2017-05-01', 9, 1, 16, 'Ocupado'),
 ('2017-05-01', 10, 1, 16, 'Ocupado'),
-('2017-05-01', 11, 1, 16, 'Ocupado');
+('2017-05-01', 11, 1, 16, 'Ocupado'),
+('2017-05-03', 1, 1, 29, 'Ocupado'),
+('2017-05-03', 2, 1, 31, 'Ocupado'),
+('2017-05-03', 3, 1, 32, 'Ocupado'),
+('2017-05-03', 4, 1, 33, 'Ocupado'),
+('2017-05-03', 5, 1, 33, 'Ocupado'),
+('2017-05-03', 6, 1, 34, 'Ocupado'),
+('2017-05-03', 7, 1, 35, 'Ocupado'),
+('2017-05-03', 8, 1, 36, 'Ocupado'),
+('2017-05-03', 9, 1, 37, 'Ocupado'),
+('2017-05-03', 10, 1, 38, 'Ocupado'),
+('2017-05-03', 11, 1, NULL, 'Libre');
 
 -- --------------------------------------------------------
 
@@ -266,13 +293,24 @@ INSERT INTO `reserva` (`id_reserva`, `id_usuario`) VALUES
 (18, 1),
 (26, 1),
 (27, 1),
+(29, 2),
+(30, 2),
+(31, 2),
+(32, 2),
+(33, 2),
+(37, 2),
 (24, 6),
 (25, 6),
+(28, 6),
 (19, 7),
 (20, 7),
 (21, 7),
 (22, 7),
-(23, 7);
+(23, 7),
+(34, 8),
+(35, 8),
+(36, 8),
+(38, 8);
 
 -- --------------------------------------------------------
 
@@ -300,13 +338,14 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nombre`, `apellido_paterno`, `apellido_materno`, `email`, `username`, `password`, `tipo`, `created_at`, `updated_at`, `remember_token`, `foto`) VALUES
-(1, 'Alexander', 'Reinaga', 'Lopez', 'alexsof9@gmail.com', 'alexsof', '$2y$10$fHb4L5UWbNr3cMG0MiHvT.12rrgbpsstqejxT6oygGljLFylTEGn6', 'administrador', '2017-04-29 10:35:28', '2017-04-29 10:35:28', 'jPRr39N3dDGhOjwSG163IFT4AuacGGAgRJXZJI2ka8P1TurvMOAQPUaeKKX7', NULL),
-(2, 'Carlos', 'Romero', 'Vargas', 'crv@gmail.com', 'carlos7', '$2y$10$53PGjlvjhMW60G4vCTzfX.4oBtV551NzJjRZAT4JA9YR6nhm3VOvu', 'autorizado', '2017-04-29 10:35:28', '2017-04-29 10:35:28', NULL, NULL),
+(1, 'Alexander', 'Reinaga', 'Lopez', 'alexsof9@gmail.com', 'alexsof', '$2y$10$fHb4L5UWbNr3cMG0MiHvT.12rrgbpsstqejxT6oygGljLFylTEGn6', 'administrador', '2017-04-29 10:35:28', '2017-04-29 10:35:28', '7sKicxJ9L1EeAktTCjh8ilaFMWAoD4f8ZAR3rwRpckmaXRjOB4geNgaoALWy', NULL),
+(2, 'Carlos', 'Romero', 'Vargas', 'crv@gmail.com', 'carlos7', '$2y$10$53PGjlvjhMW60G4vCTzfX.4oBtV551NzJjRZAT4JA9YR6nhm3VOvu', 'autorizado', '2017-04-29 10:35:28', '2017-04-29 10:35:28', 'y4Y5WpSgEZzQQ1C8sE2YJySnM8wscytBajpcWJVOuhBZ1ZW0AcF60pdapodv', NULL),
 (3, 'Valentina', 'Caceres', 'Villanueva', 'vcv@gmail.com', 'vale89', '$2y$10$Ijg.bQzfdNjtt0tdXecKc.ULKIH6662fyPMgfJKl5jtWkN1iy45PO', 'autorizado', '2017-04-29 10:35:28', '2017-04-29 10:35:28', NULL, NULL),
-(4, 'Marcelo', 'Lopez', 'chavez', 'mlc9@gmail.com', 'marce09', '$2y$10$wnTqhXB4cso14EOdgqU3L.itdeZJ1yj7eOSbFq84tguYlE7WE/xnG', 'autorizado', '2017-04-29 10:35:28', '2017-04-29 10:35:28', NULL, NULL),
+(4, 'Marcelo', 'Lopez', 'chavez', 'mlc9@gmail.com', 'marce09', '$2y$10$wnTqhXB4cso14EOdgqU3L.itdeZJ1yj7eOSbFq84tguYlE7WE/xnG', 'autorizado', '2017-04-29 10:35:28', '2017-04-29 10:35:28', 'bP6zm6DyUlZzRP7NR0F3igBptFxnVKuuhE1j6Q4rqFp1gvaWVjbfoCZEAVW1', NULL),
 (5, 'Juan Pablo', 'Mendoza', 'Acha', 'jpm@gmail.com', 'juanp', '$2y$10$yiLVkVicYvjmZzaykp4Wp.K0pCZBRrrFWCXXIxft4vYfkdh9XAS1C', 'autorizado', '2017-04-29 10:35:28', '2017-04-29 10:35:28', NULL, NULL),
-(6, 'Martina', 'Carrasco', 'Verduguez', 'martiv@gmail.com', 'marti78', '$2y$10$J7E4yedHtjJRhY6J/xp6d.5h1/32O63h5RPJiezLjl9aFIwa8uOF6', 'autorizado', '2017-04-29 10:35:28', '2017-04-29 10:35:28', '98cCr5okD0kY6SDwQjRNS55NGjSCr0IOL3RDkwLpxDYn67Zvt8xO60flZU2Q', NULL),
-(7, 'Diego', 'Villarroel', 'Solis', 'diego.villarroel@outlook.com', 'diego.villarroel@outlook.com', '$2y$10$resr0iV.12C9lZ3hmHHg/OZEglNz78y2CsRoAD4xNNYCcnirj.QKW', 'autorizado', '2017-05-01 18:56:35', '2017-05-01 18:56:35', NULL, NULL);
+(6, 'Martina', 'Carrasco', 'Verduguez', 'martiv@gmail.com', 'marti78', '$2y$10$J7E4yedHtjJRhY6J/xp6d.5h1/32O63h5RPJiezLjl9aFIwa8uOF6', 'autorizado', '2017-04-29 10:35:28', '2017-04-29 10:35:28', 'SblDjaVCMRLvTuU4mloJdjGzYpPOG9eeBG0IR8r48xO5Nx2rbjp8vtg9sdIJ', NULL),
+(7, 'Diego', 'Villarroel', 'Solis', 'diego.villarroel@outlook.com', 'diego.villarroel@outlook.com', '$2y$10$resr0iV.12C9lZ3hmHHg/OZEglNz78y2CsRoAD4xNNYCcnirj.QKW', 'autorizado', '2017-05-01 18:56:35', '2017-05-01 18:56:35', NULL, NULL),
+(8, 'boris', 'calanccha', 'asdfa', 'boris2222@yopmail.com', 'boris', '$2y$10$hrnOSBkdxdnt/dDRhVD8NOMKU7M3b3xDwJrk7/Mi9WTuq1VFfjMai', 'docente', '2017-05-02 08:18:08', '2017-05-02 09:18:31', 'IizDyxkbMno7ApFjjzVJIEOYFQ99l2wgiY8kE8lRferjzjEPVF6hmgaBshXO', NULL);
 
 -- --------------------------------------------------------
 
@@ -330,7 +369,7 @@ INSERT INTO `usuario_materia` (`id_usuario_materia`, `id_usuario`, `id_materia`,
 (1, 7, 1, 1, 50),
 (3, 7, 3, 1, 50),
 (4, 7, 4, 1, 50),
-(5, 1, 1, 3, NULL);
+(5, 8, 1, 3, NULL);
 
 --
 -- Índices para tablas volcadas
@@ -419,7 +458,7 @@ ALTER TABLE `usuario_materia`
 -- AUTO_INCREMENT de la tabla `evento`
 --
 ALTER TABLE `evento`
-  MODIFY `id_evento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_evento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT de la tabla `migrations`
 --
@@ -429,12 +468,12 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT de la tabla `reserva`
 --
 ALTER TABLE `reserva`
-  MODIFY `id_reserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id_reserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_usuario` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- Restricciones para tablas volcadas
 --
