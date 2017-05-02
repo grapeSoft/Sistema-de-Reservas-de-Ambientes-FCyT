@@ -5,11 +5,11 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h4>Crear Evento</h4>
+                    <h4>Materias</h4>
                 </div>
                 <div class="panel-body">
                     @if(session('mensaje'))
-                        <div class="alert alert-danger">
+                        <div class="alert alert-success">
                             {{ session('mensaje') }}
                         </div>
                     @endif

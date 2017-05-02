@@ -36,30 +36,20 @@
                         </tbody>
                     </table>
             </div>
-            <div class="text-center">
-                <button type="submit" class="btn btn-primary">
-                <b class="glyphicon glyphicon-new-window"></b> Siguiente
-                </button>
-            </div>
+            @if(Auth::user()->tipo === 'docente')
+            @include('reservas.formularios.boton-doc')
+            @endif
         </div>
         @if(!empty($horario))
         {!! Form::hidden('id_fecha', $horario->pivot->id_fecha, ['class' => 'form-control', 'onchange' => "this.form.submit()"]) !!}
         @endif
+        @if(Auth::user()->tipo === 'autorizado')
+        @include('reservas.formularios.boton-aut')
+        @endif
+
         {!! Form::close() !!}
     </div>
 </div>
 @endsection
-
 @section('panel-footer')
-
-
-
-<div class="btn-group btn-group-justified">
-    <div class="col-md-2 col-md-offset-10">
-        <div class="btn-group">
-            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#formularioReserva">Siguiente</button>
-        </div>
-    </div>
-</div>
-    @include('reservas.formularios.form')
 @endsection

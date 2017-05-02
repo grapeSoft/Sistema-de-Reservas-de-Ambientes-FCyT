@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-04-2017 a las 15:55:54
+-- Tiempo de generación: 02-05-2017 a las 02:07:35
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 7.1.1
 
@@ -74,6 +74,19 @@ CREATE TABLE `evento` (
   `id_usuario_materia` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `evento`
+--
+
+INSERT INTO `evento` (`id_evento`, `id_reserva`, `tipo`, `descripcion`, `id_usuario_materia`) VALUES
+(1, 4, NULL, NULL, 4),
+(2, 4, NULL, NULL, 4),
+(3, 4, NULL, NULL, 4),
+(4, 4, NULL, NULL, 4),
+(5, 4, NULL, NULL, 4),
+(6, 5, NULL, NULL, 5),
+(7, 5, NULL, NULL, 5);
+
 -- --------------------------------------------------------
 
 --
@@ -91,7 +104,9 @@ CREATE TABLE `fecha` (
 --
 
 INSERT INTO `fecha` (`id_fecha`, `id_calendario`, `tipo`) VALUES
-('2017-04-01', 1, 'Normal');
+('2017-04-01', 1, 'Normal'),
+('2017-04-02', 1, 'Normal'),
+('2017-05-01', 1, 'Normal');
 
 -- --------------------------------------------------------
 
@@ -103,25 +118,46 @@ CREATE TABLE `horario` (
   `id_fecha` date NOT NULL,
   `id_horas` int(11) NOT NULL,
   `id_ambiente` int(11) NOT NULL,
-  `id_reserva` int(11) DEFAULT NULL
+  `id_reserva` int(11) DEFAULT NULL,
+  `estado` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `horario`
 --
 
-INSERT INTO `horario` (`id_fecha`, `id_horas`, `id_ambiente`, `id_reserva`) VALUES
-('2017-04-01', 1, 1, NULL),
-('2017-04-01', 2, 1, NULL),
-('2017-04-01', 3, 1, NULL),
-('2017-04-01', 4, 1, NULL),
-('2017-04-01', 5, 1, NULL),
-('2017-04-01', 6, 1, NULL),
-('2017-04-01', 7, 1, NULL),
-('2017-04-01', 8, 1, NULL),
-('2017-04-01', 9, 1, NULL),
-('2017-04-01', 10, 1, NULL),
-('2017-04-01', 11, 1, NULL);
+INSERT INTO `horario` (`id_fecha`, `id_horas`, `id_ambiente`, `id_reserva`, `estado`) VALUES
+('2017-04-01', 2, 1, 10, 'Ocupado'),
+('2017-04-01', 3, 1, 10, 'Libre'),
+('2017-04-01', 4, 1, 9, 'Libre'),
+('2017-04-01', 5, 1, 9, 'Ocupado'),
+('2017-04-01', 6, 1, 4, 'Ocupado'),
+('2017-04-01', 8, 1, 4, 'Ocupado'),
+('2017-04-01', 9, 1, 15, 'Ocupado'),
+('2017-04-01', 10, 1, 15, 'Ocupado'),
+('2017-04-01', 11, 1, 3, 'Ocupado'),
+('2017-04-02', 1, 1, 11, 'Ocupado'),
+('2017-04-02', 2, 1, 11, 'Ocupado'),
+('2017-04-02', 3, 1, 5, 'Ocupado'),
+('2017-04-02', 4, 1, 6, 'Ocupado'),
+('2017-04-02', 5, 1, 6, 'Ocupado'),
+('2017-04-02', 6, 1, 5, 'Ocupado'),
+('2017-04-02', 7, 1, 5, 'Libre'),
+('2017-04-02', 8, 1, NULL, 'Libre'),
+('2017-04-02', 9, 1, NULL, 'Libre'),
+('2017-04-02', 10, 1, NULL, 'Libre'),
+('2017-04-02', 11, 1, NULL, 'Libre'),
+('2017-05-01', 1, 1, 25, 'Libre'),
+('2017-05-01', 2, 1, 27, 'Ocupado'),
+('2017-05-01', 3, 1, 27, 'Ocupado'),
+('2017-05-01', 4, 1, 22, 'Ocupado'),
+('2017-05-01', 5, 1, 21, 'Ocupado'),
+('2017-05-01', 6, 1, 20, 'Ocupado'),
+('2017-05-01', 7, 1, 19, 'Ocupado'),
+('2017-05-01', 8, 1, 18, 'Ocupado'),
+('2017-05-01', 9, 1, 16, 'Ocupado'),
+('2017-05-01', 10, 1, 16, 'Ocupado'),
+('2017-05-01', 11, 1, 16, 'Ocupado');
 
 -- --------------------------------------------------------
 
@@ -165,6 +201,16 @@ CREATE TABLE `materia` (
   `nivel` decimal(8,0) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `materia`
+--
+
+INSERT INTO `materia` (`id_materia`, `nombre`, `horas`, `nivel`) VALUES
+(1, 'Calculo I', NULL, NULL),
+(3, 'Calculo II', NULL, NULL),
+(4, 'Calculo III', NULL, NULL),
+(5, 'Calculo IV', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -195,6 +241,39 @@ CREATE TABLE `reserva` (
   `id_usuario` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `reserva`
+--
+
+INSERT INTO `reserva` (`id_reserva`, `id_usuario`) VALUES
+(1, 1),
+(2, 1),
+(3, 1),
+(4, 1),
+(5, 1),
+(6, 1),
+(7, 1),
+(8, 1),
+(9, 1),
+(10, 1),
+(11, 1),
+(12, 1),
+(13, 1),
+(14, 1),
+(15, 1),
+(16, 1),
+(17, 1),
+(18, 1),
+(26, 1),
+(27, 1),
+(24, 6),
+(25, 6),
+(19, 7),
+(20, 7),
+(21, 7),
+(22, 7),
+(23, 7);
+
 -- --------------------------------------------------------
 
 --
@@ -221,12 +300,13 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nombre`, `apellido_paterno`, `apellido_materno`, `email`, `username`, `password`, `tipo`, `created_at`, `updated_at`, `remember_token`, `foto`) VALUES
-(1, 'Alexander', 'Reinaga', 'Lopez', 'alexsof9@gmail.com', 'alexsof', '$2y$10$fHb4L5UWbNr3cMG0MiHvT.12rrgbpsstqejxT6oygGljLFylTEGn6', 'administrador', '2017-04-29 10:35:28', '2017-04-29 10:35:28', '1kZT4Ld8WA5NPnVp28wbi9W6MimssgHYgINj2sSSFmRqwgx0YBgDTm0kgA6s', NULL),
+(1, 'Alexander', 'Reinaga', 'Lopez', 'alexsof9@gmail.com', 'alexsof', '$2y$10$fHb4L5UWbNr3cMG0MiHvT.12rrgbpsstqejxT6oygGljLFylTEGn6', 'administrador', '2017-04-29 10:35:28', '2017-04-29 10:35:28', 'jPRr39N3dDGhOjwSG163IFT4AuacGGAgRJXZJI2ka8P1TurvMOAQPUaeKKX7', NULL),
 (2, 'Carlos', 'Romero', 'Vargas', 'crv@gmail.com', 'carlos7', '$2y$10$53PGjlvjhMW60G4vCTzfX.4oBtV551NzJjRZAT4JA9YR6nhm3VOvu', 'autorizado', '2017-04-29 10:35:28', '2017-04-29 10:35:28', NULL, NULL),
 (3, 'Valentina', 'Caceres', 'Villanueva', 'vcv@gmail.com', 'vale89', '$2y$10$Ijg.bQzfdNjtt0tdXecKc.ULKIH6662fyPMgfJKl5jtWkN1iy45PO', 'autorizado', '2017-04-29 10:35:28', '2017-04-29 10:35:28', NULL, NULL),
 (4, 'Marcelo', 'Lopez', 'chavez', 'mlc9@gmail.com', 'marce09', '$2y$10$wnTqhXB4cso14EOdgqU3L.itdeZJ1yj7eOSbFq84tguYlE7WE/xnG', 'autorizado', '2017-04-29 10:35:28', '2017-04-29 10:35:28', NULL, NULL),
 (5, 'Juan Pablo', 'Mendoza', 'Acha', 'jpm@gmail.com', 'juanp', '$2y$10$yiLVkVicYvjmZzaykp4Wp.K0pCZBRrrFWCXXIxft4vYfkdh9XAS1C', 'autorizado', '2017-04-29 10:35:28', '2017-04-29 10:35:28', NULL, NULL),
-(6, 'Martina', 'Carrasco', 'Verduguez', 'martiv@gmail.com', 'marti78', '$2y$10$J7E4yedHtjJRhY6J/xp6d.5h1/32O63h5RPJiezLjl9aFIwa8uOF6', 'autorizado', '2017-04-29 10:35:28', '2017-04-29 10:35:28', NULL, NULL);
+(6, 'Martina', 'Carrasco', 'Verduguez', 'martiv@gmail.com', 'marti78', '$2y$10$J7E4yedHtjJRhY6J/xp6d.5h1/32O63h5RPJiezLjl9aFIwa8uOF6', 'autorizado', '2017-04-29 10:35:28', '2017-04-29 10:35:28', '98cCr5okD0kY6SDwQjRNS55NGjSCr0IOL3RDkwLpxDYn67Zvt8xO60flZU2Q', NULL),
+(7, 'Diego', 'Villarroel', 'Solis', 'diego.villarroel@outlook.com', 'diego.villarroel@outlook.com', '$2y$10$resr0iV.12C9lZ3hmHHg/OZEglNz78y2CsRoAD4xNNYCcnirj.QKW', 'autorizado', '2017-05-01 18:56:35', '2017-05-01 18:56:35', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -241,6 +321,16 @@ CREATE TABLE `usuario_materia` (
   `grupo` int(11) NOT NULL,
   `numero_inscritos` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `usuario_materia`
+--
+
+INSERT INTO `usuario_materia` (`id_usuario_materia`, `id_usuario`, `id_materia`, `grupo`, `numero_inscritos`) VALUES
+(1, 7, 1, 1, 50),
+(3, 7, 3, 1, 50),
+(4, 7, 4, 1, 50),
+(5, 1, 1, 3, NULL);
 
 --
 -- Índices para tablas volcadas
@@ -326,15 +416,25 @@ ALTER TABLE `usuario_materia`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `evento`
+--
+ALTER TABLE `evento`
+  MODIFY `id_evento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
+-- AUTO_INCREMENT de la tabla `reserva`
+--
+ALTER TABLE `reserva`
+  MODIFY `id_reserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+--
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_usuario` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- Restricciones para tablas volcadas
 --

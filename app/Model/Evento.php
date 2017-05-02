@@ -11,7 +11,7 @@ class Evento extends Model
     public $timestamps = false;
 
     public $fillable = [
-        'id_reserva', 'id_ambiente', 'tipo'
+        'id_reserva', 'tipo', 'descripcion'
     ];
 
     public function peteneceAmbiente()
