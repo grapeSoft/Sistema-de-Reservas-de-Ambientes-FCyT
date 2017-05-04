@@ -18,6 +18,11 @@
 						<i class="material-icons">person_add</i> Crear usuario
 					</a>	
 				</div>
+				<div>
+					<a href="{{ route('usuarios.upload') }}" class="btn btn-primary">
+						<i class="material-icons">supervisor_account</i> Registrar docentes UMSS
+					</a>	
+				</div>
 				<div class="table-responsive">
 					<table class="table table-striped table-hover ">
 						<thead>
