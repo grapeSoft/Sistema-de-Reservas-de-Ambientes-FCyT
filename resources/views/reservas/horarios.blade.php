@@ -26,7 +26,7 @@
                                 <td>{{ $horario->hora_fin }}</td>
                                 <td>{{ $horario->pivot->estado }}</td>
                                 @if($horario->pivot->estado == "Libre")
-                                    <td>{!! Form::checkbox($horario->id_horas, $horario->id_horas) !!}</td>
+                                    <td>{!! Form::checkbox('ids_horas[]', $horario->id_horas) !!}</td>
                                 @else
                                     <td></td>
                                 @endif
@@ -36,20 +36,17 @@
                         </tbody>
                     </table>
             </div>
-            @if(Auth::user()->tipo === 'docente')
-            @include('reservas.formularios.boton-doc')
-            @endif
         </div>
         @if(!empty($horario))
         {!! Form::hidden('id_fecha', $horario->pivot->id_fecha, ['class' => 'form-control', 'onchange' => "this.form.submit()"]) !!}
         @endif
-        @if(Auth::user()->tipo === 'autorizado')
-        @include('reservas.formularios.boton-aut')
-        @endif
-
-        {!! Form::close() !!}
+            <div class="text-right">
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#formularioReserva">Siguiente</button>
+            </div>
+        @include('reservas.formularios.form')
+        <!-- {!! Form::close() !!} -->
     </div>
 </div>
 @endsection
-@section('panel-footer')
-@endsection
+<!-- @section('panel-footer')
+@endsection -->

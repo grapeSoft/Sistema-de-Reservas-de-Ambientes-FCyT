@@ -59,26 +59,31 @@ class ReservaController extends Controller
 
         $ambiente = Ambiente::findOrFail(1);
         $ambiente->setFecha($request->id_fecha);
-        $ids_horas = $request->except('_token');
-
-        $evento = new Evento();
-        $evento->id_reserva = $reserva->id_reserva;
-        $evento->tipo=$request->tipo;
-        $evento->descripcion=$request->descripcion;
-        $evento->save();
-
+        $ids_horas = $request->ids_horas;
         foreach ($ids_horas as $id){
             $ambiente->horarios()->updateExistingPivot($id,['id_reserva' => $reserva->id_reserva , 'estado' => 'Ocupado' ]);
         }
+
+        
         if(auth()->user()->esAutorizado()){
-            return redirect()->route('reservas.index')
-            ->with('mensaje', 'La reserva se ha creado con exito');
+            $evento = new Evento();
+            $evento->id_reserva = $reserva->id_reserva;
+            $evento->tipo=$request->tipo;
+            $evento->descripcion=$request->descripcion;
+            $evento->save();
         }
+
         if(auth()->user()->esDocente()){
-            return redirect()
-            ->route('eventos.oferta', $reserva->id_reserva)
-            ->with('mensaje', 'Se han registrado los horarios para la reserva');  
+            $ids_usuario_materias = $request->ids_usuario_materias;
+            foreach ($ids_usuario_materias as $id1){
+                $evento = new Evento;
+                $evento->id_reserva = $reserva->id_reserva;
+                $evento->id_usuario_materia = $id1;
+                $evento->save();
+            }
         }
+        return redirect()->route('reservas.index')
+        ->with('mensaje', 'La reserva se ha creado con exito');
         
     }
     /**
@@ -151,6 +156,8 @@ class ReservaController extends Controller
         $ambiente = Ambiente::findOrFail($ambiente);
         $ambiente->setFecha($fecha);
         $horarios = $ambiente->horarios;
-        return view('reservas.horarios', compact('horarios', 'ambiente', 'fecha'));
+        $usuario = auth()->user();
+        $materias = $usuario->materias;
+        return view('reservas.horarios', compact('horarios', 'ambiente', 'fecha', 'materias'));
     }
 }
