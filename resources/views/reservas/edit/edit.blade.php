@@ -31,7 +31,7 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<div class="text-center">
+					<div class="col-md-3 col-md-offset-9">
 						<button type="submit" class="btn btn-primary">Guardar</button>
 					</div>
 			    </div>

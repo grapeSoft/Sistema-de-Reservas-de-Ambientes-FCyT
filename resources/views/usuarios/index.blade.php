@@ -13,15 +13,17 @@
 					{{ session('mensaje') }}
 				</div>
 				@endif
-				<div>
-					<a href="{{ route('usuarios.create') }}" class="btn btn-primary">
-						<i class="material-icons">person_add</i> Crear usuario
-					</a>	
-				</div>
-				<div>
-					<a href="{{ route('usuarios.upload') }}" class="btn btn-primary">
-						<i class="material-icons">supervisor_account</i> Registrar docentes UMSS
-					</a>	
+				<div class="row">
+					<div class="col-md-3 text-center">
+						<a href="{{ route('usuarios.create') }}" class="btn btn-primary">
+							<i class="material-icons">person_add</i> Crear usuario
+						</a>	
+					</div>
+					<div class="col-md-3 col-md-offset-5 text-center">
+						<a href="{{ route('usuarios.upload') }}" class="btn btn-primary">
+							<i class="material-icons">supervisor_account</i> Registrar docentes UMSS
+						</a>	
+					</div>
 				</div>
 				<div class="table-responsive">
 					<table class="table table-striped table-hover ">

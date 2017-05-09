@@ -40,7 +40,6 @@
 					</td>
 				</tr>
 				@include('reservas.delete.form-delete')
-				@include('reservas.formularios.form-edit')
 				@endforeach			
 			</tbody>
 		</table>
