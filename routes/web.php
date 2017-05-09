@@ -32,6 +32,8 @@ Route::get('reservas/{reserva}/eventos', 'EventoController@oferta')->name('event
 Route::post('reservas/{reserva}/eventos', 'EventoController@almacenar')->name('eventos.almacenar');
 Route::get('reservas/horarios', 'ReservaController@horarios')->name('reservas.horarios');
 Route::resource('reservas', 'ReservaController');
+Route::get('docentes', 'UsuarioController@upload')->name('usuarios.upload');
+Route::post('registros', 'UsuarioController@registrarUsuarios')->name('usuarios.registrarUsuarios');
 
 //Route::resource('eventos', 'EventoController');
 
