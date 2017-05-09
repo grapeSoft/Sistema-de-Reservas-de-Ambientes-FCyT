@@ -29,7 +29,7 @@
 							<i class="material-icons">close</i> Salir
 						</a>
 					</div>
-				{!! Form::close() !!}	
+					
 			</div>
 		</div>
 	</div>

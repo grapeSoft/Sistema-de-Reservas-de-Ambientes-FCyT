@@ -33,6 +33,9 @@ class ReservaController extends Controller
             ->where('USUARIO.id_usuario', '=', $id_us)
             ->get();
         return view('reservas.index', compact('reservas'));  
+       /* $usuario = auth()->user();
+        $reservas = $usuario->reserva;
+        return $reservas;*/       
     }
 
     /**
@@ -123,7 +126,17 @@ class ReservaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $reserva = Reserva::findOrFail($id);
+        $eventos = $reserva->eventos;
+        if(auth()->user()->esAutorizado()){
+            $evento = $eventos[0];
+            return view('reservas.edit.edit', compact('evento'));
+        }
+        if(auth()->user()->esDocente()){
+            return view('reservas.edit.edit');
+        }
+        
+
     }
 
     /**
@@ -134,8 +147,13 @@ class ReservaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+    {   
+        //para usuario autorizado
+        $evento = Evento::findOrFail($id);
+        $evento->fill($request->all());
+        $evento->save();
+        return redirect()->route('reservas.index')
+        ->with('mensaje', 'La reserva se ha modificado');
     }
 
     /**
@@ -146,7 +164,7 @@ class ReservaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return "eliminando reserva: ".$id;
     }
 
     public function horarios(HorariosReserva $request)

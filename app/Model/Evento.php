@@ -11,7 +11,7 @@ class Evento extends Model
     public $timestamps = false;
 
     public $fillable = [
-        'id_reserva', 'tipo', 'descripcion'
+        'id_reserva', 'tipo', 'descripcion', 'id_usuario_materia'
     ];
 
     public function peteneceAmbiente()
@@ -21,6 +21,6 @@ class Evento extends Model
 
     public function peteneceReserva()
     {
-    	return $this->belongsTo('app/Model/Reserva');
+    	return $this->belongsTo('App\Model\Reserva','id_evento');
     }
 }

@@ -49,7 +49,7 @@ class Usuario extends User
 
     public function reserva()
     {
-        return $this->hasMany('app/Model/Reserva');
+        return $this->hasMany('App\Model\Reserva','id_usuario');
     }
 
     public function materias()

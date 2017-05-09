@@ -30,15 +30,17 @@
 							<a href="{{ route('reservas.show',['id' => $reserva->id_reserva]) }}" class="btn btn-fab btn-fab-mini btn-info" >
 								<i class="material-icons md-18">open_in_new</i>
 							</a>
-							<a href="javascript:void(0)" class="btn btn-fab btn-fab-mini btn-success" title="Editar">
+							<a href="{{ route('reservas.edit',['id' => $reserva->id_reserva]) }}" class="btn btn-fab btn-fab-mini btn-success" title="Editar">
 								<i class="material-icons md-18">mode_edit</i>
 							</a>
-							<a href="javascript:void(0)" class="btn btn-fab btn-fab-mini btn-danger" title="Eliminar">
+							<a href="" data-target="#form-delete-{{$reserva->id_reserva}}" data-toggle="modal" class="btn btn-fab btn-fab-mini btn-danger" title="Eliminar">
 								<i class="material-icons md-18">delete</i>
 							</a>
 						</div>
 					</td>
 				</tr>
+				@include('reservas.delete.form-delete')
+				@include('reservas.formularios.form-edit')
 				@endforeach			
 			</tbody>
 		</table>

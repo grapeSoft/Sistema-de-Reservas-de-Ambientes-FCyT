@@ -17,12 +17,12 @@ class Reserva extends Model
 
     public function peteneceUsuario()
     {
-    	return $this->belongsTo('app/Model/Usuario');
+    	return $this->belongsTo('App\Model\Usuario','id_reserva');
     }
 
     public function eventos()
     {
-        return $this->hasMany('app/Model/Evento');
+        return $this->hasMany('App\Model\Evento','id_reserva');
     }
 
     public function horarios()

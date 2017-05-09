@@ -1,5 +1,5 @@
 <div class="">
-	<div class="modal fade" id="formularioReserva" tabindex="-1" role="dialog">
+	<div class="modal fade" id="form-edit-{{$reserva->id_reserva}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		<div class="modal-dialog">
 		    <div class="modal-content">
 	      		@if(Auth::user()->tipo === 'docente')
