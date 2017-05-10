@@ -6,8 +6,8 @@
 	<div class="">
 		<div class="col-md-12">
 			<div class="form-group" style="margin-top: 0;">
-				{!! Form::label('tipo', 'Tipo de Reservas', ['class' => 'control-label col-md-3']) !!}
-				<div class="col-md-8">
+				{!! Form::label('tipo', 'Tipo de Reservas', ['class' => 'control-label col-md-2']) !!}
+				<div class="col-md-10">
 					{!! Form::select('tipo', [
 					'Congreso' => 'Congreso', 
 					'Seminario'=> 'Seminario', 
@@ -19,7 +19,8 @@
 		</div>
 		<div class="col-md-12">
 			<div class="form-group">
-				<div class="col-md-12">
+				{!! Form::label('descripcion', 'Descripción', ['class' => 'control-label col-md-2']) !!}
+				<div class="col-md-10">
 					{!! Form::textarea('descripcion', null, ['class' => 'form-control', 'placeholder' => 'Descripción...', 'rows' => '3']) !!}
 					<span class="help-block">Escribe una breve descripción sobre el tipo de reserva que realices.</span>
 				</div>

@@ -129,14 +129,13 @@ class ReservaController extends Controller
         $reserva = Reserva::findOrFail($id);
         $eventos = $reserva->eventos;
         if(auth()->user()->esAutorizado()){
-            $evento = $eventos[0];
+            $evento = $eventos->first();
             return view('reservas.edit.edit', compact('evento'));
         }
         if(auth()->user()->esDocente()){
-            return view('reservas.edit.edit');
-        }
-        
-
+            $evento = $eventos->first();//borrar
+            return view('reservas.edit.edit', compact('evento'));
+        }      
     }
 
     /**
@@ -148,10 +147,14 @@ class ReservaController extends Controller
      */
     public function update(Request $request, $id)
     {   
-        //para usuario autorizado
-        $evento = Evento::findOrFail($id);
-        $evento->fill($request->all());
-        $evento->save();
+        if(auth()->user()->esAutorizado()){
+            $evento = Evento::findOrFail($id);
+            $evento->fill($request->all());
+            $evento->save();
+        }
+        if(auth()->user()->esDocente()){
+            //
+        }   
         return redirect()->route('reservas.index')
         ->with('mensaje', 'La reserva se ha modificado');
     }
