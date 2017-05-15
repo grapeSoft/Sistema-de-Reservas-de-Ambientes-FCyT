@@ -167,29 +167,23 @@ class ReservaController extends Controller
      */
     public function destroy($id)
     {
-        $reserva = Reserva::findOrFail('44');
+        $reserva = Reserva::findOrFail($id);
         $eventos = $reserva->eventos;
-        /*$eventos->first()->delete();*/
-        /*$horarios = $reserva->horarios;*/
-        /*foreach ($horarios as $horario){
+        $horarios = $reserva->horarios;
+        //liberando horarios reservados
+        foreach ($horarios as $horario){
             $id_hora = $horario->id_horas;
             $reserva->horarios()->updateExistingPivot($id_hora,['id_reserva' => NULL, 'estado' => 'Libre' ]);
-        }*/
-        /*if(auth()->user()->esAutorizado()){
-            $evento = $eventos->first();
-            $evento->delete();   
-        }*/
-        echo $reserva;
-        $eventos->destroy();
-        $reserva->delete();
-        /*if(auth()->user()->esDocente()){
-            foreach ($eventos as $evento){
-                $evento->delete();
-            }
-        } 
+        }
+        //borrando eventos (1)->para autorizado (n)->para docente
+        foreach ($eventos as $evento){
+          //borrando evento
+          $evento->delete();
+        }
+        //borrando reserva
         $reserva->delete();
         return redirect()->route('reservas.index')
-            ->with('mensaje', 'Se ha eliminado la reserva');*/
+            ->with('mensaje', 'Se ha eliminado la reserva');
     }
 
     public function horarios(HorariosReserva $request)
