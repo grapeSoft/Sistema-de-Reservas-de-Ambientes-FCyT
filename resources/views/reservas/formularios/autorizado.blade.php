@@ -4,16 +4,14 @@
 </div>
 <div class="modal-body">
 	<div class="">
+		@foreach ($errors->all() as $error)
+		<p class="alert alert-danger">{{ $error }}</p>
+		@endforeach
 		<div class="col-md-12">
 			<div class="form-group" style="margin-top: 0;">
-				{!! Form::label('tipo', 'Tipo de Reservas', ['class' => 'control-label col-md-2']) !!}
+				{!! Form::label('tipo', 'Tipo de Reserva', ['class' => 'control-label col-md-2']) !!}
 				<div class="col-md-10">
-					{!! Form::select('tipo', [
-					'Congreso' => 'Congreso', 
-					'Seminario'=> 'Seminario', 
-					'Cursos' => 'Cursos', 
-					'Charlas' => 'Charlas', 
-					'otros' => 'Otros',], null, ['class' => 'form-control'])!!}
+					{!! Form::select('tipo', config('sistema-reservas.eventos'), null, ['class' => 'form-control'])!!}
 				</div> 
 			</div>
 		</div>
@@ -22,7 +20,7 @@
 				{!! Form::label('descripcion', 'Descripción', ['class' => 'control-label col-md-2']) !!}
 				<div class="col-md-10">
 					{!! Form::textarea('descripcion', null, ['class' => 'form-control', 'placeholder' => 'Descripción...', 'rows' => '3']) !!}
-					<span class="help-block">Escribe una breve descripción sobre el tipo de reserva que realices.</span>
+					<span class="help-block">Escribe una breve descripción sobre el tipo de reserva que realice.</span>
 				</div>
 			</div>
 		</div>

@@ -48,5 +48,6 @@
 	<script>
   	$.material.init();
 	</script>
+	@yield('script')	
 </body>
 </html>

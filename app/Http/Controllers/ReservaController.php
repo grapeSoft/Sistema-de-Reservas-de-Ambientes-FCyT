@@ -145,7 +145,7 @@ class ReservaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreReserva $request, $id)
     {   
         if(auth()->user()->esAutorizado()){
             $evento = Evento::findOrFail($id);
@@ -167,7 +167,29 @@ class ReservaController extends Controller
      */
     public function destroy($id)
     {
-        return "eliminando reserva: ".$id;
+        $reserva = Reserva::findOrFail('44');
+        $eventos = $reserva->eventos;
+        /*$eventos->first()->delete();*/
+        /*$horarios = $reserva->horarios;*/
+        /*foreach ($horarios as $horario){
+            $id_hora = $horario->id_horas;
+            $reserva->horarios()->updateExistingPivot($id_hora,['id_reserva' => NULL, 'estado' => 'Libre' ]);
+        }*/
+        /*if(auth()->user()->esAutorizado()){
+            $evento = $eventos->first();
+            $evento->delete();   
+        }*/
+        echo $reserva;
+        $eventos->destroy();
+        $reserva->delete();
+        /*if(auth()->user()->esDocente()){
+            foreach ($eventos as $evento){
+                $evento->delete();
+            }
+        } 
+        $reserva->delete();
+        return redirect()->route('reservas.index')
+            ->with('mensaje', 'Se ha eliminado la reserva');*/
     }
 
     public function horarios(HorariosReserva $request)

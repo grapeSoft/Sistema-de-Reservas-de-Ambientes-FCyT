@@ -48,5 +48,12 @@
     </div>
 </div>
 @endsection
-<!-- @section('panel-footer')
-@endsection -->
+@section('script')
+    @if($errors->has('descripcion'))
+        <script type="text/javascript">
+            $(document).ready(function(){
+            $('#formularioReserva').modal('show');
+        });
+        </script>
+    @endif
+@endsection

@@ -24,6 +24,11 @@ class StoreReserva extends FormRequest
      */
     public function rules()
     {
+        if(auth()->user()->esAutorizado()){
+            return [
+                'descripcion' => 'required|min:4|max:32',
+            ];
+        }
         $totalIncritos = 0;
         if(auth()->user()->esDocente()){
             $ids_usuario_materia = request()->input('ids_usuario_materias');
