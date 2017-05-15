@@ -1,28 +1,26 @@
-			   <table class="table table-bordered table-hover">
+		   <table class="table table-bordered table-hover">
 					<tr>
 						<td><strong>Id. de Usuario</strong></td>
-						<td>{{ $reservas->id_usuario }}</td>
-					</tr>
-					<tr>
-						<td><strong>Id de Reserva</strong></td>
-						<td>{{ $reservas->id_reserva }}</td>
+						<td>{{ auth()->user()->id_usuario }}</td>
 					</tr>
 					<tr>
 						<td><strong>Nombre</strong></td>
-						<td>{{ $reservas->nombre }} {{ $reservas->apellido_paterno }} {{ $reservas->apellido_materno }} </td>
+						<td>{{ auth()->user()->nombre }} {{ auth()->user()->apellido_paterno }} {{ auth()->user()->apellido_materno }} </td>
 					</tr>
 					<tr>
 						<td><strong>Email</strong></td>
-						<td>{{ $reservas->email }}</td>
+						<td>{{ auth()->user()->email }}</td>
 					</tr>
+
 					<tr>
 						<td><strong>Materias</strong></td>				               
-                        <td>@foreach($materias as $item) // {{ $item->nombre }}  @endforeach</td>                                   
-                    </tr>                  		
+                        <td>@foreach($eventos as $evento) // {{ $evento->nombre }}  @endforeach</td>                                   
+                    </tr>  
+
 					<tr>
-						<td><strong>Grupos</strong></td>				               
-                        <td>@foreach($materias as $item) // {{ $item->grupo }} @endforeach</td>                                   
-                    </tr>
+						<td><strong>Grupo</strong></td>				               
+                        <td>@foreach($eventos as $evento) // {{ $evento->grupo }}  @endforeach</td>                                   
+                    </tr>                  		
 					
 				</table>
 			
