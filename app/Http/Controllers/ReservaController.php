@@ -5,6 +5,7 @@ use App\Http\Requests\HorariosReserva;
 use App\Http\Requests\StoreReserva;
 use App\Model\Fecha;
 use App\Model\Horario;
+use App\Model\TipoReserva;
 use Illuminate\Http\Request;
 use App\Model\Reserva;
 use App\Model\Ambiente;
@@ -180,5 +181,21 @@ class ReservaController extends Controller
         $usuario = auth()->user();
         $materias = $usuario->materias;
         return view('reservas.horarios', compact('horarios', 'ambiente', 'fecha', 'materias'));
+    }
+
+    public function config(){
+        return view('reservas.config.config');
+    }
+
+    public function updateConfig(Request $request){
+        $tipo_reserva = TipoReserva::updateOrCreate(
+            ['tipo' => $request->tipo],
+            ['max_nro_periodos' => $request->numeroPeriodos,
+             'max_nro_participantes' => $request->numeroParticipantes,
+            ]
+        );
+        return redirect()
+            ->route('reservas.index')
+            ->with('mensaje', 'Se ha cofigurado la reserva');
     }
 }

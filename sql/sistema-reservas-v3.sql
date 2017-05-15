@@ -512,6 +512,49 @@ ALTER TABLE `reserva`
 ALTER TABLE `usuario_materia`
   ADD CONSTRAINT `FK_REFERENCE_13` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`),
   ADD CONSTRAINT `FK_REFERENCE_14` FOREIGN KEY (`id_materia`) REFERENCES `materia` (`id_materia`);
+  
+--
+-- Estructura de tabla para la tabla `tipo_reserva`
+--
+
+CREATE TABLE `tipo_reserva` (
+  `id_tipo_reserva` int(11) UNSIGNED NOT NULL,
+  `tipo` enum('examen','congreso','seminario','curso','charla','otro') NOT NULL,
+  `max_nro_periodos` int(11) UNSIGNED NOT NULL,
+  `min_nro_participantes` int(11) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tipo_reserva`
+--
+
+INSERT INTO `tipo_reserva` (`id_tipo_reserva`, `tipo`, `max_nro_periodos`, `min_nro_participantes`) VALUES
+(1, 'examen', 3, 50),
+(2, 'congreso', 2, 50),
+(3, 'seminario', 1, 79),
+(4, 'curso', 2, 50),
+(5, 'charla', 2, 50),
+(6, 'otro', 2, 50);
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `tipo_reserva`
+--
+ALTER TABLE `tipo_reserva`
+  ADD PRIMARY KEY (`id_tipo_reserva`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `tipo_reserva`
+--
+ALTER TABLE `tipo_reserva`
+  MODIFY `id_tipo_reserva` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

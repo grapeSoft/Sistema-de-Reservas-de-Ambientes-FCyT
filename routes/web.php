@@ -28,13 +28,20 @@ Route::get('usuarios/{id}/foto', 'UsuarioController@foto')
     ->name('usuarios.foto');
 Route::resource('usuarios', 'UsuarioController');
 
+Route::post('reservas/config', 'ReservaController@updateConfig')->name('reservas.updateConfig');
+Route::get('reservas/config', 'ReservaController@config')->name('reservas.config');
+
+
 Route::get('reservas/{reserva}/eventos', 'EventoController@oferta')->name('eventos.oferta');
 Route::post('reservas/{reserva}/eventos', 'EventoController@almacenar')->name('eventos.almacenar');
+
+
+
 Route::get('reservas/horarios', 'ReservaController@horarios')->name('reservas.horarios');
 Route::resource('reservas', 'ReservaController');
 Route::get('docentes', 'UsuarioController@upload')->name('usuarios.upload');
 Route::post('registros', 'UsuarioController@registrarUsuarios')->name('usuarios.registrarUsuarios');
 
-//Route::resource('eventos', 'EventoController');
+Route::resource('eventos', 'EventoController');
 
 
