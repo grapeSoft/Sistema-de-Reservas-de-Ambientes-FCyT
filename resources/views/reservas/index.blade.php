@@ -22,9 +22,9 @@
 			<tbody>
 				@foreach($reservas as $reserva)
 				<tr>
-					<td>{{ $reserva->id_fecha }}</td>
-					<td>{{ $reserva->hora_inicio }}</td>
-					<td>{{ $reserva->hora_fin }}</td>
+					<td>{{ $reserva->horarios->first()->pivot->id_fecha }}</td>
+					<td>{{ $reserva->horarios->first()->hora_inicio }}</td>
+					<td>{{ $reserva->horarios->last()->hora_fin }}</td>
 					<td>
 						<div class="text-center">
 							<a href="{{ route('reservas.show',['id' => $reserva->id_reserva]) }}" class="btn btn-fab btn-fab-mini btn-info" >

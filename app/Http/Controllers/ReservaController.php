@@ -22,22 +22,9 @@ class ReservaController extends Controller
      */
     public function index()
     {
-        //$reservas = Reserva::getReservas()//reservas del usuario;
-        $reservas = null;
-        $usuarioAdmin = auth()->user();
-        $id_us = $usuarioAdmin->id_usuario;
-        //$reservas = Reserva::findOrFail($id_us);
-        $reservas = DB::table('USUARIO')
-            ->join('reserva', 'USUARIO.id_usuario', '=', 'reserva.id_usuario')
-            ->join('horario' , 'reserva.id_reserva', '=', 'horario.id_reserva')
-            ->join('horas', 'horario.id_horas', '=', 'horas.id_horas')
-            ->select('horario.id_fecha', 'horas.hora_inicio', 'horas.hora_fin', 'reserva.id_reserva')
-            ->where('USUARIO.id_usuario', '=', $id_us)
-            ->get();
-        return view('reservas.index', compact('reservas'));  
-       /* $usuario = auth()->user();
-        $reservas = $usuario->reserva;
-        return $reservas;*/       
+        $usuario = auth()->user();
+        $reservas = Reserva::where('id_usuario', $usuario->id_usuario)->get();
+        return view('reservas.index', compact('reservas'));
     }
 
     /**
