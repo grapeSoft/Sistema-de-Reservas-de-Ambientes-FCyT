@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-05-2017 a las 07:19:57
+-- Tiempo de generación: 16-05-2017 a las 08:39:26
 -- Versión del servidor: 10.1.21-MariaDB
--- Versión de PHP: 5.6.30
+-- Versión de PHP: 7.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `sistema-reservas-v3`
+-- Base de datos: `sistema-reservas-v1`
 --
 
 -- --------------------------------------------------------
@@ -74,34 +74,6 @@ CREATE TABLE `evento` (
   `id_usuario_materia` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `evento`
---
-
-INSERT INTO `evento` (`id_evento`, `id_reserva`, `tipo`, `descripcion`, `id_usuario_materia`) VALUES
-(1, 4, NULL, NULL, 4),
-(2, 4, NULL, NULL, 4),
-(3, 4, NULL, NULL, 4),
-(4, 4, NULL, NULL, 4),
-(5, 4, NULL, NULL, 4),
-(6, 5, NULL, NULL, 5),
-(7, 5, NULL, NULL, 5),
-(8, 28, '2', 'Descripcion pequeña', NULL),
-(9, 29, '0', 'asdfaseasef', NULL),
-(10, 30, 'Cursos', 'cursoso sdsad', NULL),
-(11, 31, 'Cursos', 'cursoso sdsad', NULL),
-(12, 32, 'Charlas', 'charla siobreasdfasdf', NULL),
-(13, 33, 'otros', 'erdgsgdsf', NULL),
-(14, 34, NULL, NULL, NULL),
-(15, 5, NULL, NULL, 5),
-(16, 35, NULL, NULL, NULL),
-(17, 5, NULL, NULL, 5),
-(18, 36, NULL, NULL, NULL),
-(19, 5, NULL, NULL, 5),
-(20, 37, 'Charlas', 'dfasdfasdfasdf', NULL),
-(21, 38, NULL, NULL, NULL),
-(22, 5, NULL, NULL, 5);
-
 -- --------------------------------------------------------
 
 --
@@ -122,7 +94,36 @@ INSERT INTO `fecha` (`id_fecha`, `id_calendario`, `tipo`) VALUES
 ('2017-04-01', 1, 'Normal'),
 ('2017-04-02', 1, 'Normal'),
 ('2017-05-01', 1, 'Normal'),
-('2017-05-03', 1, 'Normal');
+('2017-05-02', 1, 'Normal'),
+('2017-05-03', 1, 'Normal'),
+('2017-05-04', 1, 'Normal'),
+('2017-05-05', 1, 'Normal'),
+('2017-05-06', 1, 'Normal'),
+('2017-05-07', 1, 'Normal'),
+('2017-05-08', 1, 'Normal'),
+('2017-05-09', 1, 'Normal'),
+('2017-05-10', 1, 'Normal'),
+('2017-05-11', 1, 'Normal'),
+('2017-05-12', 1, 'Normal'),
+('2017-05-13', 1, 'Normal'),
+('2017-05-14', 1, 'Normal'),
+('2017-05-15', 1, 'Normal'),
+('2017-05-16', 1, 'Normal'),
+('2017-05-17', 1, 'Normal'),
+('2017-05-18', 1, 'Normal'),
+('2017-05-19', 1, 'Normal'),
+('2017-05-20', 1, 'Normal'),
+('2017-05-21', 1, 'Normal'),
+('2017-05-22', 1, 'Normal'),
+('2017-05-23', 1, 'Normal'),
+('2017-05-24', 1, 'Normal'),
+('2017-05-25', 1, 'Normal'),
+('2017-05-26', 1, 'Normal'),
+('2017-05-27', 1, 'Normal'),
+('2017-05-28', 1, 'Normal'),
+('2017-05-29', 1, 'Normal'),
+('2017-05-30', 1, 'Normal'),
+('2017-05-31', 1, 'Normal');
 
 -- --------------------------------------------------------
 
@@ -143,48 +144,83 @@ CREATE TABLE `horario` (
 --
 
 INSERT INTO `horario` (`id_fecha`, `id_horas`, `id_ambiente`, `id_reserva`, `estado`) VALUES
-('2017-04-01', 2, 1, 10, 'Ocupado'),
-('2017-04-01', 3, 1, 10, 'Libre'),
-('2017-04-01', 4, 1, 9, 'Libre'),
-('2017-04-01', 5, 1, 9, 'Ocupado'),
-('2017-04-01', 6, 1, 4, 'Ocupado'),
-('2017-04-01', 8, 1, 4, 'Ocupado'),
-('2017-04-01', 9, 1, 15, 'Ocupado'),
-('2017-04-01', 10, 1, 15, 'Ocupado'),
-('2017-04-01', 11, 1, 3, 'Ocupado'),
-('2017-04-02', 1, 1, 11, 'Ocupado'),
-('2017-04-02', 2, 1, 11, 'Ocupado'),
-('2017-04-02', 3, 1, 5, 'Ocupado'),
-('2017-04-02', 4, 1, 6, 'Ocupado'),
-('2017-04-02', 5, 1, 6, 'Ocupado'),
-('2017-04-02', 6, 1, 5, 'Ocupado'),
-('2017-04-02', 7, 1, 5, 'Libre'),
-('2017-04-02', 8, 1, NULL, 'Libre'),
-('2017-04-02', 9, 1, NULL, 'Libre'),
-('2017-04-02', 10, 1, NULL, 'Libre'),
-('2017-04-02', 11, 1, NULL, 'Libre'),
-('2017-05-01', 1, 1, 25, 'Libre'),
-('2017-05-01', 2, 1, 27, 'Ocupado'),
-('2017-05-01', 3, 1, 27, 'Ocupado'),
-('2017-05-01', 4, 1, 22, 'Ocupado'),
-('2017-05-01', 5, 1, 21, 'Ocupado'),
-('2017-05-01', 6, 1, 20, 'Ocupado'),
-('2017-05-01', 7, 1, 19, 'Ocupado'),
-('2017-05-01', 8, 1, 18, 'Ocupado'),
-('2017-05-01', 9, 1, 16, 'Ocupado'),
-('2017-05-01', 10, 1, 16, 'Ocupado'),
-('2017-05-01', 11, 1, 16, 'Ocupado'),
-('2017-05-03', 1, 1, 29, 'Ocupado'),
-('2017-05-03', 2, 1, 31, 'Ocupado'),
-('2017-05-03', 3, 1, 32, 'Ocupado'),
-('2017-05-03', 4, 1, 33, 'Ocupado'),
-('2017-05-03', 5, 1, 33, 'Ocupado'),
-('2017-05-03', 6, 1, 34, 'Ocupado'),
-('2017-05-03', 7, 1, 35, 'Ocupado'),
-('2017-05-03', 8, 1, 36, 'Ocupado'),
-('2017-05-03', 9, 1, 37, 'Ocupado'),
-('2017-05-03', 10, 1, 38, 'Ocupado'),
-('2017-05-03', 11, 1, NULL, 'Libre');
+('2017-05-16', 1, 1, NULL, 'Libre'),
+('2017-05-16', 2, 1, NULL, 'Libre'),
+('2017-05-16', 3, 1, NULL, 'Libre'),
+('2017-05-16', 4, 1, NULL, 'Libre'),
+('2017-05-16', 5, 1, NULL, 'Libre'),
+('2017-05-16', 6, 1, NULL, 'Libre'),
+('2017-05-16', 7, 1, NULL, 'Libre'),
+('2017-05-16', 8, 1, NULL, 'Libre'),
+('2017-05-16', 9, 1, NULL, 'Libre'),
+('2017-05-16', 10, 1, NULL, 'Libre'),
+('2017-05-16', 11, 1, NULL, 'Libre'),
+('2017-05-17', 1, 1, NULL, 'Libre'),
+('2017-05-17', 2, 1, NULL, 'Libre'),
+('2017-05-17', 3, 1, NULL, 'Libre'),
+('2017-05-17', 4, 1, NULL, 'Libre'),
+('2017-05-17', 5, 1, NULL, 'Libre'),
+('2017-05-17', 6, 1, NULL, 'Libre'),
+('2017-05-17', 7, 1, NULL, 'Libre'),
+('2017-05-17', 8, 1, NULL, 'Libre'),
+('2017-05-17', 9, 1, NULL, 'Libre'),
+('2017-05-17', 10, 1, NULL, 'Libre'),
+('2017-05-17', 11, 1, NULL, 'Libre'),
+('2017-05-18', 1, 1, NULL, 'Libre'),
+('2017-05-18', 2, 1, NULL, 'Libre'),
+('2017-05-18', 3, 1, NULL, 'Libre'),
+('2017-05-18', 4, 1, NULL, 'Libre'),
+('2017-05-18', 5, 1, NULL, 'Libre'),
+('2017-05-18', 6, 1, NULL, 'Libre'),
+('2017-05-18', 7, 1, NULL, 'Libre'),
+('2017-05-18', 8, 1, NULL, 'Libre'),
+('2017-05-18', 9, 1, NULL, 'Libre'),
+('2017-05-18', 10, 1, NULL, 'Libre'),
+('2017-05-18', 11, 1, NULL, 'Libre'),
+('2017-05-19', 1, 1, NULL, 'Libre'),
+('2017-05-19', 2, 1, NULL, 'Libre'),
+('2017-05-19', 3, 1, NULL, 'Libre'),
+('2017-05-19', 4, 1, NULL, 'Libre'),
+('2017-05-19', 5, 1, NULL, 'Libre'),
+('2017-05-19', 6, 1, NULL, 'Libre'),
+('2017-05-19', 7, 1, NULL, 'Libre'),
+('2017-05-19', 8, 1, NULL, 'Libre'),
+('2017-05-19', 9, 1, NULL, 'Libre'),
+('2017-05-19', 10, 1, NULL, 'Libre'),
+('2017-05-19', 11, 1, NULL, 'Libre'),
+('2017-05-20', 1, 1, NULL, 'Libre'),
+('2017-05-20', 2, 1, NULL, 'Libre'),
+('2017-05-20', 3, 1, NULL, 'Libre'),
+('2017-05-20', 4, 1, NULL, 'Libre'),
+('2017-05-20', 5, 1, NULL, 'Libre'),
+('2017-05-20', 6, 1, NULL, 'Libre'),
+('2017-05-20', 7, 1, NULL, 'Libre'),
+('2017-05-20', 8, 1, NULL, 'Libre'),
+('2017-05-20', 9, 1, NULL, 'Libre'),
+('2017-05-20', 10, 1, NULL, 'Libre'),
+('2017-05-20', 11, 1, NULL, 'Libre'),
+('2017-05-21', 1, 1, NULL, 'Libre'),
+('2017-05-21', 2, 1, NULL, 'Libre'),
+('2017-05-21', 3, 1, NULL, 'Libre'),
+('2017-05-21', 4, 1, NULL, 'Libre'),
+('2017-05-21', 5, 1, NULL, 'Libre'),
+('2017-05-21', 6, 1, NULL, 'Libre'),
+('2017-05-21', 7, 1, NULL, 'Libre'),
+('2017-05-21', 8, 1, NULL, 'Libre'),
+('2017-05-21', 9, 1, NULL, 'Libre'),
+('2017-05-21', 10, 1, NULL, 'Libre'),
+('2017-05-21', 11, 1, NULL, 'Libre'),
+('2017-05-22', 1, 1, NULL, 'Libre'),
+('2017-05-22', 2, 1, NULL, 'Libre'),
+('2017-05-22', 3, 1, NULL, 'Libre'),
+('2017-05-22', 4, 1, NULL, 'Libre'),
+('2017-05-22', 5, 1, NULL, 'Libre'),
+('2017-05-22', 6, 1, NULL, 'Libre'),
+('2017-05-22', 7, 1, NULL, 'Libre'),
+('2017-05-22', 8, 1, NULL, 'Libre'),
+('2017-05-22', 9, 1, NULL, 'Libre'),
+('2017-05-22', 10, 1, NULL, 'Libre'),
+('2017-05-22', 11, 1, NULL, 'Libre');
 
 -- --------------------------------------------------------
 
@@ -236,7 +272,13 @@ INSERT INTO `materia` (`id_materia`, `nombre`, `horas`, `nivel`) VALUES
 (1, 'Calculo I', NULL, NULL),
 (3, 'Calculo II', NULL, NULL),
 (4, 'Calculo III', NULL, NULL),
-(5, 'Calculo IV', NULL, NULL);
+(5, 'Calculo IV', NULL, NULL),
+(6, 'Algebra I', '30', '1'),
+(7, 'Algebra II', '30', '1'),
+(8, 'Fisica I', '30', '1'),
+(9, 'Fisica II', '30', '1'),
+(10, 'Fisica III', '30', '1'),
+(11, 'Algebra I', '30', '1');
 
 -- --------------------------------------------------------
 
@@ -268,49 +310,30 @@ CREATE TABLE `reserva` (
   `id_usuario` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
 --
--- Volcado de datos para la tabla `reserva`
+-- Estructura de tabla para la tabla `tipo_reserva`
 --
 
-INSERT INTO `reserva` (`id_reserva`, `id_usuario`) VALUES
-(1, 1),
-(2, 1),
-(3, 1),
-(4, 1),
-(5, 1),
-(6, 1),
-(7, 1),
-(8, 1),
-(9, 1),
-(10, 1),
-(11, 1),
-(12, 1),
-(13, 1),
-(14, 1),
-(15, 1),
-(16, 1),
-(17, 1),
-(18, 1),
-(26, 1),
-(27, 1),
-(29, 2),
-(30, 2),
-(31, 2),
-(32, 2),
-(33, 2),
-(37, 2),
-(24, 6),
-(25, 6),
-(28, 6),
-(19, 7),
-(20, 7),
-(21, 7),
-(22, 7),
-(23, 7),
-(34, 8),
-(35, 8),
-(36, 8),
-(38, 8);
+CREATE TABLE `tipo_reserva` (
+  `id_tipo_reserva` int(11) UNSIGNED NOT NULL,
+  `tipo` enum('examen','congreso','seminario','curso','charla','otro') NOT NULL,
+  `max_nro_periodos` int(11) UNSIGNED NOT NULL,
+  `min_nro_participantes` int(11) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tipo_reserva`
+--
+
+INSERT INTO `tipo_reserva` (`id_tipo_reserva`, `tipo`, `max_nro_periodos`, `min_nro_participantes`) VALUES
+(1, 'examen', 3, 50),
+(2, 'congreso', 2, 50),
+(3, 'seminario', 1, 79),
+(4, 'curso', 2, 50),
+(5, 'charla', 2, 50),
+(6, 'otro', 2, 50);
 
 -- --------------------------------------------------------
 
@@ -338,14 +361,17 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nombre`, `apellido_paterno`, `apellido_materno`, `email`, `username`, `password`, `tipo`, `created_at`, `updated_at`, `remember_token`, `foto`) VALUES
-(1, 'Alexander', 'Reinaga', 'Lopez', 'alexsof9@gmail.com', 'alexsof', '$2y$10$fHb4L5UWbNr3cMG0MiHvT.12rrgbpsstqejxT6oygGljLFylTEGn6', 'administrador', '2017-04-29 10:35:28', '2017-04-29 10:35:28', '7sKicxJ9L1EeAktTCjh8ilaFMWAoD4f8ZAR3rwRpckmaXRjOB4geNgaoALWy', NULL),
-(2, 'Carlos', 'Romero', 'Vargas', 'crv@gmail.com', 'carlos7', '$2y$10$53PGjlvjhMW60G4vCTzfX.4oBtV551NzJjRZAT4JA9YR6nhm3VOvu', 'autorizado', '2017-04-29 10:35:28', '2017-04-29 10:35:28', 'y4Y5WpSgEZzQQ1C8sE2YJySnM8wscytBajpcWJVOuhBZ1ZW0AcF60pdapodv', NULL),
-(3, 'Valentina', 'Caceres', 'Villanueva', 'vcv@gmail.com', 'vale89', '$2y$10$Ijg.bQzfdNjtt0tdXecKc.ULKIH6662fyPMgfJKl5jtWkN1iy45PO', 'autorizado', '2017-04-29 10:35:28', '2017-04-29 10:35:28', NULL, NULL),
-(4, 'Marcelo', 'Lopez', 'chavez', 'mlc9@gmail.com', 'marce09', '$2y$10$wnTqhXB4cso14EOdgqU3L.itdeZJ1yj7eOSbFq84tguYlE7WE/xnG', 'autorizado', '2017-04-29 10:35:28', '2017-04-29 10:35:28', 'bP6zm6DyUlZzRP7NR0F3igBptFxnVKuuhE1j6Q4rqFp1gvaWVjbfoCZEAVW1', NULL),
-(5, 'Juan Pablo', 'Mendoza', 'Acha', 'jpm@gmail.com', 'juanp', '$2y$10$yiLVkVicYvjmZzaykp4Wp.K0pCZBRrrFWCXXIxft4vYfkdh9XAS1C', 'autorizado', '2017-04-29 10:35:28', '2017-04-29 10:35:28', NULL, NULL),
-(6, 'Martina', 'Carrasco', 'Verduguez', 'martiv@gmail.com', 'marti78', '$2y$10$J7E4yedHtjJRhY6J/xp6d.5h1/32O63h5RPJiezLjl9aFIwa8uOF6', 'autorizado', '2017-04-29 10:35:28', '2017-04-29 10:35:28', 'SblDjaVCMRLvTuU4mloJdjGzYpPOG9eeBG0IR8r48xO5Nx2rbjp8vtg9sdIJ', NULL),
+(1, 'Alexander', 'Reinaga', 'Lopez', 'alexsof9@gmail.com', 'alexsof', '$2y$10$fHb4L5UWbNr3cMG0MiHvT.12rrgbpsstqejxT6oygGljLFylTEGn6', 'administrador', '2017-04-29 10:35:28', '2017-04-29 10:35:28', 'BCVwqEhUO4GQU9mx1KIg9CcvpaCZqVucSy4fxFiwouZsVSZChPuBV6xd5V6I', NULL),
+(6, 'Martina', 'Carrasco', 'Verduguez', 'martiv@gmail.com', 'marti78', '$2y$10$J7E4yedHtjJRhY6J/xp6d.5h1/32O63h5RPJiezLjl9aFIwa8uOF6', 'autorizado', '2017-04-29 10:35:28', '2017-04-29 10:35:28', '3lKdOgDnzmqcztxoqkzK7vPLDj4d4teT90eD2V9BkpkleCyNaN6id5wZJscs', NULL),
 (7, 'Diego', 'Villarroel', 'Solis', 'diego.villarroel@outlook.com', 'diego.villarroel@outlook.com', '$2y$10$resr0iV.12C9lZ3hmHHg/OZEglNz78y2CsRoAD4xNNYCcnirj.QKW', 'autorizado', '2017-05-01 18:56:35', '2017-05-01 18:56:35', NULL, NULL),
-(8, 'boris', 'calanccha', 'asdfa', 'boris2222@yopmail.com', 'boris', '$2y$10$hrnOSBkdxdnt/dDRhVD8NOMKU7M3b3xDwJrk7/Mi9WTuq1VFfjMai', 'docente', '2017-05-02 08:18:08', '2017-05-02 09:18:31', 'IizDyxkbMno7ApFjjzVJIEOYFQ99l2wgiY8kE8lRferjzjEPVF6hmgaBshXO', NULL);
+(14, 'Boris', 'calancha', 'navia', 'boris@gmail.com', 'boris', '$2y$10$s/pl1zzW8wnruud9okx7IOnNeVVmq4c5IG/JYJU6yjRycUvNmcyCG', 'docente', '2017-05-02 06:26:18', '2017-05-02 06:26:18', '4GTOb0J8J1pxfJIQGITynBsGDqZ7NYO9V61g0eTkDGGKXV2MwjxDziIueS5b', NULL),
+(15, 'Leticia', 'Blanco', 'Coca', 'leti@gmail.com', 'leticia', '$2y$10$eZn0HHJCkqtxRTnWZMjog.Ka8m.S2M8oJ/M77ZahjpMiD1X6zKJfy', 'docente', '2017-05-02 08:05:58', '2017-05-02 08:05:58', '05SQTbBmIgAeDp6CBCGXPJrJpNST7woiIx5nnfcpScGgFgPAequdkez6QL9I', NULL),
+(16, 'Patricia', 'Romero', 'Bilbao', 'patricia@gmail.com', 'patricia', '$2y$10$Ytk1GoACuvSxZE43W1yaA.Oe7uaefvtcj6vJBWx65s2b2CYC8wNZq', 'docente', '2017-05-02 08:05:59', '2017-05-02 08:05:59', NULL, NULL),
+(17, 'Raul', 'Martinez', 'Martinez', 'ivanuc19@gmail.com', 'ivanuc19@gmail.com', '$2y$10$gzf.dMe4KwtdKUEAFeMSNe44xSWsYIVLRl2CvMHEJ9bLrjAqwrH9S', 'administrador', '2017-05-09 18:25:06', '2017-05-09 18:25:06', NULL, NULL),
+(18, 'Ever', 'Camacho', 'Camacho', 'correo_prueva@yopmail.com', 'correo_prueva@yopmail.com', '$2y$10$yuyjezdGkMcrPjCXPcl2GODH8A2MyzY4dJq89L3QolyhF8IExm73m', 'autorizado', '2017-05-09 18:25:33', '2017-05-09 18:25:33', NULL, NULL),
+(19, 'rene', 'gutierrez', 'rodriguez', 'renetlgr@gmail.com', 'renetlgr@gmail.com', '$2y$10$bsSe3JuTzOrLlvY8O9P5.eYo45UCT2DfH5iP8CT7Lugp5MtoDbRwC', 'docente', '2017-05-09 19:06:53', '2017-05-09 19:06:53', NULL, NULL),
+(20, 'mauricio', 'gutierrez', 'rodriguez', 'renelgutierrezrodriguez@gmail.com', 'renelgutierrezrodriguez@gmail.com', '$2y$10$F.JJMWCHnN1aovnMxcxc9.5VYyg50tvNtPExIzZCjjbhGf7eqOzcy', 'docente', '2017-05-09 19:06:58', '2017-05-09 19:06:58', NULL, NULL),
+(21, 'Jhonny', 'gutierrez', 'rodriguez', 'la_rana_rene_@hotmai.com', 'la_rana_rene_@hotmai.com', '$2y$10$FCVE.Sliriaakkc9zD/X2u2flQqE5cZWFhJkSaEDfTRe/p8/a7Ebq', 'docente', '2017-05-09 19:07:04', '2017-05-09 19:07:04', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -366,10 +392,17 @@ CREATE TABLE `usuario_materia` (
 --
 
 INSERT INTO `usuario_materia` (`id_usuario_materia`, `id_usuario`, `id_materia`, `grupo`, `numero_inscritos`) VALUES
-(1, 7, 1, 1, 50),
-(3, 7, 3, 1, 50),
-(4, 7, 4, 1, 50),
-(5, 8, 1, 3, NULL);
+(1, 14, 1, 1, 40),
+(3, 14, 3, 2, 40),
+(4, 14, 4, 5, 30),
+(5, 16, 1, 3, NULL),
+(6, 14, 3, 6, 30),
+(7, 14, 4, 1, 30),
+(8, 15, 6, 8, 50),
+(9, 16, 6, 1, 30),
+(10, 16, 7, 10, 30),
+(11, 16, 8, 2, 30),
+(12, 15, 9, 1, 50);
 
 --
 -- Índices para tablas volcadas
@@ -437,6 +470,12 @@ ALTER TABLE `reserva`
   ADD KEY `FK_USUARIO_RESERVA` (`id_usuario`);
 
 --
+-- Indices de la tabla `tipo_reserva`
+--
+ALTER TABLE `tipo_reserva`
+  ADD PRIMARY KEY (`id_tipo_reserva`);
+
+--
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
@@ -458,7 +497,7 @@ ALTER TABLE `usuario_materia`
 -- AUTO_INCREMENT de la tabla `evento`
 --
 ALTER TABLE `evento`
-  MODIFY `id_evento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_evento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 --
 -- AUTO_INCREMENT de la tabla `migrations`
 --
@@ -468,12 +507,17 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT de la tabla `reserva`
 --
 ALTER TABLE `reserva`
-  MODIFY `id_reserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id_reserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+--
+-- AUTO_INCREMENT de la tabla `tipo_reserva`
+--
+ALTER TABLE `tipo_reserva`
+  MODIFY `id_tipo_reserva` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_usuario` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- Restricciones para tablas volcadas
 --
@@ -512,49 +556,6 @@ ALTER TABLE `reserva`
 ALTER TABLE `usuario_materia`
   ADD CONSTRAINT `FK_REFERENCE_13` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`),
   ADD CONSTRAINT `FK_REFERENCE_14` FOREIGN KEY (`id_materia`) REFERENCES `materia` (`id_materia`);
-  
---
--- Estructura de tabla para la tabla `tipo_reserva`
---
-
-CREATE TABLE `tipo_reserva` (
-  `id_tipo_reserva` int(11) UNSIGNED NOT NULL,
-  `tipo` enum('examen','congreso','seminario','curso','charla','otro') NOT NULL,
-  `max_nro_periodos` int(11) UNSIGNED NOT NULL,
-  `min_nro_participantes` int(11) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `tipo_reserva`
---
-
-INSERT INTO `tipo_reserva` (`id_tipo_reserva`, `tipo`, `max_nro_periodos`, `min_nro_participantes`) VALUES
-(1, 'examen', 3, 50),
-(2, 'congreso', 2, 50),
-(3, 'seminario', 1, 79),
-(4, 'curso', 2, 50),
-(5, 'charla', 2, 50),
-(6, 'otro', 2, 50);
-
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `tipo_reserva`
---
-ALTER TABLE `tipo_reserva`
-  ADD PRIMARY KEY (`id_tipo_reserva`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `tipo_reserva`
---
-ALTER TABLE `tipo_reserva`
-  MODIFY `id_tipo_reserva` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
