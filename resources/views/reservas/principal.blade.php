@@ -9,6 +9,9 @@
 			</div>
 			<div class="bs-component">
 		        <div class="panel-body">
+					@if(auth()->user()->esAdministrador())
+						<a href="{{ route('reservas.config') }}" class="btn btn-primary">Configurar Reservas</a>
+					@endif
 					<div class="col-md-5 col-md-offset-7">
 						<div class="btn-group btn-group-justified btn-group-raised">
 						  <a href="{{ route('reservas.index') }}" class="btn btn-primary">Mis Reservas</a>
