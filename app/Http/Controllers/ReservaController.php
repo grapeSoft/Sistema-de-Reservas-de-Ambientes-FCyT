@@ -100,11 +100,18 @@ class ReservaController extends Controller
         
          $eventos= DB::table('evento')
                     ->where('evento.id_reserva','=',$id)
-                    ->join('usuario_materia','evento.id_usuario_materia','=','usuario_materia.id_usuario_materia') 
+                    ->join('usuario_materia','evento.id_usuario_materia','=','usuario_materia.id_usuario_materia')          
                     ->join('materia','usuario_materia.id_materia' ,'=','materia.id_materia')                   
                     ->select('evento.tipo','evento.descripcion','materia.nombre','usuario_materia.grupo')
                     ->get(); 
 
+
+
+         $eventosAutorizado=  DB::table('evento')
+                                ->where('evento.id_reserva','=',$id)
+                                ->select('evento.tipo','evento.descripcion')
+                                ->first(); 
+                                
 
         
         // $reservas= DB::table('reserva')
@@ -124,9 +131,9 @@ class ReservaController extends Controller
 
 
         
-                   
+       // dd($eventosAutorizado);            
                      
-          return view('reservas.vista.view', compact('eventos'));
+          return view('reservas.vista.view', compact('eventos','eventosAutorizado'));
     }
     
 

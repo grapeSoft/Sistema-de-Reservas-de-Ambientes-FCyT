@@ -15,11 +15,11 @@
 					</tr>
 					<tr>
 						<td><strong>Tipo de Reserva</strong></td>				               
-                        <td>{{ $eventos->tipo }}</td>                                   
+                        <td>{{ $eventosAutorizado->tipo }}</td>                                   
                     </tr> 
                     <tr>
 						<td><strong>Descripcion</strong></td>				               
-                        <td>{{ $eventos->descripcion }}</td>                                   
+                        <td>{{ $eventosAutorizado->descripcion }}</td>                                   
                     </tr> 
                                      		
 					
