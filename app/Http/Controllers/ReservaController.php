@@ -123,7 +123,7 @@ class ReservaController extends Controller
         //             ->get()->toArray();
 
 
-        dd($eventos);
+        
                    
                      
           return view('reservas.vista.view', compact('eventos'));
