@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Http\Requests\HorariosReserva;
 use App\Http\Requests\StoreReserva;
+use App\Http\Requests\UpdateReserva;
 use App\Model\Fecha;
 use App\Model\Horario;
 use App\Model\TipoReserva;
@@ -165,7 +166,7 @@ class ReservaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreReserva $request, $id)
+    public function update(UpdateReserva $request, $id)
     {   
         if(auth()->user()->esAutorizado()){
             $evento = Evento::findOrFail($id);
