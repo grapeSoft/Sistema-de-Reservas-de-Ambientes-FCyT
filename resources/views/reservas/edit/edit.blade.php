@@ -4,7 +4,7 @@
 <div class="row">
 	<dir class="col-md-8 col-md-offset-2">
 		<div class="well">
-		{!! Form::model($evento, ['route' => ['reservas.update', $evento->id_evento], 'method' => 'put', 'class' => 'form-horizontal']) !!}
+		{!! Form::model($eventos->first(), ['route' => ['reservas.update', $eventos->first()->id_reserva], 'method' => 'put', 'class' => 'form-horizontal']) !!}
 			@if(Auth::user()->tipo === 'docente')
 			@include('reservas.edit.docente')
 			@endif

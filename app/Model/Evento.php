@@ -23,4 +23,8 @@ class Evento extends Model
     {
     	return $this->belongsTo('App\Model\Reserva','id_evento');
     }
+
+    public function grupo(){
+        return $this->belongsTo('App\Model\Grupo', 'id_usuario_materia');
+    }
 }

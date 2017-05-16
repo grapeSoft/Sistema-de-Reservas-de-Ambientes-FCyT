@@ -136,14 +136,16 @@ class ReservaController extends Controller
     {
         $reserva = Reserva::findOrFail($id);
         $eventos = $reserva->eventos;
+
+
         if(auth()->user()->esAutorizado()){
-            $evento = $eventos->first();
-            return view('reservas.edit.edit', compact('evento'));
+            return view('reservas.edit.edit', compact('eventos'));
         }
         if(auth()->user()->esDocente()){
-            $evento = $eventos->first();//borrar
-            return view('reservas.edit.edit', compact('evento'));
-        }      
+            $usuario = auth()->user();
+            $materias = $usuario->materias;
+            return view('reservas.edit.edit', compact('eventos'), compact('materias'));
+        }
     }
 
     /**
@@ -156,12 +158,20 @@ class ReservaController extends Controller
     public function update(UpdateReserva $request, $id)
     {   
         if(auth()->user()->esAutorizado()){
-            $evento = Evento::findOrFail($id);
+            $evento = Evento::findOrFail(Reserva::findOrFail($id)->eventos->first()->id_evento);
             $evento->fill($request->all());
             $evento->save();
         }
         if(auth()->user()->esDocente()){
-            //
+            $ids_usuario_materias = $request->ids_usuario_materias;
+            $borrado = Evento::where('id_reserva', $id )->delete();
+
+            foreach ($ids_usuario_materias as $id1){
+                $evento = new Evento;
+                $evento->id_reserva = $id;
+                $evento->id_usuario_materia = $id1;
+                $evento->save();
+            }
         }   
         return redirect()->route('reservas.index')
         ->with('mensaje', 'La reserva se ha modificado');

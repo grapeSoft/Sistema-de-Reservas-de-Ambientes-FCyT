@@ -19,4 +19,8 @@ class Materia extends Model
     {
     	return $this->belongsTo('app/Model/Usuario');
     }
+
+    public function grupos(){
+        return $this->hasMany('App\Model\Grupo', 'id_materia');
+    }
 }

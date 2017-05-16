@@ -39,6 +39,7 @@ class StoreReserva extends FormRequest
         $condicionNroPeridos = $this->verificarNroPeriodos($max_nro_periodos, $horas);
         $condicionReservaContinua = $this->verificarReservaContinua($horas);
 
+
         if($condicionNroPeridos && $condicionReservaContinua){
             if(auth()->user()->esDocente()){
                 if($condicionNroInscritos){
