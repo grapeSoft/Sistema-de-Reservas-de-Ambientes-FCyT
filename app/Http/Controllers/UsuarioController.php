@@ -72,11 +72,6 @@ class UsuarioController extends Controller
         $password = uniqid();
         $usuario->password = $password;
         $usuario->tipo = $request->tipo;
-        if($request->hasFile('foto')){
-            $foto = $request->file('foto');
-            $foto->move(public_path().'/foto-usuario/',$foto->getClientOriginalName());
-            $usuario->foto = $foto->getClientOriginalName();
-        }
         $usuario->save();
         $this->enviarEmail($usuario, $password);
         return redirect()
@@ -134,6 +129,11 @@ class UsuarioController extends Controller
     {
         $usuario = Usuario::findOrFail($id);
         $usuario->fill($request->all());
+        if($request->hasFile('foto')){
+            $foto = $request->file('foto');
+            $foto->move(public_path().'/foto-usuario/',$foto->getClientOriginalName());
+            $usuario->foto = $foto->getClientOriginalName();
+        }
         $usuario->save();
         return redirect()->route('usuarios.show',
             ['id' => $usuario->id_usuario]

@@ -50,19 +50,3 @@
                                                         {!! Form::email('email', null, ['class' => 'form-control']) !!}
                                                     </div>
                                                 </div>
-                                                @if($errors->has('foto'))
-                                                    <div class="form-group has-error">
-                                                        <div class="help-block">
-                                                            {{ $errors->first('foto') }}
-                                                        </div>
-                                                        @else
-                                                            <div class="form-group">
-                                                                @endif
-                                                                {!! Form::label('foto', 'Foto', ['class' => 'control-label col-md-2']) !!}
-                                                                <div class="input-group-btn col-md-10">
-                                                                    <button type="button" class="btn btn-fab btn-fab-mini btn-primary">
-                                                                    {!! Form::file('foto') !!}
-                                                                    <i class="material-icons">cloud_upload</i>
-                                                                    </button>
-                                                                </div>
-                                                            </div>

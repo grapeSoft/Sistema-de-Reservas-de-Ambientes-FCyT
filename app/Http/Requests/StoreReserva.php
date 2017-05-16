@@ -25,6 +25,7 @@ class StoreReserva extends FormRequest
      */
     public function rules()
     {
+
         $rules = [
             'noAutorizado' => 'required',
         ];
@@ -50,6 +51,7 @@ class StoreReserva extends FormRequest
             else{
                 $rules =  [
                     'ids_horas' => 'required',
+                    'descripcion' => 'required|min:4|max:32',
                 ];
             }
         }
