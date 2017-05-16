@@ -3,27 +3,23 @@
 				<table class="table table-bordered table-hover">
 					<tr>
 						<td><strong>Id. de Usuario</strong></td>
-						<td>{{ $reservas->id_usuario }}</td>
-					</tr>
-					<tr>
-						<td><strong>Id de Reserva</strong></td>
-						<td>{{ $reservas->id_reserva }}</td>
+						<td>{{ auth()->user()->id_usuario }}</td>
 					</tr>
 					<tr>
 						<td><strong>Nombre</strong></td>
-						<td>{{ $reservas->nombre }} {{ $reservas->apellido_paterno }} {{ $reservas->apellido_materno }} </td>
+						<td>{{ auth()->user()->nombre }} {{ auth()->user()->apellido_paterno }} {{ auth()->user()->apellido_materno }} </td>
 					</tr>
 					<tr>
 						<td><strong>Email</strong></td>
-						<td>{{ $reservas->email }}</td>
+						<td>{{ auth()->user()->email }}</td>
 					</tr>
 					<tr>
 						<td><strong>Tipo de Reserva</strong></td>				               
-                        <td>{{ $reservas->tipo }}</td>                                   
+                        <td>{{ $eventosAutorizado->tipo }}</td>                                   
                     </tr> 
                     <tr>
 						<td><strong>Descripcion</strong></td>				               
-                        <td>{{ $reservas->descripcion }}</td>                                   
+                        <td>{{ $eventosAutorizado->descripcion }}</td>                                   
                     </tr> 
                                      		
 					
