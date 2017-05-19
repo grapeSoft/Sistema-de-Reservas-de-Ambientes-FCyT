@@ -26,7 +26,13 @@
                                 <td>{{ $horario->hora_fin }}</td>
                                 <td>{{ $horario->pivot->estado }}</td>
                                 @if($horario->pivot->estado == "Libre")
-                                    <td>{!! Form::checkbox('ids_horas[]', $horario->id_horas) !!}</td>
+                                    <td>
+                                    <div class="checkbox">
+                                        <label>
+                                            {!! Form::checkbox('ids_horas[]', $horario->id_horas) !!}
+                                        </label>
+                                    </div>
+                                    </td>
                                 @else
                                     <td></td>
                                 @endif
