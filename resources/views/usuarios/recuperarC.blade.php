@@ -1,6 +1,5 @@
 @extends('plantillas.principal')
 @section('contenido')
-<hr>
 <div class="container">
     <div class="row">
         <div class="row">
@@ -10,7 +9,7 @@
                         <div class="text-center">
                           <h3><i class="fa fa-lock fa-4x"></i></h3>
                           <h2 class="text-center">Se te olvido tu Contraseña?</h2>
-                          <p>Tu puedes restablecerlo aqui.</p>
+                          <p>Tu puedes restablecerla aqui.</p>
                             <div class="panel-body">
                               @if(session('mensaje'))
                                   <div class="alert alert-success">

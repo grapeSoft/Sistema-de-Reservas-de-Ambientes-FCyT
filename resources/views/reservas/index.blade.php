@@ -11,8 +11,6 @@
 		<table class="table table-striped table-hover table-bordered">
 			<thead>
 				<tr>
-					<!-- <th>Materia</th>
-					<th>Evento</th> -->
 					<th>Fecha</th>
 					<th>Hora inicio</th>
 					<th>Hora fin</th>
@@ -27,7 +25,7 @@
 					<td>{{ $reserva->horarios->last()->hora_fin }}</td>
 					<td>
 						<div class="text-center">
-							<a href="{{ route('reservas.show',['id' => $reserva->id_reserva]) }}" class="btn btn-fab btn-fab-mini btn-info" >
+							<a href="{{ route('reservas.show',['id' => $reserva->id_reserva]) }}" class="btn btn-fab btn-fab-mini btn-info" title="Ver">
 								<i class="material-icons md-18">open_in_new</i>
 							</a>
 							<a href="{{ route('reservas.edit',['id' => $reserva->id_reserva]) }}" class="btn btn-fab btn-fab-mini btn-success" title="Editar">

@@ -22,8 +22,11 @@ class ReservaController extends Controller
      */
     public function index()
     {
+        if(auth()->user()->esAdministrador()){
+            return view('reservas.admin.index');
+        }
         $usuario = auth()->user();
-        $reservas = Reserva::where('id_usuario', $usuario->id_usuario)->get();
+        $reservas = $usuario->reserva;
         return view('reservas.index', compact('reservas'));
     }
 
@@ -217,7 +220,7 @@ class ReservaController extends Controller
     }
 
     public function config(){
-        return view('reservas.config.config');
+        return view('reservas.admin.config.config');
     }
 
     public function updateConfig(Request $request){

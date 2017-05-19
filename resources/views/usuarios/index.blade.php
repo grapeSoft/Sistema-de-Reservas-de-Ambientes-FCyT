@@ -9,7 +9,7 @@
 			</div>
 			<div class="panel-body">
 				@if(session('mensaje'))
-				<div class="alert alert-danger">
+				<div class="alert alert-success">
 					{{ session('mensaje') }}
 				</div>
 				@endif
@@ -20,10 +20,9 @@
 						</a>	
 					</div>
 					<div class="col-md-3 col-md-offset-5 text-center">
-						<a href="{{ route('usuarios.upload') }}" class="btn btn-primary">
-							<i class="material-icons">supervisor_account</i> Registrar docentes UMSS
-						</a>	
-					</div>
+		                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#formularioDocente"><i class="material-icons">supervisor_account</i> Registrar docentes UMSS</button>
+		            </div>
+		       		@include('usuarios.docentes.registrar')
 				</div>
 				<div class="table-responsive">
 					<table class="table table-striped table-hover ">
@@ -33,9 +32,7 @@
 								<th>Nombre de usuario</th>
 								<th>Email</th>
 								<th>Tipo</th>
-								<th></th>
 								<th>Opciones</th>
-								<th></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -46,30 +43,18 @@
 								<td>{{ $usuario->email }}</td>
 								<td>{{ $usuario->tipo }}</td>
 								<td>
-									<a href="{{ route('usuarios.show', 
-										['id' => $usuario->id_usuario]) }}" 
-									class="btn btn-xs btn-info" title="Ver">
+									<a href="{{ route('usuarios.show', ['id' => $usuario->id_usuario]) }}" class="btn btn-fab btn-fab-mini btn-info" title="Ver"> 
 										<i class="material-icons md-18">open_in_new</i>
 									</a>
-								</td>
-								<td>
-									<a href="{{ route('usuarios.edit', 
-										['id' => $usuario->id_usuario]) }}" 
-										class="btn btn-xs btn-success" title="Editar">
+									<a href="{{ route('usuarios.edit', ['id' => $usuario->id_usuario]) }}" class="btn btn-fab btn-fab-mini btn-success" title="Editar">
 										<i class="material-icons md-18">mode_edit</i>
 									</a>
-								</td>
-								<td>
-									{!! Form::open(['route' => 
-											['usuarios.destroy', $usuario->id_usuario],
-									 	'method' => 'delete', 
-									 	'class' => 'form-eliminar']) !!}
-										<button type="submit" class="btn btn-xs btn-danger" title="Eliminar">
-											<i class="material-icons md-18">delete</i>
-										</button>
-									{!! Form::close() !!}
+									<a href="" data-target="#form-delete-{{$usuario->id_usuario}}" data-toggle="modal" class="btn btn-fab btn-fab-mini btn-danger" title="Eliminar">
+										<i class="material-icons md-18">delete</i>
+									</a>
 								</td>
 							</tr>
+						@include('usuarios.delete.form-delete')
 						@endforeach
 						</tbody>
 					</table>

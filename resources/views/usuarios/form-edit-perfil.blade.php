@@ -9,8 +9,8 @@
                 @endif
                 {!! Form::label('foto', 'Foto', ['class' => 'control-label col-md-2']) !!}
                 <div class="col-md-10">
-                    <input type="text" readonly="" class="form-control" placeholder="Subir imagen...">
-                    {!! Form::file('foto', ['class' => 'form-control']) !!}
+                    {!! Form::text(null, null, ['class' => 'form-control', 'placeholder' => 'Subir imagen...', 'readonly' => '']) !!}
+                    {!! Form::file('foto', ['class' => 'form-control', 'accept' => 'image/*']) !!}
                 </div>     
             </div>
 @if($errors->has('username'))

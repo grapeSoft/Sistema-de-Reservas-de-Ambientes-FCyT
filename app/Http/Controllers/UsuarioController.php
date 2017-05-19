@@ -229,12 +229,6 @@ class UsuarioController extends Controller
 
         }
     }
-
-    public function upload()
-    {
-        return view('usuarios.uploadfile');
-    }
-
     public function registrarUsuarios()
     {
         $tipo = $_FILES['archivo']['type'];
@@ -298,6 +292,6 @@ class UsuarioController extends Controller
         }
         return redirect()
                 ->route('usuarios.index')
-                ->with('mensaje', 'Los usuarios se han creado con exito');
+                ->with('mensaje', 'Los docentes se han registrado con exito');
     }
 }

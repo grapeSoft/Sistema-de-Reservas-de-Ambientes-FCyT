@@ -17,7 +17,7 @@
 					@if(Auth::user()->tipo === 'administrador')
 					@include('usuarios.form-edit')
 					@endif
-					@if(Auth::user()->tipo === 'autorizado')
+					@if(Auth::user()->tipo === 'autorizado' || Auth::user()->tipo === 'docente')
 					@include('usuarios.form-edit-perfil')
 					@endif
 					<div class="text-center">

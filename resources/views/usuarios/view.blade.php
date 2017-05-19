@@ -44,7 +44,7 @@
 					</tr>
 				</table>
 				<div class="text-center">
-					<a href="{{ route('usuarios.edit', ['id' => $usuario->id_usuario]) }}" 
+					<!-- <a href="{{ route('usuarios.edit', ['id' => $usuario->id_usuario]) }}" 
 						class="btn btn-success">
 						<i class="material-icons">mode_edit</i> Editar
 					</a>
@@ -56,7 +56,7 @@
 						<button class="btn btn-danger">
 							<i class="material-icons">delete</i> Eliminar
 						</button>
-					{!! Form::close() !!}
+					{!! Form::close() !!} -->
 					<a href="{{ route('usuarios.index') }}" 
 						class="btn btn-primary">
 						<i class="material-icons">close</i> Salir
