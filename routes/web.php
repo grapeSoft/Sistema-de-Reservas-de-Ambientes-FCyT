@@ -40,5 +40,6 @@ Route::post('reservas/{reserva}/eventos', 'EventoController@almacenar')->name('e
 Route::get('reservas/horarios', 'ReservaController@horarios')->name('reservas.horarios');
 Route::resource('reservas', 'ReservaController');
 Route::post('registros', 'UsuarioController@registrarUsuarios')->name('usuarios.registrarUsuarios');
+Route::post('reservas/filtrado', 'ReservaController@filtrado')->name('reservas.filtrado');
 
 

@@ -11,7 +11,7 @@
 					{!! Form::label('archivo', 'Archivo', ['class' => 'control-label col-md-2']) !!}
 					<div class="col-md-10">
 						{!! Form::text(null, null, ['class' => 'form-control', 'placeholder' => 'Subir un archivo .csv ...', 'readonly' => '']) !!}
-						{!! Form::file('archivo', ['accept' => '.csv', 'class' => 'form_control']) !!}
+						{!! Form::file('archivo', ['accept' => '.csv', 'class' => 'form_control', 'required']) !!}
 						{!! Form::hidden('MAX_FILE_SIZE', 'Archivo', ['vaule' => '20000', 'accept' => '.cvs', 'class' => 'form_control']) !!}
 					</div>
 				</div>	
