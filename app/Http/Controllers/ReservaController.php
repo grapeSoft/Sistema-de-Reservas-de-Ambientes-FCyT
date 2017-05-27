@@ -101,9 +101,20 @@ class ReservaController extends Controller
          $eventos= DB::table('evento')
                     ->where('evento.id_reserva','=',$id)
                     ->join('usuario_materia','evento.id_usuario_materia','=','usuario_materia.id_usuario_materia')          
-                    ->join('materia','usuario_materia.id_materia' ,'=','materia.id_materia')                   
+                    ->join('materia','usuario_materia.id_materia' ,'=','materia.id_materia')  
+                                    
                     ->select('evento.tipo','evento.descripcion','materia.nombre','usuario_materia.grupo')
-                    ->get(); 
+                    ->get()->toArray(); 
+
+         $datosUsuario= DB::table('evento')
+                         ->where('evento.id_reserva','=',$id)
+                         ->join('reserva','evento.id_reserva','=','reserva.id_reserva')
+                         ->join('USUARIO','reserva.id_usuario','=','USUARIO.id_usuario') 
+                         ->select('USUARIO.nombre','USUARIO.email','USUARIO.id_usuario','USUARIO.apellido_paterno','USUARIO.apellido_materno')
+                         ->first();
+
+       
+
 
 
 
@@ -114,26 +125,9 @@ class ReservaController extends Controller
                                 
 
         
-        // $reservas= DB::table('reserva')
-        //             ->where('reserva.id_reserva','=',$id)
-        //             ->join('USUARIO','reserva.id_usuario','=','USUARIO.id_usuario') 
-        //             ->join('evento','reserva.id_reserva' ,'=','evento.id_reserva')                   
-        //             ->select('reserva.id_reserva','USUARIO.nombre', 'USUARIO.id_usuario', 'USUARIO.apellido_paterno', 'USUARIO.apellido_materno',
-        //                 'USUARIO.email','evento.tipo','evento.descripcion')
-        //             ->first(); 
-        // $materias= DB::table('reserva')
-        //             ->where('reserva.id_reserva','=',$id)
-        //             ->join('USUARIO','reserva.id_usuario','=','USUARIO.id_usuario') 
-        //             ->join('usuario_materia','USUARIO.id_usuario','=','usuario_materia.id_usuario')
-        //             ->join('materia', 'usuario_materia.id_usuario_materia','=','materia.id_materia')                   
-        //             ->select('materia.nombre','usuario_materia.grupo')
-        //             ->get()->toArray();
-
-
-        
-       // dd($eventosAutorizado);            
+                 
                      
-          return view('reservas.vista.view', compact('eventos','eventosAutorizado'));
+          return view('reservas.vista.view', compact('eventos','eventosAutorizado','datosUsuario'));
     }
     
 
