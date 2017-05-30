@@ -43,6 +43,11 @@ class UpdateReserva extends FormRequest
                     $rules =  [
                     ];
                 }
+                else{
+                    $rules = [
+                        'inscritos' => 'required',
+                    ];
+                }
             }
             //Si no es usuario autorizado
             else{

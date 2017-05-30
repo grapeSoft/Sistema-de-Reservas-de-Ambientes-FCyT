@@ -1,6 +1,9 @@
 <legend>Materias</legend>
 
 <fieldset>
+    @if($errors->has('inscritos'))
+        <p class="alert alert-danger">{{ $errors->first('inscritos') }} {{ \App\Model\TipoReserva::where('tipo', 'examen')->first()->min_nro_participantes }} </p>
+    @endif
     <div class="table-responsive">
         <table class="table table-striped table-hover">
             <thead>

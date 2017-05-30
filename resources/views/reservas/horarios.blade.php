@@ -8,6 +8,15 @@
                 'files' => true,
                 'class' => 'form-horizontal'
                 ]) !!}
+        @if($errors->has('ids_horas'))
+            <p class="alert alert-danger">{{ $errors->first('ids_horas') }}</p>
+        @endif
+        @if($errors->has('periodos'))
+            <p class="alert alert-danger">{{ $errors->first('periodos') }} {{ \App\Model\TipoReserva::where('tipo', 'examen')->first()->max_nro_periodos }}</p>
+        @endif
+        @if($errors->has('continuo'))
+            <p class="alert alert-danger">{{ $errors->first('continuo') }}</p>
+        @endif
         <div class="">
             <div class="table-responsive">
                     <table class="table table-striped table-hover">
@@ -55,7 +64,7 @@
 </div>
 @endsection
 @section('script')
-    @if($errors->has('descripcion'))
+    @if($errors->has('descripcion') || $errors->has('inscritos'))
         <script type="text/javascript">
             $(document).ready(function(){
             $('#formularioReserva').modal('show');
