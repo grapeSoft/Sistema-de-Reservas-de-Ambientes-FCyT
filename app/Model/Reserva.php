@@ -15,9 +15,9 @@ class Reserva extends Model
         'materia', 'titulo', 'id_usuario',
     ];
 
-    public function peteneceUsuario()
+    public function usuario()
     {
-    	return $this->belongsTo('App\Model\Usuario','id_reserva');
+    	return $this->belongsTo('App\Model\Usuario','id_usuario');
     }
 
     public function eventos()

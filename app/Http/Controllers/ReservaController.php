@@ -12,6 +12,10 @@ use App\Model\Reserva;
 use App\Model\Ambiente;
 use App\Model\Evento;
 use Illuminate\Support\Facades\DB;
+use App\Model\Usuario;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Input;
 
 class ReservaController extends Controller
 {
@@ -23,7 +27,11 @@ class ReservaController extends Controller
     public function index()
     {
         if(auth()->user()->esAdministrador()){
-            return view('reservas.admin.index');
+
+            $reservas = Reserva::paginate(7);
+            
+
+            return view('reservas.admin.index', compact('reservas'));
         }
         $usuario = auth()->user();
         $reservas = $usuario->reserva;
@@ -227,5 +235,44 @@ class ReservaController extends Controller
         return redirect()
             ->route('reservas.index')
             ->with('mensaje', 'Se ha cofigurado la reserva');
+    }
+
+    public function filtrado(Request $request){
+
+        if ($request) {
+            $nombre = $request->nombre;
+            $usuarios = Usuario::where('nombre', 'LIKE', '%'.$nombre.'%')
+                ->orWhere('apellido_paterno', 'LIKE', '%'.$nombre.'%')
+                ->orWhere('apellido_materno', 'LIKE', '%'.$nombre.'%')
+                ->get();
+
+            $reservas = null;
+            foreach ($usuarios as $usuario) {
+                foreach ($usuario->reserva as $reserva) {
+                    $reservas[] = $reserva;
+                }
+            }
+            $paginate = 10;
+
+            $page = Input::get('page', 1);
+
+            
+
+            $offSet = ($page * $paginate) - $paginate;  
+
+            $itemsForCurrentPage = array_slice($reservas, $offSet, $paginate, true);  
+
+            $reservas = new LengthAwarePaginator($itemsForCurrentPage, count($reservas), 10, $page);
+
+            
+            
+            
+            return view('reservas.admin.index', compact('reservas'));
+            
+        } else {
+            $reservas = Reserva::paginate(7);
+            return view('reservas.admin.index', compact('reservas'));
+        }
+        
     }
 }
