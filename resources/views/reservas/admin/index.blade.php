@@ -10,17 +10,15 @@
 	{!! Form::open(['route' => ['reservas.filtrado'], 'class' => 'form-horizontal', 'role' => 'search']) !!}
 	
 	
-	<div class="row">
+	<div class="col-md-10 col-md-offset-1">
 		<!-- buscador -->
 		<div class="form-group">
-                
-                {!! Form::label('nombre', 'Nombre', ['class' => 'control-label col-md-2']) !!}
-                <div class="col-md-4">
-                    {!! Form::text('nombre', null, ['class' => 'form-control'], ['placeholder' => 'Escriba el nombre del usuario:']) !!}
-                </div>
-                <div class="col-md-4 btn-group-raised">
-                	<button type="submit" class="btn btn-primary">Buscar</button>
-                </div>
+			<div class="input-group">
+				{!! Form::text('nombre', null, ['class' => 'form-control', 'placeholder' => 'Escriba el nombre del usuario...']) !!}
+				<span class="input-group-btn">
+					<button type="submit" class="btn btn-primary btn-fab btn-fab-mini"><i class="material-icons">search</i></button>
+				</span>
+			</div>
         </div>
 	</div>
 	{!! Form::close() !!}
