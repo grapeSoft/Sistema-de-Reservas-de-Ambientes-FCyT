@@ -25,11 +25,6 @@ class StoreReserva extends FormRequest
      */
     public function rules()
     {
-
-        $rules = [
-            'noAutorizado' => 'required',
-        ];
-
         $minNroParticipantes = TipoReserva::where('tipo', 'examen')->first()->min_nro_participantes;
         $max_nro_periodos = TipoReserva::where('tipo', 'examen')->first()->max_nro_periodos;
         $ids_usuario_materia = $ids_usuario_materia = request()->input('ids_usuario_materias');
@@ -40,21 +35,38 @@ class StoreReserva extends FormRequest
         $condicionReservaContinua = $this->verificarReservaContinua($horas);
 
 
-        if($condicionNroPeridos && $condicionReservaContinua){
-            if(auth()->user()->esDocente()){
-                if($condicionNroInscritos){
+        if($condicionNroPeridos){
+            if($condicionReservaContinua){
+                if(auth()->user()->esDocente()){
+                    if($condicionNroInscritos){
+                        $rules =  [
+                            'ids_horas' => 'required',
+                        ];
+                    }
+                    else{
+                        $rules = [
+                            'inscritos' => 'required',
+                        ];
+                    }
+                }
+                //Si no es usuario autorizado
+                else{
                     $rules =  [
                         'ids_horas' => 'required',
+                        'descripcion' => 'required|min:4|max:32',
                     ];
                 }
             }
-            //Si no es usuario autorizado
             else{
-                $rules =  [
-                    'ids_horas' => 'required',
-                    'descripcion' => 'required|min:4|max:32',
+                $rules = [
+                    'continuo' => 'required',
                 ];
             }
+        }
+        else{
+            $rules = [
+                'periodos' => 'required',
+            ];
         }
         return $rules; //Unica regla requerida es ids_horas required xq ya se estan verificando las demas condiciones
     }

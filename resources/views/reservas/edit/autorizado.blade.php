@@ -1,8 +1,8 @@
 <legend>Formulario de Reserva</legend>
 <fieldset>
-		@foreach ($errors->all() as $error)
-		<p class="alert alert-danger">{{ $error }}</p>
-		@endforeach
+	@if($errors->has('descripcion'))
+		<p class="alert alert-danger">{{ $errors->first('descripcion') }}</p>
+	@endif
 	<div class="form-group" style="margin-top: 1;">
 		{!! Form::label('tipo', 'Tipo de Reserva', ['class' => 'control-label col-md-3']) !!}
 		<div class="col-md-8">

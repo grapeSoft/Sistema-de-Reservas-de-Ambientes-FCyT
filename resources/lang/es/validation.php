@@ -103,6 +103,18 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'ids_horas' => [
+            'required' => 'Es necesario que seleccione al menos un periodo libre',
+        ],
+        'periodos' => [
+            'required' => 'Debe seleccionar periodos libres como maximo '
+        ],
+        'continuo' => [
+            'required' => 'Es necesario que seleccione periodos continuos para la reserva'
+        ],
+        'inscritos' => [
+            'required' => 'No puede registrar grupos que no alcanzen el numero minimo de inscritos que es '
+        ],
     ],
 
     /*
