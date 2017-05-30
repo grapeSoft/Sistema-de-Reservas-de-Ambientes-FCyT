@@ -110,7 +110,7 @@ class ReservaController extends Controller
                          ->where('evento.id_reserva','=',$id)
                          ->join('reserva','evento.id_reserva','=','reserva.id_reserva')
                          ->join('USUARIO','reserva.id_usuario','=','USUARIO.id_usuario') 
-                         ->select('USUARIO.nombre','USUARIO.email','USUARIO.id_usuario','USUARIO.apellido_paterno','USUARIO.apellido_materno')
+                         ->select('USUARIO.nombre','USUARIO.email','USUARIO.id_usuario','USUARIO.apellido_paterno','USUARIO.apellido_materno','USUARIO.tipo')
                          ->first();
 
        
@@ -124,10 +124,11 @@ class ReservaController extends Controller
                                 ->first(); 
                                 
 
-        
-                 
+        if(auth()->user()->esAdministrador()){
+            return view('reservas.vista.view-admin', compact('eventos','eventosAutorizado','datosUsuario'));
+        }                
                      
-          return view('reservas.vista.view', compact('eventos','eventosAutorizado','datosUsuario'));
+        return view('reservas.vista.view', compact('eventos','eventosAutorizado','datosUsuario'));
     }
     
 
