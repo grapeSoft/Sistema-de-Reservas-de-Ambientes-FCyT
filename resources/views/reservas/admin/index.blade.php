@@ -14,7 +14,11 @@
 		<!-- buscador -->
 		<div class="form-group">
 			<div class="input-group">
-				{!! Form::text('nombre', null, ['class' => 'form-control', 'placeholder' => 'Escriba el nombre del usuario...']) !!}
+				@if( session('nombre') )
+					{!! Form::text('nombre', ' {{$nombre}} ', ['class' => 'form-control', 'placeholder' => 'Escriba el nombre del usuario...']) !!}
+				@else
+					{!! Form::text('nombre', null, ['class' => 'form-control', 'placeholder' => 'Escriba el nombre del usuario...']) !!}
+				@endif
 				<span class="input-group-btn">
 					<button type="submit" class="btn btn-primary btn-fab btn-fab-mini"><i class="material-icons">search</i></button>
 				</span>

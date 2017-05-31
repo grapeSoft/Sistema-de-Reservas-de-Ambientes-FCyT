@@ -253,22 +253,32 @@ class ReservaController extends Controller
                     $reservas[] = $reserva;
                 }
             }
-            $paginate = 10;
 
-            $page = Input::get('page', 1);
-
+            //dd($reservas);
             
+            if ($reservas != null) {
+                $paginate = 10;
 
-            $offSet = ($page * $paginate) - $paginate;  
+                $page = Input::get('page', 1);
 
-            $itemsForCurrentPage = array_slice($reservas, $offSet, $paginate, true);  
+                
 
-            $reservas = new LengthAwarePaginator($itemsForCurrentPage, count($reservas), 10, $page);
+                $offSet = ($page * $paginate) - $paginate;  
 
+                $itemsForCurrentPage = array_slice($reservas, $offSet, $paginate, true);  
+
+                $reservas = new LengthAwarePaginator($itemsForCurrentPage, count($reservas), 10, $page);
+
+                
+                
+                
+                return view('reservas.admin.index', compact('reservas', 'nombre'));
             
-            
-            
-            return view('reservas.admin.index', compact('reservas'));
+            }else{
+                $reservas = Reserva::paginate(7);
+                return redirect()->route('reservas.index')
+                ->with('mensaje', 'No se ha encontrado concidencias', 'nombre');
+            }
             
         } else {
             $reservas = Reserva::paginate(7);
