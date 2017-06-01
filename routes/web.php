@@ -42,4 +42,4 @@ Route::resource('reservas', 'ReservaController');
 Route::post('registros', 'UsuarioController@registrarUsuarios')->name('usuarios.registrarUsuarios');
 Route::post('reservas/filtrado', 'ReservaController@filtrado')->name('reservas.filtrado');
 
-
+Route::resource('calendario', 'CalendarioController');

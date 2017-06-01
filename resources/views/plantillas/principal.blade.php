@@ -19,6 +19,7 @@
   	<link href="{!! asset('css/style.css') !!}" rel="stylesheet">
   	@endunless
   	<link href="{!! asset('css/materialStyle.css') !!}" rel="stylesheet">
+  	@yield('style')
 </head>
 <body>
 	@if(Auth::check())
