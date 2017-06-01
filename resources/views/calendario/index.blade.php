@@ -30,9 +30,10 @@
 	<script src="{!! asset('js/FullCalendar/fullcalendar.js') !!}"></script>
 	<script src="{!! asset('js/FullCalendar/es.js') !!}"></script>
 	<script>
-
 	$(document).ready(function() {
-
+		/*var data = "{!! $datos->toJson() !!}";*/
+		/*var data = "{!! json_encode($datos) !!}";
+   console.log(data);*/
 		$('#calendar').fullCalendar({
 			header: {
 				left: 'prev,next today',
@@ -53,28 +54,16 @@
 			navLinks: true, // can click day/week names to navigate views
 			editable: false,
 			eventLimit: true, // allow "more" link when too many events
-			events: [				
+			events: {!!$datos!!}
+			/*[
 				{
-					title: 'Pruebas',
-					start: '2017-06-01T09:45:00',
-					end: '2017-06-01T11:15:00'
-				},
-				{
-					title: 'Pruebas',
-					start: '2017-06-01T11:15:00',
-					end: '2017-06-01T12:45:00'
-				},
-				{
-					title: 'Pruebas',
-					start: '2017-06-01T12:45:00',
-					end: '2017-06-01T14:15:00'
-				},
-				{
-					title: 'Pruebas',
-					start: '2017-06-01T14:15:00',
-					end: '2017-06-01T15:45:00'
+					"id":1,
+					"title":"titulo",
+					"start":"2017-05-19 06:45:00",
+					"end":"2017-05-19 08:15:00",
+					"color":"#009688"
 				}
-			]
+			]*/
 		});
 		
 	});
