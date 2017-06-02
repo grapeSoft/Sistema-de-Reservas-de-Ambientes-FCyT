@@ -7,7 +7,7 @@
 			{{ session('mensaje') }}
 		</div>
 	@endif
-	{!! Form::open(['route' => ['reservas.filtrado'], 'class' => 'form-horizontal', 'role' => 'search']) !!}
+	{!! Form::open(['route' => ['reservas.filtrado'], 'role' => 'search']) !!}
 	
 	
 	<div class="col-md-10 col-md-offset-1">
@@ -20,17 +20,48 @@
 				</span>
 			</div>
         </div>
-	</div>
-	{!! Form::close() !!}
-	<div class="row">
-		<div class="form-group">
-			{!! Form::label('Filtrado', '', ['class' => 'control-label col-md-2']) !!}
+		
+		<!-- filtrado -->
+		<div class="form-group" style="margin-top: 0;">
 			<div class="checkbox">
-				<label>{!! Form::checkbox('filtrado', 1) !!}</label>
+				<!-- filtrar solo cuando se marque el checkbox -->
+				<label>{!! Form::checkbox('filtrado', 1, false, ['onchange' => "comprobar(this);"]) !!} Filtrado</label>
+			</div>
+			<p class="help-block">Activar o desactivar el filtrado en la busqueda</p>
+		</div>
+		<div class="col-md-6">
+			<div class="form-group" style="margin-top: 3px;">
+				{!! Form::label('fecha_inicial', 'Fecha Inicial', ['class' => 'control-label col-md-3']) !!}
+				<div class="col-md-8">
+					{!! Form::date('fecha_inicial', null, ['class' => 'form-control', 'disabled']) !!}
+				</div>
+			</div>
+			<div class="form-group" style="margin-top: 0;">
+				{!! Form::label('fecha_final', 'Fecha Final', ['class' => 'control-label col-md-3']) !!}
+				<div class="col-md-8">
+					{!! Form::date('fecha_final', null, ['class' => 'form-control', 'disabled']) !!}
+				</div>
 			</div>
 		</div>
-	</div>		
-	<div class="table-responsive">
+		<div class="col-md-6">
+			<div class="form-group" style="margin-top: 3px;">
+				{!! Form::label('hora_inicial', 'Hora Inicial', ['class' => 'control-label col-md-3']) !!}
+				<div class="col-md-8">
+					{!! Form::select('hora_inicial', config('sistema-reservas.horas-inicio'), null, ['class' => 'form-control', 'disabled'])!!}
+				</div>
+			</div>
+			<div class="form-group" style="margin-top: 0;">
+				{!! Form::label('hora_final', 'Hora Final', ['class' => 'control-label col-md-3']) !!}
+				<div class="col-md-8">
+					{!! Form::select('hora_final', config('sistema-reservas.horas-fin'), null, ['class' => 'form-control', 'disabled'])!!}
+				</div>
+			</div>
+		</div>
+	</div>
+	{!! Form::close() !!}		
+	<div class="row">
+	<div class="col-md-12" style="margin-top: 15px;">
+		<div class="table-responsive">
 		<table class="table table-striped table-hover table-bordered">
 			<thead>
 				<tr>
@@ -59,9 +90,32 @@
 				@endforeach	
 			</tbody>
 		</table>
+		</div>
+	</div>
 	</div>
 	{{ $reservas->render() }}
 	
 	<!-- añadir paginacion -->
 </div>            
+@endsection
+@section('script')
+
+    <script type="text/javascript">
+        function comprobar(obj)
+		{   
+			if (obj.checked){
+			    document.getElementById('fecha_inicial').disabled = false;
+				document.getElementById('fecha_final').disabled = false;
+				document.getElementById('hora_inicial').disabled = false;
+				document.getElementById('hora_final').disabled = false;
+			}
+			else{
+			    document.getElementById('fecha_inicial').disabled = true;
+				document.getElementById('fecha_final').disabled = true;
+				document.getElementById('hora_inicial').disabled = true;
+				document.getElementById('hora_final').disabled = true;
+			}
+		}
+    </script>
+
 @endsection

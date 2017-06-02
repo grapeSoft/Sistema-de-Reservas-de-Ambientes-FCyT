@@ -2,17 +2,19 @@
 
 @section('contenido')
 <div class="container">
-	<div class="col-md-10 col-md-offset-1">
+	<div class="">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<h4>Reservas</h4>
 			</div>
 			<div class="bs-component">
 		        <div class="panel-body">
-					<div class="col-md-5 col-md-offset-7">
-						<div class="btn-group btn-group-justified btn-group-raised">
-						  <a href="{{ route('reservas.index') }}" class="btn btn-primary">Inicio</a>
-						  <a href="{{ route('reservas.config') }}" class="btn btn-primary">Configuracion</a>
+					<div class="row">
+						<div class="col-md-4 col-md-offset-8 text-center">
+							<div class="btn-group btn-group-raised">
+							  <a href="{{ route('reservas.index') }}" class="btn btn-primary">Inicio</a>
+							  <a href="{{ route('reservas.config') }}" class="btn btn-primary">Configuracion</a>
+							</div>
 						</div>
 					</div>
 					@yield('contenido-principal-admin')
