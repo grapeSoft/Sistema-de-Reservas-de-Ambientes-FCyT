@@ -20,28 +20,26 @@ class CalendarioController extends Controller
     public function index()
     {
         $reservas = Reserva::all();
-        /*foreach ($reservas as $reserva){
-            $eventos[] = $reserva->eventos;
-        }*/
-        $calendarioReserva= null;
+        $eventosCalendario= null;
         foreach ($reservas as $key => $reserva){
             $id = $reserva->id_reserva;
-            $title = $reserva->usuario->nombre.' '.$reserva->usuario->apellido_paterno.' '.$reserva->usuario->apellido_materno;
+            $tipo = $reserva->eventos->first()->tipo;
+            $title = $reserva->usuario->apellido_paterno.' '.$reserva->usuario->apellido_materno.' '.$reserva->usuario->nombre.' - '.$tipo;
             $start = $reserva->horarios->first()->pivot->id_fecha.' '.$reserva->horarios->first()->hora_inicio;
             $end = $reserva->horarios->first()->pivot->id_fecha.' '.$reserva->horarios->last()->hora_fin;
-            $color = "#009688";
+            $color = $this->colorRandom();
             
-            $calendarioReserva[$key]["id"] = $id;
-            $calendarioReserva[$key]['title'] = $title;
-            $calendarioReserva[$key]['start'] = $start;
-            $calendarioReserva[$key]['end'] = $end;
-            $calendarioReserva[$key]['color'] = $color;
+            $eventosCalendario[$key]["id"] = $id;
+            $eventosCalendario[$key]['title'] = $title;
+            $eventosCalendario[$key]['start'] = $start;
+            $eventosCalendario[$key]['end'] = $end;
+            $eventosCalendario[$key]['color'] = $color;
         }
         /*$json = json_encode($calendarioReserva);
         return Response()->json($calendarioReserva);*/
         /*return $calendarioReserva;*/
         /*return $calendarioReserva->toJson();*/
-        $datos = Collection::make($calendarioReserva);
+        $datos = Collection::make($eventosCalendario);
         /*return $datos->toJson();*/
         return view('calendario.index', compact('datos'));
     }
@@ -110,5 +108,11 @@ class CalendarioController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function colorRandom()
+    {
+        $materialColors = array("#F44336", "#E91E63", "#9C27B0", "#673AB7", "#3F51B5", "#2196F3", "#03A9F4", "#00BCD4", "#009688", "#4CAF50", "#558B2F", "#9E9D24", "#FF9800", "#FF5722", "#795548", "#616161", "#607D8B");
+        $indice = array_rand($materialColors, 1);
+        return $materialColors[$indice];
     }
 }

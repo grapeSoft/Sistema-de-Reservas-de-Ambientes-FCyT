@@ -23,7 +23,12 @@
 	</div>
 	{!! Form::close() !!}
 	<div class="row">
-		<!-- filtrado -->
+		<div class="form-group">
+			{!! Form::label('Filtrado', '', ['class' => 'control-label col-md-2']) !!}
+			<div class="checkbox">
+				<label>{!! Form::checkbox('filtrado', 1) !!}</label>
+			</div>
+		</div>
 	</div>		
 	<div class="table-responsive">
 		<table class="table table-striped table-hover table-bordered">

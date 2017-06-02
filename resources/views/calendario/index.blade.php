@@ -47,7 +47,7 @@
 			slotLabelFormat: 'hh:mm a',
 			slotLabelInterval: '00:45:00',
 			snapDuration: '01:30:00',
-			scrollTime: "21:45:00",
+			scrollTime: "06:45:00",
 			minTime: "06:45:00",
 			maxTime: "21:45:00",			
 			defaultDate: '2017-05-12',
