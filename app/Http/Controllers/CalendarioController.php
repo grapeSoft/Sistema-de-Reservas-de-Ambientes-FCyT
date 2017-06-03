@@ -109,6 +109,17 @@ class CalendarioController extends Controller
     {
         //
     }
+    public function feriado()
+    {
+        return view('calendario.feriado');
+    }
+    public function config()
+    {
+        return view('calendario.config');
+    }
+    public function updateConfig(Request $request){
+        
+    }
     public function colorRandom()
     {
         $materialColors = array("#F44336", "#E91E63", "#9C27B0", "#673AB7", "#3F51B5", "#2196F3", "#03A9F4", "#00BCD4", "#009688", "#4CAF50", "#558B2F", "#9E9D24", "#FF9800", "#FF5722", "#795548", "#616161", "#607D8B");

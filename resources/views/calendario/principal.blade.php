@@ -10,10 +10,11 @@
 			<div class="bs-component">
 		        <div class="panel-body">
 					<div class="row">
-						<div class="col-md-4 col-md-offset-8 text-center">
+						<div class="col-md-5 col-md-offset-7 text-center">
 							<div class="btn-group btn-group-raised">
 							  	<a href="{{ route('calendario.index') }}" class="btn btn-primary">Inicio</a>
-							  	<a href="#" class="btn btn-primary">Configuracion</a>
+							  	<a href="{{ route('calendario.feriado') }}" class="btn btn-primary">Feriado</a>
+							  	<a href="{{ route('calendario.config') }}" class="btn btn-primary">Configuracion</a>
 							</div>
 						</div>
 					</div>
