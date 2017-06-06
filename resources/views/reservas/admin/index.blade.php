@@ -2,9 +2,19 @@
 
 @section('contenido-principal-admin-offbody')						
 <div class="panel-body">
-	@if(session('mensaje'))
+	@if(empty($reservas))
 		<div class="alert alert-success">
-			{{ session('mensaje') }}
+			No se ha encontrado coincidencias
+		</div>
+	@endif
+	@if(!empty($fechanovalida) && empty($reservas))
+		<div class="alert alert-success">
+			Debe seleccionar un rango de fechas válido.
+		</div>
+	@endif
+	@if(!empty($horanovalida) && empty($reservas))
+		<div class="alert alert-success">
+			Debe seleccionar un rango de horas válido.
 		</div>
 	@endif
 	{!! Form::open(['route' => ['reservas.filtrado'], 'class' => 'form-horizontal', 'role' => 'search']) !!}
@@ -14,8 +24,9 @@
 		<!-- buscador -->
 		<div class="form-group">
 			<div class="input-group">
-				@if( session('nombre') )
-					{!! Form::text('nombre', ' {{$nombre}} ', ['class' => 'form-control', 'placeholder' => 'Escriba el nombre del usuario...']) !!}
+				@if( !empty($nombre)  )
+					
+					{!! Form::text('nombre', "$nombre", ['class' => 'form-control', 'placeholder' => 'Escriba el nombre del usuario...']) !!}
 				@else
 					{!! Form::text('nombre', null, ['class' => 'form-control', 'placeholder' => 'Escriba el nombre del usuario...']) !!}
 				@endif
@@ -24,6 +35,50 @@
 				</span>
 			</div>
         </div>
+        <div class="form-group" style="margin-top: 0;">
+			<div class="checkbox">
+				<!-- filtrar solo cuando se marque el checkbox -->
+				<label>{!! Form::checkbox('filtrado', 1, false, ['onchange' => "comprobar(this);"]) !!} Filtrado</label>
+			</div>
+			<p class="help-block">Activar o desactivar el filtrado en la busqueda</p>
+		</div>
+		<div class="col-md-6">
+			<div class="form-group" style="margin-top: 3px;">
+				{!! Form::label('fecha_inicial', 'Fecha Inicial', ['class' => 'control-label col-md-3']) !!}
+				<div class="col-md-8">
+					@if(!empty($fecha_ini)  && !empty($fecha_fin))
+						{!! Form::date('fecha_inicial', "$fecha_ini", ['class' => 'form-control', 'disabled']) !!}
+					@else
+						{!! Form::date('fecha_inicial', null, ['class' => 'form-control', 'disabled']) !!}
+					@endif
+				</div>
+			</div>
+			<div class="form-group" style="margin-top: 0;">
+				{!! Form::label('fecha_final', 'Fecha Final', ['class' => 'control-label col-md-3']) !!}
+				<div class="col-md-8">
+					@if(!empty($fecha_ini)  && !empty($fecha_fin))
+						{!! Form::date('fecha_final', "$fecha_fin", ['class' => 'form-control', 'disabled']) !!}
+					@else
+						{!! Form::date('fecha_final', null, ['class' => 'form-control', 'disabled']) !!}
+					@endif
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="form-group" style="margin-top: 3px;">
+				{!! Form::label('hora_inicial', 'Hora Inicial', ['class' => 'control-label col-md-3']) !!}
+				<div class="col-md-8">
+					{!! Form::select('hora_inicial', config('sistema-reservas.horas-inicio'), null, ['class' => 'form-control', 'disabled'])!!}
+				</div>
+			</div>
+			<div class="form-group" style="margin-top: 0;">
+				{!! Form::label('hora_final', 'Hora Final', ['class' => 'control-label col-md-3']) !!}
+				<div class="col-md-8">
+					{!! Form::select('hora_final', config('sistema-reservas.horas-fin'), null, ['class' => 'form-control', 'disabled'])!!}
+				</div>
+			</div>
+		</div>
+
 	</div>
 	{!! Form::close() !!}
 	<div class="row">
@@ -40,6 +95,7 @@
 					<th>Opciones</th>
 				</tr>
 			</thead>
+			@if(!empty($reservas))
 			<tbody>		
 				@foreach($reservas as $reserva)
 				<tr>
@@ -57,10 +113,32 @@
 				</tr>
 				@endforeach	
 			</tbody>
+			@endif
 		</table>
 	</div>
+	@if(!empty($reservas))
 	{{ $reservas->render() }}
-	
-	<!-- añadir paginacion -->
+	@endif
 </div>            
+@endsection
+@section('script')
+
+    <script type="text/javascript">
+        function comprobar(obj)
+		{   
+			if (obj.checked){
+			    document.getElementById('fecha_inicial').disabled = false;
+				document.getElementById('fecha_final').disabled = false;
+				document.getElementById('hora_inicial').disabled = false;
+				document.getElementById('hora_final').disabled = false;
+			}
+			else{
+			    document.getElementById('fecha_inicial').disabled = true;
+				document.getElementById('fecha_final').disabled = true;
+				document.getElementById('hora_inicial').disabled = true;
+				document.getElementById('hora_final').disabled = true;
+			}
+		}
+    </script>
+
 @endsection
