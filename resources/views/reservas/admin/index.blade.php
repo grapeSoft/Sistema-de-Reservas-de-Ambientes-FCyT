@@ -2,9 +2,19 @@
 
 @section('contenido-principal-admin-offbody')						
 <div class="panel-body">
-	@if(session('mensaje'))
+	@if(empty($reservas))
 		<div class="alert alert-success">
-			{{ session('mensaje') }}
+			No se ha encontrado coincidencias
+		</div>
+	@endif
+	@if(!empty($fechanovalida) && empty($reservas))
+		<div class="alert alert-success">
+			Debe seleccionar un rango de fechas válido.
+		</div>
+	@endif
+	@if(!empty($horanovalida) && empty($reservas))
+		<div class="alert alert-success">
+			Debe seleccionar un rango de horas válido.
 		</div>
 	@endif
 	{!! Form::open(['route' => ['reservas.filtrado'], 'role' => 'search']) !!}
@@ -14,15 +24,20 @@
 		<!-- buscador -->
 		<div class="form-group">
 			<div class="input-group">
-				{!! Form::text('nombre', null, ['class' => 'form-control', 'placeholder' => 'Escriba el nombre del usuario...']) !!}
+				@if( !empty($nombre)  )
+					
+					{!! Form::text('nombre', "$nombre", ['class' => 'form-control', 'placeholder' => 'Escriba el nombre del usuario...']) !!}
+				@else
+					{!! Form::text('nombre', null, ['class' => 'form-control', 'placeholder' => 'Escriba el nombre del usuario...']) !!}
+				@endif
 				<span class="input-group-btn">
 					<button type="submit" class="btn btn-primary btn-fab btn-fab-mini"><i class="material-icons">search</i></button>
 				</span>
 			</div>
-        </div>
-		
+        </div>		
 		<!-- filtrado -->
 		<div class="form-group" style="margin-top: 0;">
+
 			<div class="checkbox">
 				<!-- filtrar solo cuando se marque el checkbox -->
 				<label>{!! Form::checkbox('filtrado', 1, false, ['onchange' => "comprobar(this);"]) !!} Filtrado</label>
@@ -33,13 +48,21 @@
 			<div class="form-group" style="margin-top: 3px;">
 				{!! Form::label('fecha_inicial', 'Fecha Inicial', ['class' => 'control-label col-md-3']) !!}
 				<div class="col-md-8">
-					{!! Form::date('fecha_inicial', null, ['class' => 'form-control', 'disabled']) !!}
+					@if(!empty($fecha_ini)  && !empty($fecha_fin))
+						{!! Form::date('fecha_inicial', "$fecha_ini", ['class' => 'form-control', 'disabled']) !!}
+					@else
+						{!! Form::date('fecha_inicial', null, ['class' => 'form-control', 'disabled']) !!}
+					@endif
 				</div>
 			</div>
 			<div class="form-group" style="margin-top: 0;">
 				{!! Form::label('fecha_final', 'Fecha Final', ['class' => 'control-label col-md-3']) !!}
 				<div class="col-md-8">
-					{!! Form::date('fecha_final', null, ['class' => 'form-control', 'disabled']) !!}
+					@if(!empty($fecha_ini)  && !empty($fecha_fin))
+						{!! Form::date('fecha_final', "$fecha_fin", ['class' => 'form-control', 'disabled']) !!}
+					@else
+						{!! Form::date('fecha_final', null, ['class' => 'form-control', 'disabled']) !!}
+					@endif
 				</div>
 			</div>
 		</div>
@@ -57,6 +80,7 @@
 				</div>
 			</div>
 		</div>
+
 	</div>
 	{!! Form::close() !!}		
 	<div class="row">
@@ -72,6 +96,7 @@
 					<th>Opciones</th>
 				</tr>
 			</thead>
+			@if(!empty($reservas))
 			<tbody>		
 				@foreach($reservas as $reserva)
 				<tr>
@@ -89,13 +114,14 @@
 				</tr>
 				@endforeach	
 			</tbody>
+			@endif
 		</table>
 		</div>
 	</div>
 	</div>
+	@if(!empty($reservas))
 	{{ $reservas->render() }}
-	
-	<!-- añadir paginacion -->
+	@endif
 </div>            
 @endsection
 @section('script')
