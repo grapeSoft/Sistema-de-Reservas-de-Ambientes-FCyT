@@ -24,6 +24,7 @@
 			</div>
 		</div>
 	</div>
+	@include('calendario.detalle')
 @endsection
 @section('script')
 	<script src="{!! asset('js/FullCalendar/moment.min.js') !!}"></script>
@@ -31,15 +32,26 @@
 	<script src="{!! asset('js/FullCalendar/es.js') !!}"></script>
 	<script>
 	$(document).ready(function() {
-		/*var data = "{!! $datos->toJson() !!}";*/
-		/*var data = "{!! json_encode($datos) !!}";
-   console.log(data);*/
 		$('#calendar').fullCalendar({
 			header: {
 				left: 'prev,next today',
 				center: 'title',
 				right: 'month,agendaWeek,agendaDay'
 			},
+			eventRender: function(event, element, view ){
+				if(event.rendering === "background"){
+				    element.append( event.title);
+				}
+			},
+			eventClick:  function(event, jsEvent, view) {
+                $('#modalTitle').html(event.title);
+                $('#start').html(moment(event.start).format('h:mm a'));
+                $('#end').html(moment(event.end).format('h:mm a'));
+                $('#type').html(event.type);
+                $('#eventInfo').html(event.eventInfo);
+                $('#detalle').modal();
+                return false;
+            },
 			hiddenDays: [0],
 			allDaySlot: false,
 			/*duration: '00:45:00',*/
@@ -58,7 +70,9 @@
 			/*[
 				{
 					"id":1,
-					"title":"titulo",
+					"title":"Calancha navia Boris",
+					"type":"Examen",
+					"eventInfo":"<strong>Materia: </strong> Calculo 1  <strong>Grupo: </strong> 2<br><strong>Materia: </strong> Calculo 1  <strong>Grupo: </strong> 2",
 					"start":"2017-05-19 06:45:00",
 					"end":"2017-05-19 08:15:00",
 					"color":"#009688"

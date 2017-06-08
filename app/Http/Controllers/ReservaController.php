@@ -81,6 +81,7 @@ class ReservaController extends Controller
             foreach ($ids_usuario_materias as $id1){
                 $evento = new Evento;
                 $evento->id_reserva = $reserva->id_reserva;
+                $evento->tipo="Examen";
                 $evento->id_usuario_materia = $id1;
                 $evento->save();
             }
