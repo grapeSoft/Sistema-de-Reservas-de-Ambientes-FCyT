@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateFeriado;
 use App\Model\Calendario;
 use App\Model\Fecha;
 use App\Model\Horas;
@@ -145,8 +146,13 @@ class CalendarioController extends Controller
         return view('calendario.feriado');
     }
 
-    public function updateFeriado(Request $request)
+    public function updateFeriado(UpdateFeriado $request)
     {
+        $feriado = Fecha::findOrFail($request->input('fecha'));
+        $feriado->descripcion = $request->titulo;
+        $feriado->tipo = "feriado";
+        $feriado->save();
+        return redirect()->route('calendario.index')->with('mensaje', 'Se ha configurado correctamente la fecha en el calendario academico');
 
     }
 

@@ -9,7 +9,6 @@
 				<ul class="nav nav-pills nav-justified">
 					<li class="active"><a href="#tab1" data-toggle="tab">Gestion Academica</a></li>
 					<li><a href="#tab2" data-toggle="tab">Periodo de Examen</a></li>
-					<li><a href="#tab3" data-toggle="tab">Informacion</a></li>
 				</ul>
 				<div id="myTabContent" class="tab-content">
 					<div class="tab-pane fade active in" id="tab1">
@@ -94,9 +93,6 @@
 								</div>
 							</div>
 						</div>	
-					</div>
-					<div class="tab-pane fade" id="tab3">
-					<p>colocarl toda la informacion de la configuracion.</p>
 					</div>
 				{!! Form::close() !!}
 				</div>
