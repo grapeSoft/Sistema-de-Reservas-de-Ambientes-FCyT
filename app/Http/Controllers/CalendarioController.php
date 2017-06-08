@@ -25,7 +25,7 @@ class CalendarioController extends Controller
     public function index()
     {
         $reservas = Reserva::all();
-        $eventosCalendario= null;
+        $eventosCalendario = array();
         foreach ($reservas as $key => $reserva){
             $id = $reserva->id_reserva;
             $usuario = $reserva->usuario;
