@@ -15,6 +15,12 @@
 					<div class="tab-pane fade active in" id="tab1">
 						<div class="col-md-12" style="margin-top: 10px;">
 							<div class="form-group">
+								{!! Form::label('gestion', 'Ingrese la gestion', ['class' => 'control-label col-md-4']) !!}
+								<div class="col-md-5">
+									{!! Form::input('text', 'gestion') !!}
+								</div>
+							</div>
+							<div class="form-group">
 								{!! Form::label('fecha_inicial', 'Fecha Inicial', ['class' => 'control-label col-md-4']) !!}
 								<div class="col-md-5">
 									{!! Form::date('fecha_inicial', null, ['class' => 'form-control']) !!}

@@ -9,9 +9,10 @@ class Fecha extends Model
     protected $table = 'fecha';
     protected $primaryKey = 'id_fecha';
     public $timestamps = false;
+    public $incrementing = false;
 
     public $fillable = [
-        'id_calendario', 'tipo'
+        'id_fecha', 'id_calendario', 'tipo'
     ];
 
     public function peteneceCalendario()
