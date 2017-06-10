@@ -17,7 +17,9 @@ class CalendarioController extends Controller
 {
     public function __construct()
     {
-
+        $this->middleware('autentificado', [
+            'except' => ['login', 'logear', 'recuperarContrasea', 'enviarContrasea', ]
+        ]);
     }
     /**
      * Display a listing of the resource.

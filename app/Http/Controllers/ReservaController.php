@@ -19,11 +19,13 @@ use Illuminate\Support\Facades\Input;
 
 class ReservaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('autentificado', [
+            'except' => ['login', 'logear', 'recuperarContrasea', 'enviarContrasea', ]
+        ]);
+    }
+
     public function index()
     {
         if(auth()->user()->esAdministrador()){
