@@ -16,7 +16,7 @@
 							<div class="form-group">
 								{!! Form::label('gestion', 'Ingrese la gestion', ['class' => 'control-label col-md-4']) !!}
 								<div class="col-md-5">
-									{!! Form::input('text', 'gestion') !!}
+									{!! Form::text('gestion', '1-20XX') !!}
 								</div>
 							</div>
 							<div class="form-group">

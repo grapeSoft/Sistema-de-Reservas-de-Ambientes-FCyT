@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateConfigCalendario;
 use App\Http\Requests\UpdateFeriado;
 use App\Model\Calendario;
 use App\Model\Fecha;
@@ -160,7 +161,7 @@ class CalendarioController extends Controller
     {
         return view('calendario.config');
     }
-    public function updateConfig(Request $request)
+    public function updateConfig(UpdateConfigCalendario $request)
     {
         $calendario = Calendario::updateOrcreate(
             ['gestion' => $request->gestion],
