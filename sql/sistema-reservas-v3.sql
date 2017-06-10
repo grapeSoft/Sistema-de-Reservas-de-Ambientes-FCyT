@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-06-2017 a las 08:35:13
+-- Tiempo de generación: 10-06-2017 a las 22:59:29
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 7.1.1
 
@@ -76,7 +76,8 @@ CREATE TABLE `evento` (
 CREATE TABLE `fecha` (
   `id_fecha` date NOT NULL,
   `id_calendario` int(11) UNSIGNED NOT NULL,
-  `tipo` char(32) DEFAULT NULL
+  `tipo` char(32) DEFAULT NULL,
+  `descripcion` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -245,15 +246,14 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nombre`, `apellido_paterno`, `apellido_materno`, `email`, `username`, `password`, `tipo`, `created_at`, `updated_at`, `remember_token`, `foto`) VALUES
-(1, 'Alexander', 'Reinaga', 'Lopez', 'alexsof9@gmail.com', 'alexsof', '$2y$10$fHb4L5UWbNr3cMG0MiHvT.12rrgbpsstqejxT6oygGljLFylTEGn6', 'administrador', '2017-04-29 10:35:28', '2017-04-29 10:35:28', 'CZCbOpjrYgdb3ZDDl9BMqdooLkI98XJXDrnEcDDwODaXPADXVFobCiVwvRdT', NULL),
-(6, 'Martina', 'Carrasco', 'Verduguez', 'martiv@gmail.com', 'marti78', '$2y$10$J7E4yedHtjJRhY6J/xp6d.5h1/32O63h5RPJiezLjl9aFIwa8uOF6', 'autorizado', '2017-04-29 10:35:28', '2017-04-29 10:35:28', '37clgeuufgHgCv2VGhKpVGIZ7tHDpa3bomF382jviNGlUWlArBksYJLV9jNa', NULL),
+(1, 'Alexander', 'Reinaga', 'Lopez', 'alexsof9@gmail.com', 'alexsof', '$2y$10$fHb4L5UWbNr3cMG0MiHvT.12rrgbpsstqejxT6oygGljLFylTEGn6', 'administrador', '2017-04-29 10:35:28', '2017-04-29 10:35:28', 'szfTpDY0ivyjttTsBGyVrP6v8WKpJHRsAGADhhVztycFAlJ3B6fldWFP83OP', NULL),
+(6, 'Martina', 'Carrasco', 'Verduguez', 'martiv@gmail.com', 'marti78', '$2y$10$J7E4yedHtjJRhY6J/xp6d.5h1/32O63h5RPJiezLjl9aFIwa8uOF6', 'autorizado', '2017-04-29 10:35:28', '2017-04-29 10:35:28', '2K0t4rVyUrvUAusQNfyIOhxOTPK5sp5JEhym7a8ogAI3a83m9bjZQBw67y7Z', NULL),
 (7, 'Diego', 'Villarroel', 'Solis', 'diego.villarroel@outlook.com', 'diego.villarroel@outlook.com', '$2y$10$resr0iV.12C9lZ3hmHHg/OZEglNz78y2CsRoAD4xNNYCcnirj.QKW', 'autorizado', '2017-05-01 18:56:35', '2017-05-01 18:56:35', NULL, NULL),
-(14, 'Boris', 'calancha', 'navia', 'boris@gmail.com', 'boris', '$2y$10$s/pl1zzW8wnruud9okx7IOnNeVVmq4c5IG/JYJU6yjRycUvNmcyCG', 'docente', '2017-05-02 06:26:18', '2017-05-02 06:26:18', '4GTOb0J8J1pxfJIQGITynBsGDqZ7NYO9V61g0eTkDGGKXV2MwjxDziIueS5b', NULL),
-(15, 'Leticia', 'Blanco', 'Coca', 'leti@gmail.com', 'leticia', '$2y$10$eZn0HHJCkqtxRTnWZMjog.Ka8m.S2M8oJ/M77ZahjpMiD1X6zKJfy', 'docente', '2017-05-02 08:05:58', '2017-05-02 08:05:58', 'VYP738QScql3cLPzV3M2xhc0emg57CXefOAVPYDjIhZAxtiwON1L2p1fiQSi', NULL),
+(14, 'Boris', 'calancha', 'navia', 'boris@gmail.com', 'boris', '$2y$10$s/pl1zzW8wnruud9okx7IOnNeVVmq4c5IG/JYJU6yjRycUvNmcyCG', 'docente', '2017-05-02 06:26:18', '2017-05-02 06:26:18', 'W5AapWcF6N9UlljkpcT90Y9HQfJXIp3tKg61cUfVnmHbl9xdVqCF5NuRtnVd', NULL),
+(15, 'Leticia', 'Blanco', 'Coca', 'leti@gmail.com', 'leticia', '$2y$10$eZn0HHJCkqtxRTnWZMjog.Ka8m.S2M8oJ/M77ZahjpMiD1X6zKJfy', 'docente', '2017-05-02 08:05:58', '2017-05-02 08:05:58', 'AAgZfK8Z9cV9bviXIuis4Bu3ZOjcgUSjzqndqwlppw6MG1Bfw7NmAGvD1tIy', NULL),
 (16, 'Patricia', 'Romero', 'Bilbao', 'patricia@gmail.com', 'patricia', '$2y$10$Ytk1GoACuvSxZE43W1yaA.Oe7uaefvtcj6vJBWx65s2b2CYC8wNZq', 'docente', '2017-05-02 08:05:59', '2017-05-02 08:05:59', NULL, NULL),
 (17, 'Raul', 'Martinez', 'Martinez', 'ivanuc19@gmail.com', 'ivanuc19@gmail.com', '$2y$10$gzf.dMe4KwtdKUEAFeMSNe44xSWsYIVLRl2CvMHEJ9bLrjAqwrH9S', 'administrador', '2017-05-09 18:25:06', '2017-05-09 18:25:06', NULL, NULL),
-(18, 'Ever', 'Camacho', 'Camacho', 'correo_prueva@yopmail.com', 'correo_prueva@yopmail.com', '$2y$10$yuyjezdGkMcrPjCXPcl2GODH8A2MyzY4dJq89L3QolyhF8IExm73m', 'autorizado', '2017-05-09 18:25:33', '2017-05-09 18:25:33', NULL, NULL),
-(19, 'rene', 'gutierrez', 'rodriguez', 'renetlgr@gmail.com', 'renetlgr@gmail.com', '$2y$10$bsSe3JuTzOrLlvY8O9P5.eYo45UCT2DfH5iP8CT7Lugp5MtoDbRwC', 'docente', '2017-05-09 19:06:53', '2017-05-09 19:06:53', NULL, NULL);
+(18, 'Ever', 'Camacho', 'Camacho', 'correo_prueva@yopmail.com', 'correo_prueva@yopmail.com', '$2y$10$yuyjezdGkMcrPjCXPcl2GODH8A2MyzY4dJq89L3QolyhF8IExm73m', 'autorizado', '2017-05-09 18:25:33', '2017-05-09 18:25:33', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -386,12 +386,12 @@ ALTER TABLE `usuario_materia`
 -- AUTO_INCREMENT de la tabla `calendario`
 --
 ALTER TABLE `calendario`
-  MODIFY `id_calendario` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_calendario` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `evento`
 --
 ALTER TABLE `evento`
-  MODIFY `id_evento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_evento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `migrations`
 --
@@ -401,12 +401,12 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT de la tabla `periodo_examen`
 --
 ALTER TABLE `periodo_examen`
-  MODIFY `periodo_examen_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `periodo_examen_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `reserva`
 --
 ALTER TABLE `reserva`
-  MODIFY `id_reserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_reserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `tipo_reserva`
 --
@@ -416,7 +416,7 @@ ALTER TABLE `tipo_reserva`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_usuario` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- Restricciones para tablas volcadas
 --
