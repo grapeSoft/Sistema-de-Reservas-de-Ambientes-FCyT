@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection as Collection;
 use App\Model\Reserva;
 use App\Model\Usuario;
-
+use App\Model\PeriodoExamen;
 class CalendarioController extends Controller
 {
     public function __construct()
@@ -64,17 +64,67 @@ class CalendarioController extends Controller
             $eventosCalendario[$key]['end'] = $end;
             $eventosCalendario[$key]['color'] = $color;
         }
-        // Arreglo para probar como se llenaran los feriados
-        $feriadosArray = array(array('nombre' => 'feriado 1', 'fecha' => '2017-06-05'),array('nombre' => 'feriado 2', 'fecha' => '2017-06-10'));
-        $feriados = null;
-        foreach ($feriadosArray as $key => $feriado) {
-            $feriados[$key]['title'] = $feriadosArray[$key]['nombre'];
-            $feriados[$key]['start'] = $feriadosArray[$key]['fecha'];
-            $feriados[$key]['end'] = $feriadosArray[$key]['fecha'];
-            $feriados[$key]['rendering'] = 'background';
-            $feriados[$key]['color'] = '#ff9f89';
+        // Feriados
+        $feriados = Fecha::where('tipo','feriado')->get();
+        $feriadosArray = array();       
+        foreach ($feriados as $key => $feriado) {
+            $feriadosArray[$key]['title'] = $feriado->descripcion;
+            $feriadosArray[$key]['start'] = $feriado->id_fecha;
+            $feriadosArray[$key]['end'] = $feriado->id_fecha;
+            $feriadosArray[$key]['rendering'] = 'background';
+            $feriadosArray[$key]['color'] = '#FFCDD2';
+            $feriadosArray[$key]['textColor'] = '#D50000';
         }
-        $eventosCalendarioFeriados = array_merge($eventosCalendario, $feriados);  
+        // Gestion Academica (solo funciona para una gestion a la vez)
+        $gestiones = Calendario::all();
+        $gestionesIniArray = array();
+        foreach ($gestiones as $key => $gestion) {
+                $gestionesIniArray[$key]['title'] = 'Inicio de Gestión '.$gestion->gestion;
+                $gestionesIniArray[$key]['start'] = $gestion->fecha_inicio;
+                $gestionesIniArray[$key]['end'] = $gestion->fecha_inicio;
+                $gestionesIniArray[$key]['rendering'] = 'background';
+                $gestionesIniArray[$key]['color'] = '#C5CAE9';
+                $gestionesIniArray[$key]['textColor'] = '#1A237E';
+        }
+        $gestionesFinArray = array();
+        foreach ($gestiones as $key => $gestion) {
+                $gestionesFinArray[$key]['title'] = 'Final de Gestión '.$gestion->gestion;
+                $gestionesFinArray[$key]['start'] = $gestion->fecha_fin;
+                $gestionesFinArray[$key]['end'] = $gestion->fecha_fin;
+                $gestionesFinArray[$key]['rendering'] = 'background';
+                $gestionesFinArray[$key]['color'] = '#C5CAE9';
+                $gestionesFinArray[$key]['textColor'] = '#1A237E';
+        }        
+        // Periodos de Examen
+        $examenes = PeriodoExamen::all();
+        $examenesBackgroundrray = array();       
+        foreach ($examenes as $key => $examen) {
+            $examenesBackgroundrray[$key]['title'] = "";
+            $examenesBackgroundrray[$key]['start'] = $examen->fecha_inicio;
+            $examenesBackgroundrray[$key]['end'] = $examen->fecha_fin;
+            $examenesBackgroundrray[$key]['rendering'] = 'background';
+            $examenesBackgroundrray[$key]['color'] = '#C8E6C9';
+        }
+        $examenesIniArray = array();       
+        foreach ($examenes as $key => $examen) {
+            $examenesIniArray[$key]['title'] = 'Inicio '.$examen->nombre;
+            $examenesIniArray[$key]['start'] = $examen->fecha_inicio;
+            $examenesIniArray[$key]['end'] = $examen->fecha_inicio;
+            $examenesIniArray[$key]['rendering'] = 'background';
+            $examenesIniArray[$key]['color'] = '#C8E6C9';
+            $examenesIniArray[$key]['textColor'] = '#1B5E20';
+        }
+        $examenesFinArray = array();       
+        foreach ($examenes as $key => $examen) {
+            $examenesFinArray[$key]['title'] = 'Fin '.$examen->nombre;
+            $examenesFinArray[$key]['start'] = $examen->fecha_fin;
+            $examenesFinArray[$key]['end'] = $examen->fecha_fin;
+            $examenesFinArray[$key]['rendering'] = 'background';
+            $examenesFinArray[$key]['color'] = '#C8E6C9';
+            $examenesFinArray[$key]['textColor'] = '#1B5E20';
+        }
+
+        $eventosCalendarioFeriados = array_merge($eventosCalendario, $feriadosArray, $gestionesIniArray, $gestionesFinArray, $examenesBackgroundrray, $examenesIniArray, $examenesFinArray);  
         $datos = Collection::make($eventosCalendarioFeriados);
         return view('calendario.index', compact('datos'));
     }
