@@ -71,7 +71,6 @@
 			navLinks: true, // can click day/week names to navigate views
 			editable: false,
 			eventLimit: true, // allow "more" link when too many events
-			eventTextColor: '#3E2723',
 			events: {!!$datos!!}
 			/*[
 				{
