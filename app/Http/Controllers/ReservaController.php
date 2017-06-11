@@ -276,4 +276,40 @@ class ReservaController extends Controller
         }
         
     }
+
+    public function crearpdf($id)
+    {
+        
+        $eventos= DB::table('evento')
+            ->where('evento.id_reserva','=',$id)
+            ->join('usuario_materia','evento.id_usuario_materia','=','usuario_materia.id_usuario_materia')          
+            ->join('materia','usuario_materia.id_materia' ,'=','materia.id_materia')  
+            ->select('evento.tipo','evento.descripcion','materia.nombre','usuario_materia.grupo')
+            ->get()->toArray(); 
+
+        $datosUsuario= DB::table('evento')
+            ->where('evento.id_reserva','=',$id)
+            ->join('reserva','evento.id_reserva','=','reserva.id_reserva')
+            ->join('USUARIO','reserva.id_usuario','=','USUARIO.id_usuario') 
+            ->select('USUARIO.nombre','USUARIO.email','USUARIO.id_usuario','USUARIO.apellido_paterno','USUARIO.apellido_materno','USUARIO.tipo')
+            ->first();
+        
+        $eventosAutorizado=  DB::table('evento')
+            ->where('evento.id_reserva','=',$id)
+            ->select('evento.tipo','evento.descripcion')
+            ->first(); 
+
+        if(auth()->user()->esAutorizado()){
+            $view=\View::make('reservas.vista.autorizado', compact('eventos','eventosAutorizado','datosUsuario'))->render();
+            $pdf = \App::make('dompdf.wrapper');
+            $pdf->loadHTML($view);
+            return $pdf->stream();
+        }
+        if(auth()->user()->esDocente()){
+            $view=\View::make('reservas.vista.docente', compact('eventos','eventosAutorizado','datosUsuario'))->render();
+            $pdf = \App::make('dompdf.wrapper');
+            $pdf->loadHTML($view);
+            return $pdf->stream();
+        }
+    }
 }

@@ -21,9 +21,10 @@
 				@endif
 				@if(Auth::user()->tipo === 'autorizado')
 				@include('reservas.vista.autorizado')
-				@endif
-
-				
+				@endif	
+			</div>
+			<div class="btn-group btn-group-justified btn-group-raised">
+				<a href="{{ route('crearpdf') }}" class="btn btn-primary">VER PDF</a>
 			</div>
 		</div>
 	
