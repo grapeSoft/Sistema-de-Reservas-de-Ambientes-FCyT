@@ -15,10 +15,14 @@
     <!-- <link rel="stylesheet" type="text/css" href="{!! asset('css/aplicacion.css') !!}"> -->
     <!-- Bootstrap Material Design -->
   	<link href="{!! asset('css/bootstrap-material-design.css') !!}" rel="stylesheet">
-  	@unless(Auth::check())
-  	<link href="{!! asset('css/style.css') !!}" rel="stylesheet">
-  	@endunless
+  	<link href="{!! asset('css/ripples.min.css') !!}" rel="stylesheet">
+  	@if(Auth::check())
+  		<link href="{!! asset('css/style.css') !!}" rel="stylesheet">
+  	@else
+  		<link href="{!! asset('css/style-login.css') !!}" rel="stylesheet">
+  	@endif
   	<link href="{!! asset('css/materialStyle.css') !!}" rel="stylesheet">
+  	@yield('style')
 </head>
 <body>
 	@if(Auth::check())

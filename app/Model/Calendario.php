@@ -8,13 +8,20 @@ class Calendario extends Model
 {
     protected $table = 'calendario';
     protected $primaryKey = 'id_calendario';
+    public $timestamps = false;
+
 
     public $fillable = [
-        'gestion_calendario', 'fecha_inicio', 'fecha_fin'
+        'gestion', 'fecha_inicio', 'fecha_fin'
     ];
 
     public function fechas()
     {
-    	return $this->hasMany('app/Model/Fecha');
+    	return $this->hasMany('App\Model\Fecha', 'id_calendario');
+    }
+
+    public function periodos()
+    {
+        return $this->hasMany('App\Model\PeriodoExamen', 'id_calendario');
     }
 }

@@ -115,6 +115,9 @@ return [
         'inscritos' => [
             'required' => 'No puede registrar grupos que no alcanzen el numero minimo de inscritos que es '
         ],
+        'reserva_aceptada' => [
+            'required' => 'La reserva del auditorio en periodos de examen solo se encuentra disponible para los Docentes '
+        ],
     ],
 
     /*
