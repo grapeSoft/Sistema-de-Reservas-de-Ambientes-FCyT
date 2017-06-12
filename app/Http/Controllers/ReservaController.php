@@ -250,6 +250,7 @@ class ReservaController extends Controller
         $hora_fin = null;
 
         if ($request->nombre) {
+            $nombre = $request->nombre;
 
             if ($request->filtrado) {
                 //dd($request->fecha_inicial);
@@ -297,11 +298,12 @@ class ReservaController extends Controller
                                         }
                                     }
                                 }
-                                //dd($reservas);
+                                
                             }else{
 
+                                //dd($reservas);
                                 $horanovalida = "error";
-                                return view('reservas.admin.index', compact('hora_ini', 'hora_fin', 'horanovalida'));
+                                return view('reservas.admin.index', compact('nombre', 'fecha_ini', 'fecha_fin', 'hora_ini', 'hora_fin', 'horanovalida'));
                             }
                             
                         }else{
@@ -333,7 +335,7 @@ class ReservaController extends Controller
                     }else{
 
                         $fechanovalida = "error";
-                        return view('reservas.admin.index', compact('fecha_ini', 'fecha_fin', 'fechanovalida'));
+                        return view('reservas.admin.index', compact('nombre', 'fecha_ini', 'fecha_fin', 'fechanovalida'));
                     }
 
                 }else{
@@ -373,7 +375,7 @@ class ReservaController extends Controller
                             }else{
 
                                 $horanovalida = "error";
-                                return view('reservas.admin.index', compact('hora_ini', 'hora_fin', 'horanovalida'));
+                                return view('reservas.admin.index', compact('nombre', 'hora_ini', 'hora_fin', 'horanovalida'));
                             }
                             
                     }else{
@@ -541,7 +543,8 @@ class ReservaController extends Controller
                             
                     }else{
 
-                        
+                        $reservas = Reserva::paginate(7);
+                        return view('reservas.admin.index', compact('reservas'));
                     }
                     
                 }
