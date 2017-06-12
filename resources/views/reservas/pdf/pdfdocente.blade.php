@@ -44,7 +44,7 @@
 					@endforeach                                   
 					</tbody>
 				</table>	
-				<div class="pdf-date">Fecha impresion: {{ $date }}</div>
+				<div class="pdf-date">Fecha Actual: {{ $date }}</div>
 			</div>
 		</div>	
 	</div>

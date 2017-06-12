@@ -41,6 +41,8 @@ class PDFController extends Controller
             ->select('evento.tipo','evento.descripcion','evento.id_reserva')
             ->first(); 
 
+        
+
         $date=date('Y-m-d');
 
         if(auth()->user()->esAutorizado()){
@@ -78,14 +80,16 @@ class PDFController extends Controller
             ->select('evento.tipo','evento.descripcion','evento.id_reserva')
             ->first(); 
 
+        $date=date('Y-m-d');
+
         if(auth()->user()->esAutorizado()){
-            $view=\View::make('reservas.pdf.pdfautorizado', compact('eventos','eventosAutorizado','datosUsuario'))->render();
+            $view=\View::make('reservas.pdf.pdfautorizado', compact('eventos','eventosAutorizado','datosUsuario' , 'date'))->render();
             $pdf = \App::make('dompdf.wrapper');
             $pdf->loadHTML($view);
             return $pdf->download('reserva.pdf');
         }                
         if(auth()->user()->esDocente()){
-            $view=\View::make('reservas.pdf.pdfdocente', compact('eventos','eventosAutorizado','datosUsuario'))->render();
+            $view=\View::make('reservas.pdf.pdfdocente', compact('eventos','eventosAutorizado','datosUsuario' , 'date'))->render();
             $pdf = \App::make('dompdf.wrapper');
             $pdf->loadHTML($view);
             return $pdf->download('reserva.pdf');
