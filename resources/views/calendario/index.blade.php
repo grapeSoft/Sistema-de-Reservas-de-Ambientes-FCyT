@@ -45,7 +45,7 @@
 			},
 			eventRender: function(event, element, view ){
 				if(event.rendering === "background"){
-				    element.append( event.title);
+				    element.append('<div class="text-center" style="color:'+event.textColor+'; margin-top: 30px;"><strong>'+event.title+'</strong></div>');
 				}
 			},
 			eventClick:  function(event, jsEvent, view) {

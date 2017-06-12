@@ -17,6 +17,9 @@
         @if($errors->has('continuo'))
             <p class="alert alert-danger">{{ $errors->first('continuo') }}</p>
         @endif
+        @if($errors->has('reserva_aceptada'))
+            <p class="alert alert-danger">{{ $errors->first('reserva_aceptada') }}</p>
+        @endif
         <div class="">
             <div class="table-responsive">
                     <table class="table table-striped table-hover">

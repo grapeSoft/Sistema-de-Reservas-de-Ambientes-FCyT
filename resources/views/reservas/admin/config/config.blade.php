@@ -21,8 +21,8 @@
 			<h4>Reserva Docente</h4>	
 			@include('reservas.admin.config.docente')
 
-			<h4>Reserva Autorizado</h4>
-			@include('reservas.admin.config.autorizado')	
+			<!-- <h4>Reserva Autorizado</h4>
+				@include('reservas.admin.config.autorizado') -->	
 		  	<div class="form-group">
 				<div class="col-md-3 col-md-offset-9">
 					<button type="submit" class="btn btn-primary">Guardar</button>

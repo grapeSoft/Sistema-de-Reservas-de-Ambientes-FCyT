@@ -2,7 +2,7 @@
 
 @section('contenido')
 <div class="container">
-	<div class="col-md-10 col-md-offset-1">
+	<div class="">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<h4>Lista de usuarios</h4>

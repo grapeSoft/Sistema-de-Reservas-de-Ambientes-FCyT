@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 use App\Model\Grupo;
 use App\Model\TipoReserva;
+use Carbon\Carbon;
+use App\Model\PeriodoExamen;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreReserva extends FormRequest
@@ -25,6 +27,7 @@ class StoreReserva extends FormRequest
      */
     public function rules()
     {
+        $fecha_reserva = request()->input('id_fecha');
         $minNroParticipantes = TipoReserva::where('tipo', 'examen')->first()->min_nro_participantes;
         $max_nro_periodos = TipoReserva::where('tipo', 'examen')->first()->max_nro_periodos;
         $ids_usuario_materia = $ids_usuario_materia = request()->input('ids_usuario_materias');
@@ -33,7 +36,7 @@ class StoreReserva extends FormRequest
         $condicionNroInscritos = $this->verificarNroInscritos($minNroParticipantes, $ids_usuario_materia);
         $condicionNroPeridos = $this->verificarNroPeriodos($max_nro_periodos, $horas);
         $condicionReservaContinua = $this->verificarReservaContinua($horas);
-
+        $condicionReservaPeriodoExamen = $this->verificarReservaPeriodoExamen($fecha_reserva);
 
         if($condicionNroPeridos){
             if($condicionReservaContinua){
@@ -51,10 +54,19 @@ class StoreReserva extends FormRequest
                 }
                 //Si no es usuario autorizado
                 else{
-                    $rules =  [
-                        'ids_horas' => 'required',
-                        'descripcion' => 'required|min:4|max:32',
-                    ];
+                    if ($condicionReservaPeriodoExamen) {
+                        $rules =  [
+                            'reserva_aceptada' => 'required',
+                            'ids_horas' => 'required',
+                            'descripcion' => 'required|min:4|max:32',
+                        ];
+                    }
+                    else{
+                        $rules =  [
+                            'ids_horas' => 'required',
+                            'descripcion' => 'required|min:4|max:32',
+                        ];
+                    }
                 }
             }
             else{
@@ -111,5 +123,22 @@ class StoreReserva extends FormRequest
             }
         }
         return $r;
+    }
+
+    private function verificarReservaPeriodoExamen($fecha_reserva){
+        $res = false;
+        $fecha_reserva = Carbon::createFromFormat('Y-m-d', $fecha_reserva);
+        $periodos_examen = PeriodoExamen::all();
+        foreach ($periodos_examen as $periodo_examen) {
+            $fechas_ini[] = Carbon::createFromFormat('Y-m-d', $periodo_examen->fecha_inicio);
+            $fechas_fin[] = Carbon::createFromFormat('Y-m-d', $periodo_examen->fecha_fin);
+        }
+        if($fecha_reserva->between($fechas_ini[0], $fechas_fin[0]) || $fecha_reserva->between($fechas_ini[1], $fechas_fin[1])){
+            $res = true;
+        }
+        else{
+            $res = false;
+        }
+        return $res;
     }
 }

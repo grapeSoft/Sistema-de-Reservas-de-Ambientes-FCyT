@@ -12,7 +12,7 @@ class Fecha extends Model
     public $incrementing = false;
 
     public $fillable = [
-        'id_fecha', 'id_calendario', 'tipo'
+        'id_fecha', 'id_calendario', 'tipo', 'descripcion'
     ];
 
     public function peteneceCalendario()
