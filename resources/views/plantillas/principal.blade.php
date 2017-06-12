@@ -16,9 +16,11 @@
     <!-- Bootstrap Material Design -->
   	<link href="{!! asset('css/bootstrap-material-design.css') !!}" rel="stylesheet">
   	<link href="{!! asset('css/ripples.min.css') !!}" rel="stylesheet">
-  	@unless(Auth::check())
-  	<link href="{!! asset('css/style.css') !!}" rel="stylesheet">
-  	@endunless
+  	@if(Auth::check())
+  		<link href="{!! asset('css/style.css') !!}" rel="stylesheet">
+  	@else
+  		<link href="{!! asset('css/style-login.css') !!}" rel="stylesheet">
+  	@endif
   	<link href="{!! asset('css/materialStyle.css') !!}" rel="stylesheet">
   	@yield('style')
 </head>
