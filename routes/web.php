@@ -43,4 +43,5 @@ Route::post('registros', 'UsuarioController@registrarUsuarios')->name('usuarios.
 Route::post('reservas/filtrado', 'ReservaController@filtrado')->name('reservas.filtrado');
 
 
-Route::get('crearpdf', 'ReservaController@crearpdf')->name('crearpdf');
+Route::get('crearpdf/{eventos}', 'PDFController@crearpdf')->name('crearpdf');
+Route::get('descargarpdf/{eventos}', 'PDFController@descargarpdf')->name('descargarpdf');

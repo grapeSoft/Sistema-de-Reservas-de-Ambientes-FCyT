@@ -21,8 +21,10 @@
 						<td><strong>Descripcion</strong></td>				               
                         <td>{{ $eventosAutorizado->descripcion }}</td>                                   
                     </tr> 
-                                     		
-					
-					
-				</table>
+                </table>
+                <div class="btn-group btn-group-justified btn-group-raised">
+					<a target="_blank" href="{{ route('crearpdf',['id' => $eventosAutorizado->id_reserva]) }}" class="btn btn-primary">VER PDF</a>
+					<a target="_blank" href="{{ route('descargarpdf',['id' => $eventosAutorizado->id_reserva]) }}" class="btn btn-primary">DESCARGAR PDF</a>
+				</div>
+                	
 			

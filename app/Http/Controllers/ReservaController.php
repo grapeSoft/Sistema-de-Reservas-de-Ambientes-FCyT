@@ -103,7 +103,7 @@ class ReservaController extends Controller
                     ->join('usuario_materia','evento.id_usuario_materia','=','usuario_materia.id_usuario_materia')          
                     ->join('materia','usuario_materia.id_materia' ,'=','materia.id_materia')  
                                     
-                    ->select('evento.tipo','evento.descripcion','materia.nombre','usuario_materia.grupo')
+                    ->select('evento.tipo','evento.descripcion','materia.nombre','usuario_materia.grupo','evento.id_reserva')
                     ->get()->toArray(); 
 
          $datosUsuario= DB::table('evento')
@@ -120,7 +120,7 @@ class ReservaController extends Controller
 
          $eventosAutorizado=  DB::table('evento')
                                 ->where('evento.id_reserva','=',$id)
-                                ->select('evento.tipo','evento.descripcion')
+                                ->select('evento.tipo','evento.descripcion','evento.id_reserva')
                                 ->first(); 
                                 
 
@@ -277,7 +277,7 @@ class ReservaController extends Controller
         
     }
 
-    public function crearpdf($id)
+/*    public function crearpdf($id)
     {
         
         $eventos= DB::table('evento')
@@ -311,5 +311,5 @@ class ReservaController extends Controller
             $pdf->loadHTML($view);
             return $pdf->stream();
         }
-    }
+    }*/
 }
