@@ -31,7 +31,7 @@
 						<span class="caret"></span>
 					</a>
 		          	<ul class="dropdown-menu">
-		          		<li>
+		          		<li class="visible-xs">
 		            		<a href="{{ route('usuarios.perfil') }}">
 		            			Perfil
 		            		</a>

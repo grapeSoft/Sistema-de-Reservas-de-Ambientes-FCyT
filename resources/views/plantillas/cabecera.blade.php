@@ -8,7 +8,7 @@
 						<img src="{!! asset('img/logo.png') !!}" class="img-responsive" alt="Logo">
 					</div>	 -->
 					<a href="/" title="Inicio" id="logo">
-					<img src="{!! asset('img/logo4.png') !!}" alt="Logo" class="img-responsive" alt="Imagen responsive" />
+					<img src="{!! asset('img/header_logo.png') !!}" alt="Logo" class="img-responsive" alt="Imagen responsive">
 					</a>
 				</div>
 			</div>

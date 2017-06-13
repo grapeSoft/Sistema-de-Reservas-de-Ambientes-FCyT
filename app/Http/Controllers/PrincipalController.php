@@ -15,6 +15,7 @@ class PrincipalController extends Controller
 
     public function inicio()
     {
-        return view('principal.inicio');
+        $usuario = auth()->user();
+        return view('principal.inicio', compact('usuario'));
     }
 }
