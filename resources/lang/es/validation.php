@@ -136,6 +136,13 @@ return [
         'ape_mat' => 'apellido materno',
         'username' => 'nombre de usario',
         'password' => 'contraseña',
+        'gestion' => 'Gestión',
+        'fecha_inicial' => 'Fecha inicial de gestion',
+        'fecha_final' => 'Fecha final de gestion',
+        'primer_parcial_ini' => 'Fecha Inicial 1° Ciclo',
+        'primer_parcial_fin' => 'Fecha Final 1° Ciclo',
+        'segundo_parcial_ini' => 'Fecha Inicial 2° Ciclo',
+        'segundo_parcial_fin' => 'Fecha Final 2° Ciclo',
     ],
 
 ];

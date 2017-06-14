@@ -225,6 +225,11 @@ class CalendarioController extends Controller
         $fechaFin = Carbon::createFromFormat('Y-m-d', $request->fecha_final, 'Etc/GMT-4');
         $fechaActual = $fechaInicio;
 
+
+        foreach($calendario->fechas as $fecha){
+            $fecha->horas()->detach();
+        }
+
         Fecha::where('id_calendario', $calendario->id_calendario)->delete();
 
         while($fechaActual <= $fechaFin ){
@@ -248,7 +253,8 @@ class CalendarioController extends Controller
             'fecha_fin' => $request->segundo_parcial_fin,
         ]);
 
-        foreach($calendario->fechas as $fecha)
+
+        foreach(Fecha::where('id_fecha', $calendario->id_calendario) as $fecha)
         {
             foreach(Horas::all() as $hora) {
                 $fecha->horas()->attach($hora->id_horas, ['id_ambiente' => 1, 'estado' => "Libre"]);
