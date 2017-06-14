@@ -27,7 +27,7 @@ class HorariosReserva extends FormRequest
     public function rules()
     {
             return [
-                'fecha' => 'date|required|exists:FECHA,id_fecha|after_or_equal:today',
+                'fecha' => 'date|required|exists:fecha,id_fecha|after_or_equal:today',
                 'ambiente' => 'required',
             ];
 

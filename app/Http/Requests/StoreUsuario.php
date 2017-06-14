@@ -27,7 +27,7 @@ class StoreUsuario extends FormRequest
             'nombre' => 'required',
             'apellido_paterno' => 'required',
             'apellido_materno' => 'required',
-            'email' => 'unique:USUARIO,email|required|email',
+            'email' => 'unique:usuario,email|required|email',
             //'ci' => 'unique:USUARIO,ci|required|numeric|min:4|max:10',
             'foto' => 'image',
         ];

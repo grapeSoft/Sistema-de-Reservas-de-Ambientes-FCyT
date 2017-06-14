@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ambiente extends Model
 {
-    protected $table = 'AMBIENTE';
+    protected $table = 'ambiente';
     protected $primaryKey = 'id_ambiente';
     public $timestamps = false;
     private $fecha;

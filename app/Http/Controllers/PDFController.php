@@ -32,8 +32,8 @@ class PDFController extends Controller
         $datosUsuario= DB::table('evento')
             ->where('evento.id_reserva','=',$id)
             ->join('reserva','evento.id_reserva','=','reserva.id_reserva')
-            ->join('USUARIO','reserva.id_usuario','=','USUARIO.id_usuario') 
-            ->select('USUARIO.nombre','USUARIO.email','USUARIO.id_usuario','USUARIO.apellido_paterno','USUARIO.apellido_materno','USUARIO.tipo')
+            ->join('usuario','reserva.id_usuario','=','usuario.id_usuario')
+            ->select('usuario.nombre','usuario.email','usuario.id_usuario','usuario.apellido_paterno','usuario.apellido_materno','usuario.tipo')
             ->first();
 
 		$eventosAutorizado=  DB::table('evento')
@@ -71,8 +71,8 @@ class PDFController extends Controller
         $datosUsuario= DB::table('evento')
             ->where('evento.id_reserva','=',$id)
             ->join('reserva','evento.id_reserva','=','reserva.id_reserva')
-            ->join('USUARIO','reserva.id_usuario','=','USUARIO.id_usuario') 
-            ->select('USUARIO.nombre','USUARIO.email','USUARIO.id_usuario','USUARIO.apellido_paterno','USUARIO.apellido_materno','USUARIO.tipo')
+            ->join('usuario','reserva.id_usuario','=','usuario.id_usuario')
+            ->select('usuario.nombre','usuario.email','usuario.id_usuario','usuario.apellido_paterno','usuario.apellido_materno','usuario.tipo')
             ->first();
 
         $eventosAutorizado=  DB::table('evento')

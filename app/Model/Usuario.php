@@ -6,7 +6,7 @@ use Illuminate\Foundation\Auth\User;
 
 class Usuario extends User
 {
-    protected $table = 'USUARIO';
+    protected $table = 'usuario';
     protected $primaryKey = 'id_usuario';
 
     public $fillable = [
