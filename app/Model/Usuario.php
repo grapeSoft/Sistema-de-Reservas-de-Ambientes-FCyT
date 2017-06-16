@@ -54,7 +54,7 @@ class Usuario extends User
 
     public function materias()
     {
-        return $this->belongsToMany('App\Model\Materia', 'USUARIO_MATERIA', 'id_usuario', 'id_materia')
+        return $this->belongsToMany('App\Model\Materia', 'usuario_materia', 'id_usuario', 'id_materia')
             ->withPivot('grupo', 'id_usuario_materia');
     }
 }

@@ -27,7 +27,7 @@ class Reserva extends Model
 
     public function horarios()
     {
-        return $this->belongsToMany('App\Model\Horas', 'HORARIO', 'id_reserva', 'id_horas')
+        return $this->belongsToMany('App\Model\Horas', 'horario', 'id_reserva', 'id_horas')
             ->withPivot('estado', 'id_fecha');
     }
 }

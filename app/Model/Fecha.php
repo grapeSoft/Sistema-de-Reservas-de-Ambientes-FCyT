@@ -22,6 +22,6 @@ class Fecha extends Model
 
     public function horas()
     {
-        return $this->belongsToMany('App\Model\Horas', 'HORARIO', 'id_fecha', 'id_horas');
+        return $this->belongsToMany('App\Model\Horas', 'horario', 'id_fecha', 'id_horas');
     }
 }
