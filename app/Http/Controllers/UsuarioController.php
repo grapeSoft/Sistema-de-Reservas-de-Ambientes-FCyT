@@ -19,17 +19,15 @@ class UsuarioController extends Controller
         $this->middleware('autentificado', [
             'except' => ['login', 'logear', 'recuperarContrasea', 'enviarContrasea', ]
         ]);
-        $this->middleware('autorizado', ['only' => [
+        $this->middleware('docente', ['only' => [
             'edit', 'update', 'show',
         ]]);
-        $this->middleware('docente', ['only' => [
+        $this->middleware('autorizado', ['only' => [
             'edit', 'update', 'show',
         ]]);
         $this->middleware('adm', ['only' => [
             'index', 'create', 'store', 'destroy', 'upload', 'registrarUsuarios', 
         ]]);
-
-
     }
 
     /**
@@ -109,7 +107,6 @@ class UsuarioController extends Controller
      */
     public function edit($id)
     {
-        
         if(auth()->user()->esAdministrador()){
 
             

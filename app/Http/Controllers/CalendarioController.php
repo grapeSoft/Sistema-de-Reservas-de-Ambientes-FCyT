@@ -253,8 +253,7 @@ class CalendarioController extends Controller
             'fecha_fin' => $request->segundo_parcial_fin,
         ]);
 
-
-        foreach(Fecha::where('id_fecha', $calendario->id_calendario) as $fecha)
+        foreach(Fecha::where('id_calendario', $calendario->id_calendario)->get() as $fecha)
         {
             foreach(Horas::all() as $hora) {
                 $fecha->horas()->attach($hora->id_horas, ['id_ambiente' => 1, 'estado' => "Libre"]);

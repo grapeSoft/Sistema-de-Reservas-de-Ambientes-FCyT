@@ -21,7 +21,7 @@ class Autorizado
             return $next($request);
         }
         else{
-            if(auth()->user()->esAdministrador())
+            if(auth()->user()->esAdministrador() || auth()->user()->esDocente())
                 return $next($request);
             else
                 abort(403);
