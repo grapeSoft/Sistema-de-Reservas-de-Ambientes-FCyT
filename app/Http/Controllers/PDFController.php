@@ -50,9 +50,17 @@ class PDFController extends Controller
             $pdf = \App::make('dompdf.wrapper');
             $pdf->loadHTML($view);
             return $pdf->stream('reserva');
-        }                
+        }
+
         if(auth()->user()->esDocente()){
             $view=\View::make('reservas.pdf.pdfdocente', compact('eventos','eventosAutorizado','datosUsuario', 'date'))->render();
+            $pdf = \App::make('dompdf.wrapper');
+            $pdf->loadHTML($view);
+            return $pdf->stream('reserva');
+        }
+
+        if(auth()->user()->esAdministrador()){
+            $view=\View::make('reservas.pdf.pdfadministrador', compact('eventos','eventosAutorizado','datosUsuario', 'date'))->render();
             $pdf = \App::make('dompdf.wrapper');
             $pdf->loadHTML($view);
             return $pdf->stream('reserva');
@@ -87,9 +95,17 @@ class PDFController extends Controller
             $pdf = \App::make('dompdf.wrapper');
             $pdf->loadHTML($view);
             return $pdf->download('reserva.pdf');
-        }                
+        } 
+
         if(auth()->user()->esDocente()){
             $view=\View::make('reservas.pdf.pdfdocente', compact('eventos','eventosAutorizado','datosUsuario' , 'date'))->render();
+            $pdf = \App::make('dompdf.wrapper');
+            $pdf->loadHTML($view);
+            return $pdf->download('reserva.pdf');
+        }
+
+        if(auth()->user()->esAdministrador()){
+            $view=\View::make('reservas.pdf.pdfadministrador', compact('eventos','eventosAutorizado','datosUsuario', 'date'))->render();
             $pdf = \App::make('dompdf.wrapper');
             $pdf->loadHTML($view);
             return $pdf->download('reserva.pdf');
