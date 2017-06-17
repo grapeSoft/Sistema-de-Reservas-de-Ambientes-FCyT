@@ -27,7 +27,7 @@ class UpdateUsuario extends FormRequest
             'nombre' => 'required',
             'apellido_paterno' => 'required',
             'apellido_materno' => 'required',
-            'email' => 'unique:usuario,email|required|email',
+            'email' => 'required|email|unique:usuario,email,'.auth()->user()->id_usuario.',id_usuario',
             'username' => 'required',
             'password' => 'min:6|confirmed',
             'foto' => 'image',
