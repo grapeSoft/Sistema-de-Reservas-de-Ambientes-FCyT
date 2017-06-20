@@ -5,12 +5,6 @@
 <div class="row">
 	<dir class="col-md-8 col-md-offset-2">
 		<div class="well">
-		<!-- <h4>Configuración Reserva Docente</h4> -->	
-		@if(session('mensaje'))
-            <div class="alert alert-danger">
-                {{ session('mensaje') }}
-            </div>
-        @endif
         {!! Form::open([
             'route' => 'reservas.updateConfig',
             'method' => 'post',
@@ -18,7 +12,7 @@
             'class' => 'form-horizontal'
         	]) !!}
 		<fieldset>
-			<h4>Reserva Docente</h4>	
+			<h4>Reserva Docente</h4>
 			@include('reservas.admin.config.docente')
 
 			<!-- <h4>Reserva Autorizado</h4>

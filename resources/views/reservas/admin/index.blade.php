@@ -2,6 +2,12 @@
 
 @section('contenido-principal-admin-offbody')						
 <div class="panel-body">
+	<!-- <h4>Configuración Reserva Docente</h4> -->
+	@if(session('mensaje'))
+		<div class="alert alert-success">
+			{{ session('mensaje') }}
+		</div>
+	@endif
 	@if(empty($reservas))
 		<div class="alert alert-success">
 			No se ha encontrado coincidencias
