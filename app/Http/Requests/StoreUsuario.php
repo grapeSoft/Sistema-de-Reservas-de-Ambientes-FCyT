@@ -24,11 +24,11 @@ class StoreUsuario extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required',
-            'apellido_paterno' => 'required',
-            'apellido_materno' => 'required',
+            'nombre' => ['required', 'regex:/^([a-zA-ZÁÉÍÓÚáéíóúñ ])+$/', 'min:2', 'max:32'],
+            'apellido_paterno' => ['required', 'regex:/^([a-zA-ZÁÉÍÓÚáéíóúñ ])+$/', 'min:2', 'max:32'],
+            'apellido_materno' => ['required', 'regex:/^([a-zA-ZÁÉÍÓÚáéíóúñ ])+$/', 'min:2', 'max:32'],
             'email' => 'unique:usuario,email|required|email',
-            //'ci' => 'unique:USUARIO,ci|required|numeric|min:4|max:10',
+            'tipo' => 'required',
             'foto' => 'image',
         ];
     }

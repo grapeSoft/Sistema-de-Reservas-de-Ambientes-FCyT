@@ -233,7 +233,7 @@ class ReservaController extends Controller
         $this->validate($request, [
             'tipo' => 'required',
             'numeroPeriodos' => 'required|numeric|min:1|max:10',
-            'numeroParticipantes' => 'required|numeric|min:1|max:500',
+            'numeroParticipantes' => 'required|numeric|min:25|max:500',
         ]);
         $tipo_reserva = TipoReserva::updateOrCreate(
             ['tipo' => $request->tipo],
