@@ -3,36 +3,14 @@
 @section('contenido-principal-calendario')
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
-			{!! Form::open(['route' => ['calendario.updateFeriado'],'method' => 'post','files' => true,'class' => 'form-horizontal']) !!}
-			<div class="col-md-6">
-				<div class="form-group">
-					{!! Form::label('titulo', 'Nombre feriado', ['class' => 'control-label col-md-4']) !!}
-					<div class="col-md-8">
-						{!! Form::text('titulo', null, ['class' => 'form-control']) !!}
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="form-group">
-					{!! Form::label('fecha', 'Fecha', ['class' => 'control-label col-md-4']) !!}
-					<div class="col-md-8">
-						{!! Form::date('fecha', null, ['class' => 'form-control']) !!}
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="">
-					<div class="form-group" style="margin-top: 0;">
-						<div class="pull-right">
-							<button type="submit" class="btn btn-raised btn-primary">Guardar</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			{!! Form::close() !!}
+			
 		</div>
 	</div>
-	<h4 class="text-center" style="margin-top: 20px;">Feriados</h4>
+	<div class="text-left">
+		<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#formularioFeriado"><i class="material-icons">add_circle</i> Crear Feriado</button>
+	</div>
+	@include('calendario.formulario-feriado')
+	<!--<h4 class="text-center" style="margin-top: 20px;">Feriados</h4>-->
 	<div class="row">
 		<div class="col-md-12" style="margin-top: 15px;">
 			<div class="table-responsive">

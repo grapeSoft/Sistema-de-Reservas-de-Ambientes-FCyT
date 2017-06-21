@@ -164,33 +164,6 @@
 								</div>
 							</div>
 						</div>
-						<h4 class="text-center" style="margin-top: 20px;">Ciclo de Examenes</h4>
-						<div class="row">
-							<div class="col-md-12" style="margin-top: 15px;">
-								<div class="table-responsive">
-								<table class="table table-striped table-hover table-bordered">
-									<thead>
-										<tr>
-											<th>Id</th>
-											<th>Ciclo</th>
-											<th>Fecha Inicial</th>
-											<th>Fecha Final</th>
-											<th>Opciones</th>
-										</tr>
-									</thead>
-									<tbody>		
-										<tr>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-										</tr>
-									</tbody>
-								</table>
-								</div>
-							</div>
-						</div>
 					</div>				
 				</div>
 			</fieldset>	
