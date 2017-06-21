@@ -194,21 +194,7 @@ class CalendarioController extends Controller
     {
         //
     }
-    public function feriado()
-    {
-        return view('calendario.feriado');
-    }
-
-    public function updateFeriado(UpdateFeriado $request)
-    {
-        $feriado = Fecha::findOrFail($request->input('fecha'));
-        $feriado->descripcion = $request->titulo;
-        $feriado->tipo = "feriado";
-        $feriado->save();
-        return redirect()->route('calendario.index')->with('mensaje', 'Se ha configurado correctamente la fecha en el calendario academico');
-
-    }
-
+    
     public function config()
     {
         return view('calendario.config');

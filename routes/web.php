@@ -44,12 +44,10 @@ Route::post('reservas/filtrado', 'ReservaController@filtrado')->name('reservas.f
 
 Route::post('calendario/config', 'CalendarioController@updateConfig')->name('calendario.updateConfig');
 Route::get('calendario/config', 'CalendarioController@config')->name('calendario.config');
-Route::get('calendario/feriado', 'CalendarioController@feriado')->name('calendario.feriado');
-Route::post('calendario/feriado', 'CalendarioController@updateFeriado')->name('calendario.updateFeriado');
-
 
 Route::get('crearpdf/{eventos}', 'PDFController@crearpdf')->name('crearpdf');
 Route::get('descargarpdf/{eventos}', 'PDFController@descargarpdf')->name('descargarpdf');
 
 Route::resource('calendario', 'CalendarioController');
+Route::resource('feriado', 'FeriadoController');
 
