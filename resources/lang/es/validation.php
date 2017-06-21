@@ -136,6 +136,7 @@ return [
         'ape_mat' => 'apellido materno',
         'username' => 'nombre de usario',
         'password' => 'contraseña',
+        'tipo' => 'tipo de usuario',
         'gestion' => 'Gestión',
         'fecha_inicial' => 'Fecha inicial de gestion',
         'fecha_final' => 'Fecha final de gestion',

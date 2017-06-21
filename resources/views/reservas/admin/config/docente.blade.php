@@ -1,26 +1,43 @@
-<div class="form-group">
-    {!! Form::label('tipo', 'Tipo', [
-        'class' => 'control-label col-md-4'
-    ]) !!}
-    <div class="col-md-7">
-        {!! Form::select('tipo', [
-        'examen' => 'Examen',
-		'congreso' => 'Congreso',
-		'seminario'=> 'Seminario',
-		'curso' => 'Cursos',
-		'charla' => 'Charlas',
-		'otro' => 'Otros',], null, ['class' => 'form-control'])!!}
+@if($errors->has('tipo'))
+    <div class="form-group has-error">
+@else
+    <div class="form-group">
+@endif
+        {!! Form::label('tipo', 'Tipo', [
+            'class' => 'control-label col-md-4'
+        ]) !!}
+        <div class="col-md-7">
+            {!! Form::select('tipo', [
+            'examen' => 'Examen',
+            ], null, ['class' => 'form-control'])!!}
+            <div class="help-block">
+                {{ $errors->first('tipo') }}
+            </div>
+        </div>
     </div>
-</div>
-<div class="form-group">
-    {!! Form::label('numeroPeriodos', 'Numero de Periodos', ['class' => 'control-label col-md-4']) !!}
-    <div class="col-md-7">
-        {!! Form::number('numeroPeriodos', null, ['class' => 'form-control']) !!}
+@if($errors->has('numeroPeriodos'))
+    <div class="form-group has-error">
+@else
+    <div class="form-group">
+@endif
+        {!! Form::label('numeroPeriodos', 'Numero de Periodos', ['class' => 'control-label col-md-4']) !!}
+        <div class="col-md-7">
+            {!! Form::number('numeroPeriodos', null, ['class' => 'form-control']) !!}
+            <div class="help-block">
+                {{ $errors->first('numeroPeriodos') }}
+            </div>
+        </div>
     </div>
-</div>
-<div class="form-group">
-    {!! Form::label('numeroParticipantes', 'Numero de Participantes', ['class' => 'control-label col-md-4']) !!}
-    <div class="col-md-7">
-        {!! Form::number('numeroParticipantes', null, ['class' => 'form-control']) !!}
+@if($errors->has('numeroParticipantes'))
+    <div class="form-group has-error">
+@else
+    <div class="form-group">
+@endif
+        {!! Form::label('numeroParticipantes', 'Numero de Participantes', ['class' => 'control-label col-md-4']) !!}
+        <div class="col-md-7">
+            {!! Form::number('numeroParticipantes', null, ['class' => 'form-control']) !!}
+            <div class="help-block">
+                {{ $errors->first('numeroParticipantes') }}
+            </div>
+        </div>
     </div>
-</div>

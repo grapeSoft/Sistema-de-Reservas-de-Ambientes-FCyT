@@ -57,7 +57,7 @@
 							<i class="material-icons">delete</i> Eliminar
 						</button>
 					{!! Form::close() !!} -->
-					<a href="{{ route('usuarios.index') }}" 
+					<a href="{{ back()->getTargetUrl() }}"
 						class="btn btn-primary">
 						<i class="material-icons">close</i> Salir
 					</a>

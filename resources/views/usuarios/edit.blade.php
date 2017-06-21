@@ -24,10 +24,6 @@
 						<button type="submit" class="btn btn-primary">
 							<i class="material-icons">done</i> Actualizar
 						</button>
-						<a class="btn btn-primary" 
-							href="{{ back()->getTargetUrl() }}">
-							<i class="material-icons">close</i> Salir
-						</a>
 					</div>
 					
 			</div>

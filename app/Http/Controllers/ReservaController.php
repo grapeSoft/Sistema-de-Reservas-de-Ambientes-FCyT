@@ -230,10 +230,15 @@ class ReservaController extends Controller
     }
 
     public function updateConfig(Request $request){
+        $this->validate($request, [
+            'tipo' => 'required',
+            'numeroPeriodos' => 'required|numeric|min:1|max:10',
+            'numeroParticipantes' => 'required|numeric|min:25|max:500',
+        ]);
         $tipo_reserva = TipoReserva::updateOrCreate(
             ['tipo' => $request->tipo],
             ['max_nro_periodos' => $request->numeroPeriodos,
-             'max_nro_participantes' => $request->numeroParticipantes,
+             'min_nro_participantes' => $request->numeroParticipantes,
             ]
         );
         return redirect()

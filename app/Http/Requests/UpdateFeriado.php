@@ -28,4 +28,10 @@ class UpdateFeriado extends FormRequest
             'titulo' => 'required',
         ];
     }
+
+    public function messages(){
+        return [
+            'fecha.exists' => 'La fecha no es valida, debe configurar previamente una gestion para poder configurar el feriado',
+        ];
+    }
 }
