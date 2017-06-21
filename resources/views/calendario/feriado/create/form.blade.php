@@ -7,16 +7,30 @@
                     <h4 class="modal-title">Formulario de Feriado</h4>
                 </div>
                 <div class="modal-body">                    
-                        <div class="form-group">
-                            {!! Form::label('titulo', 'Nombre feriado', ['class' => 'control-label col-md-3']) !!}
+                        @if($errors->has('titulo'))
+                            <div class="form-group has-error">
+                        @else
+                            <div class="form-group">
+                        @endif
+                            {!! Form::label('titulo', 'Nombre', ['class' => 'control-label col-md-3']) !!}
                             <div class="col-md-8">
                                 {!! Form::text('titulo', null, ['class' => 'form-control']) !!}
+                                <div class="help-block">
+                                    {{ $errors->first('titulo') }}
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group">
+                        @if($errors->has('fecha'))
+                            <div class="form-group has-error">
+                        @else
+                            <div class="form-group">
+                        @endif
                             {!! Form::label('fecha', 'Fecha', ['class' => 'control-label col-md-3']) !!}
                             <div class="col-md-8">
                                 {!! Form::date('fecha', null, ['class' => 'form-control']) !!}
+                                <div class="help-block">
+                                    {{ $errors->first('fecha') }}
+                                </div>
                             </div>
                         </div>
                 </div> 	

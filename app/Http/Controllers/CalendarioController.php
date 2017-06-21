@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateConfigCalendario;
-use App\Http\Requests\UpdateFeriado;
 use App\Model\Calendario;
 use App\Model\Fecha;
 use App\Model\Horas;

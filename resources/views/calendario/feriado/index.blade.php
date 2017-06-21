@@ -11,41 +11,49 @@
 	</div>
 	@include('calendario.feriado.create.form')
 	@if(session('mensaje'))
-		<div class="alert alert-success">
+		<div class="alert alert-dismissible alert-success">
+			<button type="button" class="close" data-dismiss="alert">×</button>
 			{{ session('mensaje') }}
 		</div>
 	@endif
-	<!--<h4 class="text-center" style="margin-top: 20px;">Feriados</h4>-->
-	<div class="row">
-		<div class="col-md-12" style="margin-top: 15px;">
-			<div class="table-responsive">
-			<table class="table table-striped table-hover table-bordered">
-				<thead>
-					<tr>
-						<th>Nombre</th>
-						<th>Fecha</th>
-						<th>Opciones</th> 
-					</tr>
-				</thead>
-				<tbody>
-				@foreach($feriados as $feriado)		
-					<tr>
-						<td>{{ $feriado->descripcion}}</td>
-						<td>{{ $feriado->id_fecha}}</td>
-						<td>
-							<a href="" data-target="#form-delete-{{$feriado->id_fecha}}" data-toggle="modal" class="btn btn-fab btn-fab-mini btn-danger" title="Eliminar">
-								<i class="material-icons md-18">delete</i>
-							</a>
-						</td>
-					</tr>
-				@include('calendario.feriado.delete.form')
-				@endforeach
-				</tbody>
-			</table>
-			<div class="alert alert-dismissible alert-info">
-				<p>No se creo aun ningun feriado</p>
-			</div>
-			</div>
+	@if(count($feriados)===0)
+		<div class="alert alert-dismissible alert-info">
+			<button type="button" class="close" data-dismiss="alert">×</button>
+			<p>Ningun Feriado registrado</p>
 		</div>
+	@endif
+	<div class="table-responsive">
+		<table class="table table-striped table-hover table-bordered">
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Fecha</th>
+					<th>Opciones</th> 
+				</tr>
+			</thead>
+			<tbody>
+			@foreach($feriados as $feriado)		
+				<tr>
+					<td>{{ $feriado->descripcion}}</td>
+					<td>{{ $feriado->id_fecha}}</td>
+					<td>
+						<a href="" data-target="#form-delete-{{$feriado->id_fecha}}" data-toggle="modal" class="btn btn-fab btn-fab-mini btn-danger" title="Eliminar">
+							<i class="material-icons md-18">delete</i>
+						</a>
+					</td>
+				</tr>
+			@include('calendario.feriado.delete.form')
+			@endforeach
+			</tbody>
+		</table>
 	</div>
+@endsection
+@section('script')
+    @if($errors->has('titulo') || $errors->has('fecha'))
+        <script type="text/javascript">
+            $(document).ready(function(){
+            $('#form-create').modal('show');
+        });
+        </script>
+    @endif
 @endsection
