@@ -8,9 +8,9 @@
                 </div>
                 <div class="modal-body">                    
                         @if($errors->has('titulo'))
-                            <div class="form-group has-error">
+                            <div class="form-group has-error" style="margin-top: 0;">
                         @else
-                            <div class="form-group">
+                            <div class="form-group" style="margin-top: 0;">
                         @endif
                             {!! Form::label('titulo', 'Nombre', ['class' => 'control-label col-md-3']) !!}
                             <div class="col-md-8">

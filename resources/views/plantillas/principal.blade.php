@@ -35,11 +35,13 @@
 		@include('plantillas.menu-doc')
 		@endif
 	@endif
-	<article style="padding-bottom: 70px;">
+	<article>
 		<!-- <div class="container"> -->
 		@yield('contenido')		
 		<!-- </div> -->
 	</article>
+	<div class="hidden-xs" style="padding-bottom: 70px;">
+	</div>
 	@if(Auth::check())
 	@include('plantillas.pie')	
 	@endif
