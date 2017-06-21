@@ -20,9 +20,6 @@
 					@yield('contenido-principal-admin')
 	            </div>
 	            @yield('contenido-principal-admin-offbody')
-	            <div class="panel-footer">
-	            	@yield('panel-footer')
-	            </div>
         	</div>
 		</div>
     </div>

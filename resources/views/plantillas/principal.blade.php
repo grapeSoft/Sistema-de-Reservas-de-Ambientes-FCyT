@@ -35,7 +35,7 @@
 		@include('plantillas.menu-doc')
 		@endif
 	@endif
-	<article id="contenido"style="padding-bottom: 70px;">
+	<article style="padding-bottom: 70px;">
 		<!-- <div class="container"> -->
 		@yield('contenido')		
 		<!-- </div> -->

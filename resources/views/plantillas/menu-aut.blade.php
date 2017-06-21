@@ -11,7 +11,8 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="{{ route('principal.inicio') }}">Sistema de Reservas<!-- <img alt="Inicio" src="{!! asset('img/logo1.png') !!}"style = "max-height:35px;"> --></a>
+			<a class="navbar-brand hidden-xs" href="{{ route('principal.inicio') }}">Inicio<!-- <img alt="Inicio" src="{!! asset('img/logo1.png') !!}"style = "max-height:35px;"> --></a>
+			<a class="navbar-brand visible-xs" href="{{ route('principal.inicio') }}">Sistema de Reservas</a>
 		</div>
 		<div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
 			<ul class="nav navbar-nav">
