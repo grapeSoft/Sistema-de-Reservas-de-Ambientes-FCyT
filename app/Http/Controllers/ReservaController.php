@@ -253,9 +253,26 @@ class ReservaController extends Controller
         $fecha_fin = null;
         $hora_ini = null;
         $hora_fin = null;
+        $usuarios = null;
 
         if ($request->nombre) {
             $nombre = $request->nombre;
+            $users = Usuario::all();
+
+            foreach ($users as $user) {
+
+                $nombre_completo = $user->nombre." ".$user->apellido_paterno." ".$user->apellido_materno;
+                $nombre = strtolower($nombre);
+                $nombre_completo = strtolower($nombre_completo);
+                $comparacion = strpos($nombre_completo, $nombre);
+                
+                if ($comparacion !== false) {
+                    $usuarios[] = $user;
+                }
+                //dd($nombre_completo." ".$nombre);
+            }
+            
+            //echo(  );
 
             if ($request->filtrado) {
                 //dd($request->fecha_inicial);
@@ -274,11 +291,11 @@ class ReservaController extends Controller
 
                             if ( strtotime($hora_ini) <= strtotime($hora_fin) ) {
                                 
-                                $nombre = $request->nombre;
+                                /**$nombre = $request->nombre;
                                 $usuarios = Usuario::where('nombre', 'LIKE', '%'.$nombre.'%')
                                     ->orWhere('apellido_paterno', 'LIKE', '%'.$nombre.'%')
                                     ->orWhere('apellido_materno', 'LIKE', '%'.$nombre.'%')
-                                    ->get();
+                                    ->get();*/
                                 //dd($res);
 
                                 foreach ($usuarios as $usuario) {
@@ -313,11 +330,11 @@ class ReservaController extends Controller
                             
                         }else{
 
-                            $nombre = $request->nombre;
+                            /**$nombre = $request->nombre;
                             $usuarios = Usuario::where('nombre', 'LIKE', '%'.$nombre.'%')
                                 ->orWhere('apellido_paterno', 'LIKE', '%'.$nombre.'%')
                                 ->orWhere('apellido_materno', 'LIKE', '%'.$nombre.'%')
-                                ->get();
+                                ->get();*/
 
 
                             foreach ($usuarios as $usuario) {
@@ -352,11 +369,11 @@ class ReservaController extends Controller
 
                             if ( strtotime($hora_ini) <= strtotime($hora_fin) ) {
                                 
-                                $nombre = $request->nombre;
+                                /**$nombre = $request->nombre;
                                 $usuarios = Usuario::where('nombre', 'LIKE', '%'.$nombre.'%')
                                     ->orWhere('apellido_paterno', 'LIKE', '%'.$nombre.'%')
                                     ->orWhere('apellido_materno', 'LIKE', '%'.$nombre.'%')
-                                    ->get();
+                                    ->get();*/
                                 //dd($res);
 
                                 foreach ($usuarios as $usuario) {
@@ -385,11 +402,11 @@ class ReservaController extends Controller
                             
                     }else{
 
-                        $nombre = $request->nombre;
+                        /**$nombre = $request->nombre;
                         $usuarios = Usuario::where('nombre', 'LIKE', '%'.$nombre.'%')
                             ->orWhere('apellido_paterno', 'LIKE', '%'.$nombre.'%')
                             ->orWhere('apellido_materno', 'LIKE', '%'.$nombre.'%')
-                            ->get();
+                            ->get();*/
 
                         
                         foreach ($usuarios as $usuario) {
@@ -403,11 +420,11 @@ class ReservaController extends Controller
 
             } else {
 
-                $nombre = $request->nombre;
+                /**$nombre = $request->nombre;
                 $usuarios = Usuario::where('nombre', 'LIKE', '%'.$nombre.'%')
                     ->orWhere('apellido_paterno', 'LIKE', '%'.$nombre.'%')
                     ->orWhere('apellido_materno', 'LIKE', '%'.$nombre.'%')
-                    ->get();
+                    ->get();*/
 
                 
                 foreach ($usuarios as $usuario) {
