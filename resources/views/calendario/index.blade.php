@@ -19,6 +19,11 @@
 @section('contenido-principal-calendario')
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
+			@if(session('mensaje'))
+				<div class="alert alert-success">
+					{{ session('mensaje') }}
+				</div>
+			@endif
 			<div class="cuerpo">
 				<div id='calendar'></div>
 			</div>

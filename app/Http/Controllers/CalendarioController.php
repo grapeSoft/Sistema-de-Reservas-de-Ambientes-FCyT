@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreConfigCalendario;
 use App\Http\Requests\UpdateConfigCalendario;
 use App\Http\Requests\UpdateFeriado;
 use App\Model\Calendario;
@@ -197,56 +198,200 @@ class CalendarioController extends Controller
     
     public function config()
     {
-        return view('calendario.config');
+        $gestiones = Calendario::all();
+        $gestion = null;
+        return view('calendario.config.create', compact('gestiones', 'gestion'));
     }
-    public function updateConfig(UpdateConfigCalendario $request)
+    public function createConfig(StoreConfigCalendario $request)
     {
-        $calendario = Calendario::updateOrcreate(
-            ['gestion' => $request->gestion],
-            ['fecha_inicio' => $request->fecha_inicial,
+        $gestion = Calendario::create([
+            'gestion' => $request->gestion,
+            'fecha_inicio' => $request->fecha_inicial,
             'fecha_fin' => $request->fecha_final,
         ]);
 
         $fechaInicio = Carbon::createFromFormat('Y-m-d', $request->fecha_inicial, 'Etc/GMT-4');
         $fechaFin = Carbon::createFromFormat('Y-m-d', $request->fecha_final, 'Etc/GMT-4');
         $fechaActual = $fechaInicio;
+        $fechaFin->addDay(1);
 
+        $this->agregarFechas($fechaActual, $fechaFin, $gestion);
 
-        foreach($calendario->fechas as $fecha){
-            $fecha->horas()->detach();
-        }
-
-        Fecha::where('id_calendario', $calendario->id_calendario)->delete();
-
-        while($fechaActual <= $fechaFin ){
-            if(!$fechaActual->isSunday())
-                $calendario->fechas()->Create([
-                    'id_fecha' => $fechaActual->toDateString(),
-                    'tipo' => "Normal",
-                ]);
-            $fechaActual->addDay(1);
-        }
-
-        $periodo1 = $calendario->periodos()->updateOrcreate([
-            'nombre' => "Primer Ciclo"],[
+        $gestion->periodos()->create([
+            'nombre' => "Primer Ciclo",
             'fecha_inicio' => $request->primer_parcial_ini,
             'fecha_fin' => $request->primer_parcial_fin,
         ]);
 
-        $periodo2 = $calendario->periodos()->updateOrcreate([
-            'nombre' => "Segundo Ciclo"],[
+        $gestion->periodos()->create([
+            'nombre' => "Segundo Ciclo",
             'fecha_inicio' => $request->segundo_parcial_ini,
             'fecha_fin' => $request->segundo_parcial_fin,
         ]);
 
-        foreach(Fecha::where('id_calendario', $calendario->id_calendario)->get() as $fecha)
-        {
-            foreach(Horas::all() as $hora) {
-                $fecha->horas()->attach($hora->id_horas, ['id_ambiente' => 1, 'estado' => "Libre"]);
+        return redirect()->route('calendario.index')->with('mensaje', 'Se ha configurado correctamente el calendario academico');
+    }
+
+    public function updateConfig(UpdateConfigCalendario $request, $id){
+        $gestion = Calendario::findOrFail($id);
+        $fechaInicioAnterior = Carbon::createFromFormat('Y-m-d', $gestion->fecha_inicio, 'Etc/GMT-4');
+        $fechaFinAnterior = Carbon::createFromFormat('Y-m-d', $gestion->fecha_fin, 'Etc/GMT-4');
+
+        $fechaInicio = Carbon::createFromFormat('Y-m-d', $request->fecha_inicial, 'Etc/GMT-4');
+        $fechaFin = Carbon::createFromFormat('Y-m-d', $request->fecha_final, 'Etc/GMT-4');
+        $fechaActual = null;
+        $fecha = null;
+        $reservas = false;
+        $fechaVerificacion = null;
+
+        if($fechaInicio>$fechaInicioAnterior){
+            $fechaVerificacion = clone $fechaInicioAnterior;
+            $fecha = Fecha::find($fechaVerificacion->toDateString());
+            while($fechaVerificacion<$fechaInicio && !$reservas){
+                if(!$fechaVerificacion->isSunday() && $fecha) {
+                    if ($fecha->reservas->first()) {
+                        $reservas = true;
+                    }
+                }
+                $fechaVerificacion->addDay(1);
+                $fecha = Fecha::find($fechaVerificacion->toDateString());
             }
         }
 
-        return redirect()->route('calendario.index', compact('calendario', 'periodo1', 'periodo2'))->with('mensaje', 'Se ha configurado correctamente el calendario academico');
+        if($fechaFin<$fechaFinAnterior){
+            $fechaVerificacion = clone $fechaFin;
+            $fechaVerificacion->addDay(1);
+            $fecha = Fecha::find($fechaVerificacion->toDateString());
+            while($fechaVerificacion<$fechaFinAnterior && !$reservas){
+                if(!$fechaVerificacion->isSunday() && $fecha) {
+                    if ($fecha->reservas->first()) {
+                        $reservas = true;
+                    }
+                }
+                $fechaVerificacion->addDay(1);
+                $fecha = Fecha::find($fechaVerificacion->toDateString());
+            }
+        }
+
+        if($reservas){
+            return redirect()->back()->with('mensaje', 'No es posible editar la gestion debido a que existen reservas almacenadas');
+        }
+
+        $gestion->update([
+            'fecha_inicio' => $request->fecha_inicial,
+            'fecha_fin' => $request->fecha_final,
+        ]);
+
+        $gestion->primerCiclo()->update([
+            'fecha_inicio' => $request->primer_parcial_ini,
+            'fecha_fin' => $request->primer_parcial_fin,
+        ]);
+
+        $gestion->segundoCiclo()->update([
+            'fecha_inicio' => $request->segundo_parcial_ini,
+            'fecha_fin' => $request->segundo_parcial_fin,
+        ]);
+
+        if($fechaInicio>$fechaInicioAnterior){
+            $fechaActual= clone $fechaInicioAnterior;
+            $this->borrarFechas($fechaActual, $fechaInicio, $gestion);
+        }
+        if($fechaFin<$fechaFinAnterior){
+            $fechaActual= clone $fechaFin;
+            $fechaActual->addDay(1);
+            $fechaCopia = clone $fechaFinAnterior;
+            $fechaCopia->addDay(1);
+            $this->borrarFechas($fechaActual, $fechaCopia, $gestion);
+        }
+        if($fechaInicio<$fechaInicioAnterior){
+            $fechaActual= clone $fechaInicio;
+            if($fechaFin<$fechaInicioAnterior){
+                $fechaFin->addDay(1);
+                $this->agregarFechas($fechaActual, $fechaFin, $gestion);
+            }
+            else {
+                $this->agregarFechas($fechaActual, $fechaInicioAnterior, $gestion);
+            }
+        }
+        if($fechaFin>$fechaFinAnterior){
+            if($fechaInicio>$fechaFinAnterior){
+                $fechaActual = clone $fechaInicio;
+            }
+            else {
+                $fechaActual = clone $fechaFinAnterior;
+                $fechaActual->addDay(1);
+            }
+            $fechaCopia = clone $fechaFin;
+            $fechaCopia->addDay(1);
+            $this->agregarFechas($fechaActual, $fechaCopia, $gestion);
+        }
+
+        return redirect()->route('calendario.index')->with('mensaje', 'Se ha actualizado correctamente la configuracion del calendario academico');
+    }
+
+    public function editConfig($id){
+        $gestiones = Calendario::all();
+        $gestion = Calendario::findOrFail($id);
+        return view('calendario.config.edit', compact('gestion', 'gestiones'));
+    }
+
+    public function deleteConfig($id){
+        $gestion = Calendario::findOrFail($id);
+        $inicio = Carbon::createFromFormat('Y-m-d', $gestion->fecha_inicio, 'Etc/GMT-4');
+        $fin = Carbon::createFromFormat('Y-m-d', $gestion->fecha_fin, 'Etc/GMT-4');
+
+        $inicioGestion = clone $inicio;
+        $finGestion = clone $fin;
+        $fechaActual = clone $inicioGestion;
+        $fecha=null;
+        $reservas=false;
+
+        while(!$reservas && $fechaActual<=$finGestion){
+            $fecha = Fecha::find($fechaActual->toDateString());
+            if(!$fechaActual->isSunday() && $fecha) {
+                if ($fecha->reservas->first()) {
+                    $reservas = true;
+                }
+            }
+            $fechaActual->addDay(1);
+        }
+        if($reservas){
+            return redirect()->back()->with('mensaje', 'No es posible eliminar la gestion debido a que existen reservas almacenadas');
+        }
+        else{
+            $fin->addDay(1);
+            $this->borrarFechas($inicio, $fin, $gestion);
+            PeriodoExamen::where('id_calendario', $gestion->id_calendario)->delete();
+            $gestion->delete();
+            return redirect()->route('calendario.index')->with('mensaje', 'Se ha eliminado correctamente la gestion');
+        }
+    }
+
+    private function agregarFechas($inicio, $fin, $calendario){
+        while($inicio < $fin ){
+            if(!$inicio->isSunday()) {
+                $fecha = $calendario->fechas()->Create([
+                    'id_fecha' => $inicio->toDateString(),
+                    'tipo' => "Normal",
+                ]);
+                foreach(Horas::all() as $hora) {
+                    $fecha->horas()->attach($hora->id_horas, ['id_ambiente' => 1, 'estado' => "Libre"]);
+                }
+            }
+            $inicio->addDay(1);
+        }
+    }
+
+    private function borrarFechas($inicio, $fin, $gestion){
+        $fecha=Fecha::find($inicio->toDateString());
+        while($inicio<$fin){
+            if(!$inicio->isSunday() && $fecha) {
+                $fecha->horas()->detach();
+                $fecha->delete();
+            }
+            $inicio->addDay(1);
+            $fecha = Fecha::find($inicio->toDateString());
+        }
     }
 
     public function colorRandom()
