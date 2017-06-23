@@ -262,7 +262,7 @@ class CalendarioController extends Controller
             $fechaVerificacion = clone $fechaFin;
             $fechaVerificacion->addDay(1);
             $fecha = Fecha::find($fechaVerificacion->toDateString());
-            while($fechaVerificacion<$fechaFinAnterior && !$reservas){
+            while($fechaVerificacion<=$fechaFinAnterior && !$reservas){
                 if(!$fechaVerificacion->isSunday() && $fecha) {
                     if ($fecha->reservas->first()) {
                         $reservas = true;
