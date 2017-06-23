@@ -222,7 +222,7 @@ class UsuarioController extends Controller
         $this->enviarEmail2($usuario,$password);
         return redirect()
             ->route('usuarios.login')
-            ->with('mensaje', 'Se le envio mensaje con sus datos revise su email..¡¡');
+            ->with('mensaje', 'Se le envio un mensaje con sus datos revise su correo');
 
         }
     }

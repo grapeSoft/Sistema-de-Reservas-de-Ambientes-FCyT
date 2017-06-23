@@ -34,8 +34,10 @@
 					<div>
 						<a href="{{ route('usuarios.recuperarC') }}" class="label-link"> Olvidaste tu contraseña? </a>
 					</div>
-					<div class="text-center">
-						<button type="submit" class="btn btn-primary btn-raised">Ingresar</button>
+					<div class="form-group" style="margin-top: 14px;">
+						<div class="text-center">
+							<button type="submit" class="btn btn-primary btn-raised">Ingresar</button>
+						</div>
 					</div>
 				{!! Form::close() !!}
 			</div>
