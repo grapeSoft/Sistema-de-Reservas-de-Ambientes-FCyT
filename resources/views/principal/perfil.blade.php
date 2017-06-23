@@ -37,7 +37,7 @@
 			</div>
 		</div>	
 		<div class="panel-footer text-center">
-			<a href="{{ route('usuarios.edit', ['id' => $usuario->id_usuario]) }}" class="btn btn-raised btn-primary">
+			<a href="{{ route('usuarios.edit', ['id' => $usuario->id_usuario]) }}" class="btn btn-raised btn-primary btn-sm">
 				<i class="material-icons">autorenew</i>Editar
 			</a>
 		</div>
