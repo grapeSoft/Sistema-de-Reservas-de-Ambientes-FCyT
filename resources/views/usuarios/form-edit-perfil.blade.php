@@ -6,7 +6,7 @@
 @endif
         {!! Form::label('foto', 'Foto', ['class' => 'control-label col-md-2']) !!}
         <div class="col-md-10">
-            {!! Form::text(null, null, ['class' => 'form-control', 'placeholder' => 'Subir imagen...', 'readonly' => '']) !!}
+            {!! Form::text('foto', null, ['class' => 'form-control', 'placeholder' => 'Subir imagen...', 'readonly' => '']) !!}
             {!! Form::file('foto', ['class' => 'form-control', 'accept' => 'image/*']) !!}
             <div class="help-block">
                 {{ $errors->first('foto') }}
@@ -26,7 +26,7 @@
             </div>
         </div>
     </div>
-@if($errors->has('password'))
+<!--@if($errors->has('password'))
     <div class="form-group has-error">
 @else
     <div class="form-group">
@@ -48,4 +48,4 @@
         <div class="col-md-10">
             {!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
         </div>
-    </div>
+    </div>-->
