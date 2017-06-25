@@ -24,4 +24,8 @@ class Fecha extends Model
     {
         return $this->belongsToMany('App\Model\Horas', 'horario', 'id_fecha', 'id_horas');
     }
+
+    public function reservas(){
+        return $this->belongsToMany('App\Model\Reserva', 'horario', 'id_fecha', 'id_reserva');
+    }
 }

@@ -2,11 +2,10 @@
 
 namespace App\Http\Requests;
 
-use App\Model\Calendario;
 use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateConfigCalendario extends FormRequest
+class StoreConfigCalendario extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,16 +24,14 @@ class UpdateConfigCalendario extends FormRequest
      */
     public function rules()
     {
-        $id = explode('/', request()->path(), 3)[2];
-        $gestion = Calendario::findOrFail($id);
         $fecha=null;
         if(request()->input('fecha_inicial'))
             $fecha = Carbon::createFromFormat('Y-m-d', request()->input('fecha_inicial'), 'Etc/GMT-4')->addYear();
 
         return [
-            'gestion' => ['required', 'unique:calendario,gestion,'.$gestion->id_calendario.',id_calendario','regex:/^[1-2]-201[7-9]$|^[1-2]-20[2-9][0-9]$/'],
-            'fecha_inicial' => 'required|date|before:fecha_final|unique:fecha,id_fecha,'.$gestion->id_calendario.',id_calendario',
-            'fecha_final' => 'required|date|after:fecha_inicial|before:'.$fecha.'|unique:fecha,id_fecha,'.$gestion->id_calendario.',id_calendario',
+            'gestion' => ['required', 'unique:calendario,gestion', 'regex:/^[1-2]-201[7-9]$|^[1-2]-20[2-9][0-9]$/'],
+            'fecha_inicial' => 'required|date|before:fecha_final|unique:fecha,id_fecha',
+            'fecha_final' => 'required|date|after:fecha_inicial|before:'.$fecha.'|unique:fecha,id_fecha',
             'primer_parcial_ini' => 'required|date|before:primer_parcial_fin|after:fecha_inicial',
             'primer_parcial_fin' => 'required|date|before:segundo_parcial_ini|after:primer_parcial_ini',
             'segundo_parcial_ini' => 'required|date|before:segundo_parcial_fin|after:primer_parcial_fin',
@@ -55,3 +52,4 @@ class UpdateConfigCalendario extends FormRequest
         ];
     }
 }
+

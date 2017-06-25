@@ -24,4 +24,12 @@ class Calendario extends Model
     {
         return $this->hasMany('App\Model\PeriodoExamen', 'id_calendario');
     }
+
+    public function primerCiclo(){
+        return $this->periodos()->where('nombre','Primer Ciclo')->first();
+    }
+
+    public function segundoCiclo(){
+        return $this->periodos()->where('nombre','Segundo Ciclo')->first();
+    }
 }

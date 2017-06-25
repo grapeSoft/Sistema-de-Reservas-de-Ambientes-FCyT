@@ -36,8 +36,13 @@ Route::resource('reservas', 'ReservaController');
 Route::post('registros', 'UsuarioController@registrarUsuarios')->name('usuarios.registrarUsuarios');
 Route::post('reservas/filtrado', 'ReservaController@filtrado')->name('reservas.filtrado');
 
-Route::post('calendario/config', 'CalendarioController@updateConfig')->name('calendario.updateConfig');
+
+Route::put('calendario/config/{gestion}/', 'CalendarioController@updateConfig')->name('calendario.updateConfig');
+Route::get('calendario/config/{gestion}/edit', 'CalendarioController@editConfig')->name('calendario.editConfig');
+Route::delete('calendario/config/{gestion}', 'CalendarioController@deleteConfig')->name('calendario.deleteConfig');
+Route::post('calendario/config', 'CalendarioController@createConfig')->name('calendario.createConfig');
 Route::get('calendario/config', 'CalendarioController@config')->name('calendario.config');
+
 
 Route::get('crearpdf/{eventos}', 'PDFController@crearpdf')->name('crearpdf');
 Route::get('descargarpdf/{eventos}', 'PDFController@descargarpdf')->name('descargarpdf');
