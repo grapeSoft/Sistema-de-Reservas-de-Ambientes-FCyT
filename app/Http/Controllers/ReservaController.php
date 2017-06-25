@@ -227,171 +227,194 @@ class ReservaController extends Controller
         $fecha_fin = null;
         $hora_ini = null;
         $hora_fin = null;
+        $usuarios = null;
 
         if ($request->nombre) {
             $nombre = $request->nombre;
+            $users = Usuario::all();
 
-            if ($request->filtrado) {
-                //dd($request->fecha_inicial);
+            foreach ($users as $user) {
 
-                if ( $request->fecha_inicial != null && $request->fecha_final != null ) {
+                $nombre_completo = $user->nombre." ".$user->apellido_paterno." ".$user->apellido_materno;
+                $nombre = strtolower($nombre);
+                $nombre_completo = strtolower($nombre_completo);
+                $comparacion = strpos($nombre_completo, $nombre);
+                
+                if ($comparacion !== false) {
+                    $usuarios[] = $user;
+                }
+                
+            }
+            //dd($usuarios);
 
-                    $fecha_ini = $request->fecha_inicial;
-                    $fecha_fin = $request->fecha_final;
-                    
-                    if ( strtotime($fecha_ini) <= strtotime($fecha_fin) ) {
+            if ($usuarios != null) {
+                
+                if ($request->filtrado) {
+                    //dd($request->fecha_inicial);
 
-                        if ($request->hora_inicial != "00:00:00" && $request->hora_final != "24:00:00") {
-                            
-                            $hora_ini = $request->hora_inicial;
-                            $hora_fin = $request->hora_final;
+                    if ( $request->fecha_inicial != null && $request->fecha_final != null ) {
 
-                            if ( strtotime($hora_ini) <= strtotime($hora_fin) ) {
+                        $fecha_ini = $request->fecha_inicial;
+                        $fecha_fin = $request->fecha_final;
+                        
+                        if ( strtotime($fecha_ini) <= strtotime($fecha_fin) ) {
+
+                            if ($request->hora_inicial != "00:00:00" && $request->hora_final != "24:00:00") {
                                 
-                                $nombre = $request->nombre;
+                                $hora_ini = $request->hora_inicial;
+                                $hora_fin = $request->hora_final;
+
+                                if ( strtotime($hora_ini) <= strtotime($hora_fin) ) {
+                                    
+                                    /**$nombre = $request->nombre;
+                                    $usuarios = Usuario::where('nombre', 'LIKE', '%'.$nombre.'%')
+                                        ->orWhere('apellido_paterno', 'LIKE', '%'.$nombre.'%')
+                                        ->orWhere('apellido_materno', 'LIKE', '%'.$nombre.'%')
+                                        ->get();*/
+                                    //dd($res);
+
+                                    foreach ($usuarios as $usuario) {
+
+                                        foreach ($usuario->reserva as $reserva) {
+                                            
+                                            $start_ts = strtotime($fecha_ini);
+                                            $end_ts = strtotime($fecha_fin);
+                                            $fecha_actual = $reserva->horarios->first()->pivot->id_fecha;
+                                            $user_ts = strtotime($fecha_actual);
+
+                                            $start_time = strtotime($hora_ini);
+                                            $end_time = strtotime($hora_fin);
+                                            $hora_actual_inicio = $reserva->horarios->first()->hora_inicio;
+                                            $hora_actual_final = $reserva->horarios->last()->hora_fin;
+                                            $user_ts_ini = strtotime($hora_actual_inicio);
+                                            $user_ts_fin = strtotime($hora_actual_final);
+
+                                            if ( ( $user_ts >= $start_ts) && ($user_ts <= $end_ts) && ( $user_ts_ini >= $start_time) && ($user_ts_fin <= $end_time) ) {
+                                                
+                                                $reservas[] = $reserva;
+                                            }
+                                        }
+                                    }
+                                    
+                                }else{
+
+                                    //dd($reservas);
+                                    $horanovalida = "error";
+                                    return view('reservas.admin.index', compact('nombre', 'fecha_ini', 'fecha_fin', 'hora_ini', 'hora_fin', 'horanovalida'));
+                                }
+                                
+                            }else{
+
+                                /**$nombre = $request->nombre;
                                 $usuarios = Usuario::where('nombre', 'LIKE', '%'.$nombre.'%')
                                     ->orWhere('apellido_paterno', 'LIKE', '%'.$nombre.'%')
                                     ->orWhere('apellido_materno', 'LIKE', '%'.$nombre.'%')
-                                    ->get();
-                                //dd($res);
+                                    ->get();*/
+
 
                                 foreach ($usuarios as $usuario) {
 
                                     foreach ($usuario->reserva as $reserva) {
-                                        
+                                            
                                         $start_ts = strtotime($fecha_ini);
                                         $end_ts = strtotime($fecha_fin);
                                         $fecha_actual = $reserva->horarios->first()->pivot->id_fecha;
                                         $user_ts = strtotime($fecha_actual);
 
-                                        $start_time = strtotime($hora_ini);
-                                        $end_time = strtotime($hora_fin);
-                                        $hora_actual_inicio = $reserva->horarios->first()->hora_inicio;
-                                        $hora_actual_final = $reserva->horarios->last()->hora_fin;
-                                        $user_ts_ini = strtotime($hora_actual_inicio);
-                                        $user_ts_fin = strtotime($hora_actual_final);
-
-                                        if ( ( $user_ts >= $start_ts) && ($user_ts <= $end_ts) && ( $user_ts_ini >= $start_time) && ($user_ts_fin <= $end_time) ) {
-                                            
+                                        if ( ( $user_ts >= $start_ts) && ($user_ts <= $end_ts) ) {
+                                                
                                             $reservas[] = $reserva;
                                         }
                                     }
                                 }
-                                
-                            }else{
-
-                                //dd($reservas);
-                                $horanovalida = "error";
-                                return view('reservas.admin.index', compact('nombre', 'fecha_ini', 'fecha_fin', 'hora_ini', 'hora_fin', 'horanovalida'));
                             }
-                            
+                        
                         }else{
 
-                            $nombre = $request->nombre;
+                            $fechanovalida = "error";
+                            return view('reservas.admin.index', compact('nombre', 'fecha_ini', 'fecha_fin', 'fechanovalida'));
+                        }
+
+                    }else{
+
+                        if ($request->hora_inicial != "00:00:00" && $request->hora_final != "24:00:00") {
+                                
+                                $hora_ini = $request->hora_inicial;
+                                $hora_fin = $request->hora_final;
+
+                                if ( strtotime($hora_ini) <= strtotime($hora_fin) ) {
+                                    
+                                    /**$nombre = $request->nombre;
+                                    $usuarios = Usuario::where('nombre', 'LIKE', '%'.$nombre.'%')
+                                        ->orWhere('apellido_paterno', 'LIKE', '%'.$nombre.'%')
+                                        ->orWhere('apellido_materno', 'LIKE', '%'.$nombre.'%')
+                                        ->get();*/
+                                    //dd($res);
+
+                                    foreach ($usuarios as $usuario) {
+
+                                        foreach ($usuario->reserva as $reserva) {
+
+                                            $start_time = strtotime($hora_ini);
+                                            $end_time = strtotime($hora_fin);
+                                            $hora_actual_inicio = $reserva->horarios->first()->hora_inicio;
+                                            $hora_actual_final = $reserva->horarios->last()->hora_fin;
+                                            $user_ts_ini = strtotime($hora_actual_inicio);
+                                            $user_ts_fin = strtotime($hora_actual_final);
+
+                                            if ( ($user_ts_ini >= $start_time) && ($user_ts_fin <= $end_time) ) {
+                                                
+                                                $reservas[] = $reserva;
+                                            }
+                                        }
+                                    }
+                                    //dd($reservas);
+                                }else{
+
+                                    $horanovalida = "error";
+                                    return view('reservas.admin.index', compact('nombre', 'hora_ini', 'hora_fin', 'horanovalida'));
+                                }
+                                
+                        }else{
+
+                            /**$nombre = $request->nombre;
                             $usuarios = Usuario::where('nombre', 'LIKE', '%'.$nombre.'%')
                                 ->orWhere('apellido_paterno', 'LIKE', '%'.$nombre.'%')
                                 ->orWhere('apellido_materno', 'LIKE', '%'.$nombre.'%')
-                                ->get();
+                                ->get();*/
 
-
+                            
                             foreach ($usuarios as $usuario) {
-
                                 foreach ($usuario->reserva as $reserva) {
-                                        
-                                    $start_ts = strtotime($fecha_ini);
-                                    $end_ts = strtotime($fecha_fin);
-                                    $fecha_actual = $reserva->horarios->first()->pivot->id_fecha;
-                                    $user_ts = strtotime($fecha_actual);
-
-                                    if ( ( $user_ts >= $start_ts) && ($user_ts <= $end_ts) ) {
-                                            
-                                        $reservas[] = $reserva;
-                                    }
+                                    $reservas[] = $reserva;
                                 }
                             }
                         }
-                    
-                    }else{
-
-                        $fechanovalida = "error";
-                        return view('reservas.admin.index', compact('nombre', 'fecha_ini', 'fecha_fin', 'fechanovalida'));
-                    }
-
-                }else{
-
-                    if ($request->hora_inicial != "00:00:00" && $request->hora_final != "24:00:00") {
-                            
-                            $hora_ini = $request->hora_inicial;
-                            $hora_fin = $request->hora_final;
-
-                            if ( strtotime($hora_ini) <= strtotime($hora_fin) ) {
-                                
-                                $nombre = $request->nombre;
-                                $usuarios = Usuario::where('nombre', 'LIKE', '%'.$nombre.'%')
-                                    ->orWhere('apellido_paterno', 'LIKE', '%'.$nombre.'%')
-                                    ->orWhere('apellido_materno', 'LIKE', '%'.$nombre.'%')
-                                    ->get();
-                                //dd($res);
-
-                                foreach ($usuarios as $usuario) {
-
-                                    foreach ($usuario->reserva as $reserva) {
-
-                                        $start_time = strtotime($hora_ini);
-                                        $end_time = strtotime($hora_fin);
-                                        $hora_actual_inicio = $reserva->horarios->first()->hora_inicio;
-                                        $hora_actual_final = $reserva->horarios->last()->hora_fin;
-                                        $user_ts_ini = strtotime($hora_actual_inicio);
-                                        $user_ts_fin = strtotime($hora_actual_final);
-
-                                        if ( ($user_ts_ini >= $start_time) && ($user_ts_fin <= $end_time) ) {
-                                            
-                                            $reservas[] = $reserva;
-                                        }
-                                    }
-                                }
-                                //dd($reservas);
-                            }else{
-
-                                $horanovalida = "error";
-                                return view('reservas.admin.index', compact('nombre', 'hora_ini', 'hora_fin', 'horanovalida'));
-                            }
-                            
-                    }else{
-
-                        $nombre = $request->nombre;
-                        $usuarios = Usuario::where('nombre', 'LIKE', '%'.$nombre.'%')
-                            ->orWhere('apellido_paterno', 'LIKE', '%'.$nombre.'%')
-                            ->orWhere('apellido_materno', 'LIKE', '%'.$nombre.'%')
-                            ->get();
-
                         
-                        foreach ($usuarios as $usuario) {
-                            foreach ($usuario->reserva as $reserva) {
-                                $reservas[] = $reserva;
-                            }
+                    }
+
+                } else {
+
+                    /**$nombre = $request->nombre;
+                    $usuarios = Usuario::where('nombre', 'LIKE', '%'.$nombre.'%')
+                        ->orWhere('apellido_paterno', 'LIKE', '%'.$nombre.'%')
+                        ->orWhere('apellido_materno', 'LIKE', '%'.$nombre.'%')
+                        ->get();*/
+
+                    
+                    foreach ($usuarios as $usuario) {
+                        foreach ($usuario->reserva as $reserva) {
+                            $reservas[] = $reserva;
                         }
                     }
+
+                    //dd($reservas);
                     
                 }
 
-            } else {
+            }else{
 
-                $nombre = $request->nombre;
-                $usuarios = Usuario::where('nombre', 'LIKE', '%'.$nombre.'%')
-                    ->orWhere('apellido_paterno', 'LIKE', '%'.$nombre.'%')
-                    ->orWhere('apellido_materno', 'LIKE', '%'.$nombre.'%')
-                    ->get();
-
-                
-                foreach ($usuarios as $usuario) {
-                    foreach ($usuario->reserva as $reserva) {
-                        $reservas[] = $reserva;
-                    }
-                }
-
-                //dd($reservas);
-                
+                return view('reservas.admin.index', compact('nombre', 'fecha_ini', 'fecha_fin', 'hora_ini', 'hora_fin'));
             }
 
             
