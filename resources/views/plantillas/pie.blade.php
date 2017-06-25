@@ -1,9 +1,14 @@
 <footer class="navbar navbar-fixed-bottom hidden-xs">
 	<div class="container-fluid">
 		<div class="row">
-				<div class="col-md-6 col-md-offset-3 text-center">
-					<h4>Sistema de Reservas para la FCyT - UMSS</h4>
-					<h5>2017</h5>
+			<div class="col-md-6">
+				<h5>Copyright &copy;2017 
+				<a href="mailto:grapesoftbolivia@gmail.com" class="label-link" style="color:#EDE7F6;">
+				<img src="{!! asset('img/logo-footer.png') !!}" alt="Logo" height="45px" width="110px">.</a>
+				Todos los derechos reservados</h5>
+				</div>
+				<div class="col-md-6 text-right" style="padding-top: 21px;">
+					<strong>Version</strong> 1.0
 				</div>
 		</div>
 	</div>

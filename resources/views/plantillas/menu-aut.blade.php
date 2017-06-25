@@ -18,6 +18,7 @@
 			<ul class="nav navbar-nav">
 			<li><a href="{{ route('reservas.index') }}">Reservas</a></li>
 			@yield('menu')
+			<li class="visible-xs"><a href="" data-target="#info" data-toggle="modal">Acerda de</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">
@@ -48,3 +49,4 @@
 		</div>
 	</div>
 </nav>
+@include('plantillas.acerca-de')
