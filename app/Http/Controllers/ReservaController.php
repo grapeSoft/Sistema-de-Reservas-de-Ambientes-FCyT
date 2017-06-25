@@ -16,6 +16,8 @@ use App\Model\Usuario;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Input;
+use App\Model\Calendario;
+use App\Model\PeriodoExamen;
 
 class ReservaController extends Controller
 {
@@ -588,40 +590,81 @@ class ReservaController extends Controller
         }
         
     }
+    public function calendario(){
+        $reservas = Reserva::all();
+        $eventosCalendario = array();
+        foreach ($reservas as $key => $reserva){
+            $start = $reserva->horarios->first()->pivot->id_fecha.' '.$reserva->horarios->first()->hora_inicio;
+            $end = $reserva->horarios->first()->pivot->id_fecha.' '.$reserva->horarios->last()->hora_fin;
+            $color = "#263238";
 
-/*    public function crearpdf($id)
-    {
-        
-        $eventos= DB::table('evento')
-            ->where('evento.id_reserva','=',$id)
-            ->join('usuario_materia','evento.id_usuario_materia','=','usuario_materia.id_usuario_materia')          
-            ->join('materia','usuario_materia.id_materia' ,'=','materia.id_materia')  
-            ->select('evento.tipo','evento.descripcion','materia.nombre','usuario_materia.grupo')
-            ->get()->toArray(); 
-
-        $datosUsuario= DB::table('evento')
-            ->where('evento.id_reserva','=',$id)
-            ->join('reserva','evento.id_reserva','=','reserva.id_reserva')
-            ->join('USUARIO','reserva.id_usuario','=','USUARIO.id_usuario') 
-            ->select('USUARIO.nombre','USUARIO.email','USUARIO.id_usuario','USUARIO.apellido_paterno','USUARIO.apellido_materno','USUARIO.tipo')
-            ->first();
-        
-        $eventosAutorizado=  DB::table('evento')
-            ->where('evento.id_reserva','=',$id)
-            ->select('evento.tipo','evento.descripcion')
-            ->first(); 
-
-        if(auth()->user()->esAutorizado()){
-            $view=\View::make('reservas.vista.autorizado', compact('eventos','eventosAutorizado','datosUsuario'))->render();
-            $pdf = \App::make('dompdf.wrapper');
-            $pdf->loadHTML($view);
-            return $pdf->stream();
+            $eventosCalendario[$key]['title'] = "Ocupado";
+            $eventosCalendario[$key]['start'] = $start;
+            $eventosCalendario[$key]['end'] = $end;
+            $eventosCalendario[$key]['color'] = $color;
         }
-        if(auth()->user()->esDocente()){
-            $view=\View::make('reservas.vista.docente', compact('eventos','eventosAutorizado','datosUsuario'))->render();
-            $pdf = \App::make('dompdf.wrapper');
-            $pdf->loadHTML($view);
-            return $pdf->stream();
+        // Feriados
+        $feriados = Fecha::where('tipo','feriado')->get();
+        $feriadosArray = array();       
+        foreach ($feriados as $key => $feriado) {
+            $feriadosArray[$key]['title'] = $feriado->descripcion;
+            $feriadosArray[$key]['start'] = $feriado->id_fecha;
+            $feriadosArray[$key]['end'] = $feriado->id_fecha;
+            $feriadosArray[$key]['rendering'] = 'background';
+            $feriadosArray[$key]['color'] = '#FFCDD2';
+            $feriadosArray[$key]['textColor'] = '#D50000';
         }
-    }*/
+        // Gestion Academica 
+        $gestiones = Calendario::all();
+        $gestionesIniArray = array();
+        foreach ($gestiones as $key => $gestion) {
+                $gestionesIniArray[$key]['title'] = 'Inicio de Gestión '.$gestion->gestion;
+                $gestionesIniArray[$key]['start'] = $gestion->fecha_inicio;
+                $gestionesIniArray[$key]['end'] = $gestion->fecha_inicio;
+                $gestionesIniArray[$key]['rendering'] = 'background';
+                $gestionesIniArray[$key]['color'] = '#C5CAE9';
+                $gestionesIniArray[$key]['textColor'] = '#1A237E';
+        }
+        $gestionesFinArray = array();
+        foreach ($gestiones as $key => $gestion) {
+                $gestionesFinArray[$key]['title'] = 'Final de Gestión '.$gestion->gestion;
+                $gestionesFinArray[$key]['start'] = $gestion->fecha_fin;
+                $gestionesFinArray[$key]['end'] = $gestion->fecha_fin;
+                $gestionesFinArray[$key]['rendering'] = 'background';
+                $gestionesFinArray[$key]['color'] = '#C5CAE9';
+                $gestionesFinArray[$key]['textColor'] = '#1A237E';
+        }        
+        // Periodos de Examen
+        $examenes = PeriodoExamen::all();
+        $examenesBackgroundrray = array();       
+        foreach ($examenes as $key => $examen) {
+            $examenesBackgroundrray[$key]['title'] = "";
+            $examenesBackgroundrray[$key]['start'] = $examen->fecha_inicio;
+            $examenesBackgroundrray[$key]['end'] = $examen->fecha_fin;
+            $examenesBackgroundrray[$key]['rendering'] = 'background';
+            $examenesBackgroundrray[$key]['color'] = '#C8E6C9';
+        }
+        $examenesIniArray = array();       
+        foreach ($examenes as $key => $examen) {
+            $examenesIniArray[$key]['title'] = 'Inicio '.$examen->nombre;
+            $examenesIniArray[$key]['start'] = $examen->fecha_inicio;
+            $examenesIniArray[$key]['end'] = $examen->fecha_inicio;
+            $examenesIniArray[$key]['rendering'] = 'background';
+            $examenesIniArray[$key]['color'] = '#C8E6C9';
+            $examenesIniArray[$key]['textColor'] = '#1B5E20';
+        }
+        $examenesFinArray = array();       
+        foreach ($examenes as $key => $examen) {
+            $examenesFinArray[$key]['title'] = 'Fin '.$examen->nombre;
+            $examenesFinArray[$key]['start'] = $examen->fecha_fin;
+            $examenesFinArray[$key]['end'] = $examen->fecha_fin;
+            $examenesFinArray[$key]['rendering'] = 'background';
+            $examenesFinArray[$key]['color'] = '#C8E6C9';
+            $examenesFinArray[$key]['textColor'] = '#1B5E20';
+        }
+
+        $eventosCalendarioFeriados = array_merge($eventosCalendario, $feriadosArray, $gestionesIniArray, $gestionesFinArray, $examenesBackgroundrray, $examenesIniArray, $examenesFinArray);  
+        $datos = Collection::make($eventosCalendarioFeriados);
+        return view('reservas.calendario', compact('datos'));
+    }
 }

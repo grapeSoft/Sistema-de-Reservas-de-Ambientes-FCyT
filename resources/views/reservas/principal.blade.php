@@ -11,11 +11,14 @@
 				<div class="btn-group btn-group-raised">
 					<a href="{{ route('reservas.index') }}" class="btn btn-primary">Mis Reservas</a>
 					<a href="{{ route('reservas.create') }}" class="btn btn-primary">Crear Reserva</a>
+					<a href="{{ route('reservas.calendario') }}" class="btn btn-primary">Calendario</a>
 				</div>						
 			</div>
 			<div class="visible-xs btn-group-vertical btn-group-raised">
 				<a href="{{ route('reservas.index') }}" class="btn btn-primary">Mis Reservas</a>
 				<a href="{{ route('reservas.create') }}" class="btn btn-primary">Crear Reserva</a>
+				<a href="{{ route('reservas.create') }}" class="btn btn-primary">Crear Reserva</a>
+				<a href="{{ route('reservas.calendario') }}" class="btn btn-primary">Calendario</a>
 			</div>
 			@yield('contenido-principal')
 		</div>

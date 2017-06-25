@@ -9,7 +9,7 @@ Sistema de Reservas de Ambientes de la FCyT - UMSS
 
 {{-- Body --}}
         <!-- Body here -->
-# RECUPERACION DE USUARIO O CONTRASEÑA SISRESERVA FCyT - UMSS
+# RECUPERACION DE USUARIO O CONTRASEÑA SISTEMA DE RESERVAS FCyT - UMSS
 
 Su nombre de usuario es: {{ $username }} , se reseteo su contraseña por favor ingrese al sistema con la siguiente contraseña: {{ $password }} y cambielo desde su perfil ... <br>
 INGRESE AL SISTEMA DESDE EL SIGUIENTE ENLACE...

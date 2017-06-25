@@ -38,7 +38,6 @@ class UsuarioController extends Controller
     public function index()
     {
         $usuarios = Usuario::all();
-        //dd(compact($usuarios));
         return view('usuarios.index', compact('usuarios'));
     }
 
@@ -107,9 +106,7 @@ class UsuarioController extends Controller
      */
     public function edit($id)
     {
-        if(auth()->user()->esAdministrador()){
-
-            
+        if(auth()->user()->esAdministrador()){            
         }
         $usuario = Usuario::findOrFail($id);
         return view('usuarios.edit', compact('usuario'));
@@ -187,24 +184,14 @@ class UsuarioController extends Controller
         return view('usuarios.perfil', compact('usuario'));
     }
 
-    public function foto($id)
-    {
-        $usuario = Usuario::findOrFail($id);
-        $ruta = storage_path($usuario->foto);
-        return file_get_contents($ruta);
-    }
-
      public function recuperarContrasea()
     {
-        //$usuario = auth()->user();
         return view('usuarios.recuperarC');
     }
 
     public function enviarContrasea(Request $request)
     {
         $usuario = Usuario::where('email',$request->email)->first();
-
-        //dd(compact('usuario'));
         if(empty($usuario))
             return redirect()
             ->route('usuarios.recuperarC')
