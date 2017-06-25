@@ -19,7 +19,7 @@
                     <td class="text-center">{{ $evento->grupo->materia->nombre }}</td>
                     <td class="text-center">{{ $evento->grupo->grupo }}</td>
                     <td class="text-center">                        
-                        <div class="checkbox">
+                        <div class="checkbox" style="padding-top: 3px;">
                             <label>
                                 {!! Form::checkbox('ids_usuario_materias[]', $evento->grupo->id_usuario_materia, true) !!}
                             </label>
@@ -40,7 +40,7 @@
                         <td class="text-center">{{ $materia->nombre }}</td>
                         <td class="text-center">{{ $materia->pivot->grupo }}</td>
                         <td class="text-center">                            
-                            <div class="checkbox">
+                            <div class="checkbox" style="padding-top: 3px;">
                                 <label>
                                     {!! Form::checkbox('ids_usuario_materias[]', $materia->pivot->id_usuario_materia) !!}
                                 </label>

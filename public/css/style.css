@@ -36,3 +36,6 @@ footer {
 .table > tbody > tr > td {
      vertical-align: middle;
 }
+.checkbox{
+    padding-top: 0px;
+}

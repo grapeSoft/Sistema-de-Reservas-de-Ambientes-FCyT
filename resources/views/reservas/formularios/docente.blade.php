@@ -22,7 +22,7 @@
 	                        <td class="text-center">{{ $materia->nombre }}</td>
 	                        <td class="text-center">{{ $materia->pivot->grupo }}</td>
 	                        <td class="text-center">
-								<div class="checkbox">
+								<div class="checkbox" style="padding-top: 3px;">
 									<label>
 										{!! Form::checkbox('ids_usuario_materias[]', $materia->pivot->id_usuario_materia) !!}
 									</label>
