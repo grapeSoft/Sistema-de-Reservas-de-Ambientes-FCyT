@@ -31,10 +31,7 @@ class ReservaController extends Controller
     public function index()
     {
         if(auth()->user()->esAdministrador()){
-
             $reservas = Reserva::paginate(7);
-            
-
             return view('reservas.admin.index', compact('reservas'));
         }
         $usuario = auth()->user();
@@ -101,41 +98,16 @@ class ReservaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        
-         $eventos= DB::table('evento')
-                    ->where('evento.id_reserva','=',$id)
-                    ->join('usuario_materia','evento.id_usuario_materia','=','usuario_materia.id_usuario_materia')          
-                    ->join('materia','usuario_materia.id_materia' ,'=','materia.id_materia')  
-                                    
-                    ->select('evento.tipo','evento.descripcion','materia.nombre','usuario_materia.grupo','evento.id_reserva')
-                    ->get()->toArray(); 
-
-         $datosUsuario= DB::table('evento')
-                         ->where('evento.id_reserva','=',$id)
-                         ->join('reserva','evento.id_reserva','=','reserva.id_reserva')
-                         ->join('usuario','reserva.id_usuario','=','usuario.id_usuario')
-                         ->select('usuario.nombre','usuario.email','usuario.id_usuario','usuario.apellido_paterno','usuario.apellido_materno','usuario.tipo')
-                         ->first();
-
-       
-
-
-
-
-         $eventosAutorizado=  DB::table('evento')
-                                ->where('evento.id_reserva','=',$id)
-                                ->select('evento.tipo','evento.descripcion','evento.id_reserva')
-                                ->first(); 
-                                
-
-        if(auth()->user()->esAdministrador()){
-            return view('reservas.vista.view-admin', compact('eventos','eventosAutorizado','datosUsuario'));
-        }                
-                     
-        return view('reservas.vista.view', compact('eventos','eventosAutorizado','datosUsuario'));
-    }
-    
+    {   
+        $reservas = Reserva::findOrFail($id);
+        $usuario = $reservas->usuario;
+        $eventos =  $reservas->eventos;
+        $horarios =  $reservas->horarios;
+        if (auth()->user()->esAdministrador()) {
+            return view('reservas.vista.view-admin', compact('usuario','eventos','horarios'));
+        }               
+        return view('reservas.vista.view', compact('usuario','eventos','horarios'));
+    }    
 
     /**
      * Show the form for editing the specified resource.

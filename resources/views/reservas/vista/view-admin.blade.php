@@ -1,8 +1,6 @@
 @extends('reservas.admin.principal')
 
 @section('contenido-principal-admin')
-
-
 <div class="col-md-8 col-md-offset-2">
 	<div class="panel panel-default">
 		<div class="panel-heading">
@@ -15,10 +13,10 @@
 			</div>
 			@endif
 
-      		@if($datosUsuario->tipo  === 'docente')
+      		@if($usuario->tipo  === 'docente')
 			@include('reservas.vista.docente')
 			@endif
-			@if($datosUsuario->tipo  === 'autorizado')
+			@if($usuario->tipo  === 'autorizado')
 			@include('reservas.vista.autorizado')
 			@endif
 

@@ -2,7 +2,7 @@
 <div class="pdf">
 	<div class="pdf-encabezado">
 		<h1>Sistema de Reservas FCyT-UMSS</h1>
-		<img class="pdf-imagen" src="img/fcyt.jpg">
+		<img class="pdf-imagen" src="img/logo1.png">
 	</div>
 	<div class="pdf-cuerpo">
 		<div class="pdf-cuadro-tabla">
@@ -12,21 +12,21 @@
 			<div class="pdf-cuerpo-tabla">
 				<table class="pdf-tabla">
 					<tr>
-						<th><strong>Id. de Usuario</strong></th>
-						<td>{{ $datosUsuario->id_usuario }}</td>
-					</tr>
-					<tr>
 						<th><strong>Nombre</strong></th>
-						<td>{{ $datosUsuario->nombre }} {{ $datosUsuario->apellido_paterno }} {{ $datosUsuario->apellido_materno }} </td>
-					</tr>
-					<tr>
-						<th><strong>Email</strong></th>
-						<td>{{ $datosUsuario->email }}</td>
+						<td>{{ $usuario->nombre }} {{ $usuario->apellido_paterno }} {{ $usuario->apellido_materno }} </td>
 					</tr>
 					<tr>
 						<th><strong>Tipo de Reserva</strong></th>
-						<td>Examen</td>
+						<td>{{ $eventos->first()->tipo }}</td>
 					</tr>
+					<tr>
+						<td><strong>Fecha de Reserva</strong></td>				               
+						<td>{{ $horarios->first()->pivot->id_fecha }}</td>                                   
+					</tr> 
+					<tr>
+						<td><strong>Periodo</strong></td>				               
+						<td>{{ $horarios->first()->hora_inicio }} - {{ $horarios->last()->hora_fin  }}</td>                                   
+					</tr> 
 				</table>
 				<table class="pdf-tabla">
 					<thead>
@@ -38,8 +38,8 @@
 					<tbody>
 					@foreach($eventos as $evento)
 						<tr>
-						<td>{{ $evento->nombre }}</td>
-						<td>{{ $evento->grupo }}</td>
+						<td>{{ $evento->grupo->materia->nombre }}</td>
+						<td>{{ $evento->grupo->grupo }}</td>
 						</tr>
 					@endforeach                                   
 					</tbody>

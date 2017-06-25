@@ -51,7 +51,6 @@
 			scrollTime: "06:45:00",
 			minTime: "06:45:00",
 			maxTime: "21:45:00",			
-			defaultDate: '2017-05-12',
 			navLinks: true, // can click day/week names to navigate views
 			editable: false,
 			eventLimit: true, // allow "more" link when too many events

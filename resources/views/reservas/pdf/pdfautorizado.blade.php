@@ -1,7 +1,7 @@
 <div class="pdf">
 	<div class="pdf-encabezado">
 		<h1>Sistema de Reservas FCyT-UMSS</h1>
-		<img class="pdf-imagen" src="img/fcyt.jpg">
+		<img class="pdf-imagen" src="img/logo1.png">
 	</div>
 	<div class="pdf-cuerpo">
 		<div class="pdf-titulo">
@@ -10,25 +10,29 @@
 		<div class="pdf-cuerpo-tabla">
 			<table class="pdf-tabla">
 				<tr>
-					<td><strong>Id. de Usuario</strong></td>
-					<td>{{ $datosUsuario->id_usuario }}</td>
-				</tr>
-				<tr>
 					<td><strong>Nombre</strong></td>
-					<td>{{ $datosUsuario->nombre }} {{ $datosUsuario->apellido_paterno }} {{ $datosUsuario->apellido_materno }} </td>
+					<td>{{ $usuario->nombre }} {{ $usuario->apellido_paterno }} {{ $usuario->apellido_materno }} </td>
 				</tr>
 				<tr>
-					<td><strong>Email</strong></td>
-					<td>{{ $datosUsuario->email }}</td>
+					<td><strong>Usuario</strong></td>
+					<td>{{ $usuario->tipo }}</td>
 				</tr>
 				<tr>
 					<td><strong>Tipo de Reserva</strong></td>				               
-                    <td>{{ $eventosAutorizado->tipo }}</td>                                   
+                    <td>{{ $eventos->first()->tipo }}</td>                                   
                 </tr> 
                 <tr>
 					<td><strong>Descripcion</strong></td>				               
-                    <td>{{ $eventosAutorizado->descripcion }}</td>                                   
-                </tr> 
+                    <td>{{ $eventos->first()->descripcion }}</td>                                   
+                </tr>
+				<tr>
+					<td><strong>Fecha de Reserva</strong></td>				               
+					<td>{{ $horarios->first()->pivot->id_fecha }}</td>                                   
+				</tr> 
+				<tr>
+					<td><strong>Periodo</strong></td>				               
+					<td>{{ $horarios->first()->hora_inicio }} - {{ $horarios->last()->hora_fin  }}</td>                                   
+				</tr> 
             </table>
             <div class="pdf-date">Fecha Actual: {{ $date }}</div>	
 		</div>
