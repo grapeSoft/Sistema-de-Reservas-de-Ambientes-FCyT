@@ -28,3 +28,11 @@ footer {
     background: #303F9F;
     color: #E8EAF6;
 }
+.table > thead{
+    /*font-size: 15px;*/
+    background: #5160b5;
+    color: #E8EAF6;
+}
+.table > tbody > tr > td {
+     vertical-align: middle;
+}

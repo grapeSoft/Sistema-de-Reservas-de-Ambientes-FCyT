@@ -22,23 +22,23 @@
         @endif
         <div class="">
             <div class="table-responsive">
-                    <table class="table table-striped table-hover">
+                    <table class="table table-striped table-hover table-bordered">
                         <thead>
                         <tr>
-                            <th>Hora Inicio</th>
-                            <th>Hora Fin</th>
-                            <th>Estado</th>
-                            <th>Seleccion</th>
+                            <th class="text-center">Hora Inicio</th>
+                            <th class="text-center">Hora Fin</th>
+                            <th class="text-center">Estado</th>
+                            <th class="text-center">Selección</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($horarios as $horario)
                             <tr>
-                                <td>{{ $horario->hora_inicio }}</td>
-                                <td>{{ $horario->hora_fin }}</td>
-                                <td>{{ $horario->pivot->estado }}</td>
+                                <td class="text-center">{{ $horario->hora_inicio }}</td>
+                                <td class="text-center">{{ $horario->hora_fin }}</td>
+                                <td class="text-center">{{ $horario->pivot->estado }}</td>
                                 @if($horario->pivot->estado == "Libre")
-                                    <td>
+                                    <td class="text-center">
                                     <div class="checkbox">
                                         <label>
                                             {!! Form::checkbox('ids_horas[]', $horario->id_horas) !!}

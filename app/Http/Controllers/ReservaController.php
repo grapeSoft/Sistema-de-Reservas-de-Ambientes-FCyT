@@ -591,7 +591,7 @@ class ReservaController extends Controller
         foreach ($reservas as $key => $reserva){
             $start = $reserva->horarios->first()->pivot->id_fecha.' '.$reserva->horarios->first()->hora_inicio;
             $end = $reserva->horarios->first()->pivot->id_fecha.' '.$reserva->horarios->last()->hora_fin;
-            $color = "#263238";
+            $color = "#0277BD";
 
             $eventosCalendario[$key]['title'] = "Ocupado";
             $eventosCalendario[$key]['start'] = $start;

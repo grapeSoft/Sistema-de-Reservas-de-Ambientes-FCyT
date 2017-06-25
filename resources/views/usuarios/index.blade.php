@@ -25,33 +25,35 @@
 		       		@include('usuarios.docentes.registrar')
 				</div>
 				<div class="table-responsive">
-					<table class="table table-striped table-hover ">
+					<table class="table table-striped table-hover table-bordered">
 						<thead>
 							<tr>
-								<th>Nombre</th>
-								<th>Nombre de usuario</th>
-								<th>Email</th>
-								<th>Tipo</th>
-								<th>Opciones</th>
+								<th class="text-center">Nombre</th>
+								<!--<th class="text-center">Nombre de usuario</th>-->
+								<th class="text-center">Email</th>
+								<th class="text-center">Tipo</th>
+								<th class="text-center">Opciones</th>
 							</tr>
 						</thead>
 						<tbody>
 						@foreach($usuarios as $usuario)
 							<tr>
-								<td>{{ $usuario->nombre }}</td>
-								<td>{{ $usuario->username }}</td>
-								<td>{{ $usuario->email }}</td>
-								<td>{{ $usuario->tipo }}</td>
+								<td>{{$usuario->apellido_paterno}} {{$usuario->apellido_materno}} {{$usuario->nombre}}</td>
+								<!--<td>{{ $usuario->username }}</td>-->
+								<td class="text-center">{{ $usuario->email }}</td>
+								<td class="text-center">{{ $usuario->tipo }}</td>
 								<td>
-									<a href="{{ route('usuarios.show', ['id' => $usuario->id_usuario]) }}" class="btn btn-fab btn-fab-mini btn-info" title="Ver"> 
-										<i class="material-icons md-18">open_in_new</i>
-									</a>
-									<a href="{{ route('usuarios.edit', ['id' => $usuario->id_usuario]) }}" class="btn btn-fab btn-fab-mini btn-success" title="Editar">
-										<i class="material-icons md-18">mode_edit</i>
-									</a>
-									<a href="" data-target="#form-delete-{{$usuario->id_usuario}}" data-toggle="modal" class="btn btn-fab btn-fab-mini btn-danger" title="Eliminar">
-										<i class="material-icons md-18">delete</i>
-									</a>
+									<div class="text-center">
+										<a href="{{ route('usuarios.show', ['id' => $usuario->id_usuario]) }}" class="btn btn-fab btn-fab-mini btn-info" title="Ver"> 
+											<i class="material-icons md-18">open_in_new</i>
+										</a>
+										<a href="{{ route('usuarios.edit', ['id' => $usuario->id_usuario]) }}" class="btn btn-fab btn-fab-mini btn-success" title="Editar">
+											<i class="material-icons md-18">mode_edit</i>
+										</a>
+										<a href="" data-target="#form-delete-{{$usuario->id_usuario}}" data-toggle="modal" class="btn btn-fab btn-fab-mini btn-danger" title="Eliminar">
+											<i class="material-icons md-18">delete</i>
+										</a>	
+									</div>	
 								</td>
 							</tr>
 						@include('usuarios.delete.form-delete')

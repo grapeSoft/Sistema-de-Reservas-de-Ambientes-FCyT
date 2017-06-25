@@ -27,27 +27,29 @@
 								<table class="table table-striped table-hover table-bordered">
 									<thead>
 										<tr>
-											<th>Id</th>
-											<th>Gestión</th>
-											<th>Fecha Inicial</th>
-											<th>Fecha Final</th>
-											<th>Opciones</th>
+											<th class="text-center">Id</th>
+											<th class="text-center">Gestión</th>
+											<th class="text-center">Fecha Inicial</th>
+											<th class="text-center">Fecha Final</th>
+											<th class="text-center">Opciones</th>
 										</tr>
 									</thead>
 									<tbody>
 										@foreach($gestiones as $gestion)
 										<tr>
-											<td>{{ $gestion->id_calendario }}</td>
-											<td>{{ $gestion->gestion }}</td>
-											<td>{{ $gestion->fecha_inicio }}</td>
-											<td>{{ $gestion->fecha_fin }}</td>
+											<td class="text-center">{{ $gestion->id_calendario }}</td>
+											<td class="text-center">{{ $gestion->gestion }}</td>
+											<td class="text-center">{{ $gestion->fecha_inicio }}</td>
+											<td class="text-center">{{ $gestion->fecha_fin }}</td>
 											<td>
-												<a href="{{ route('calendario.editConfig', ['id' => $gestion->id_calendario]) }}" class="btn btn-fab btn-fab-mini btn-success" title="Editar">
-													<i class="material-icons md-18">mode_edit</i>
-												</a>
-												<a href="" data-target="#form-delete-{{$gestion->id_calendario}}" data-toggle="modal" class="btn btn-fab btn-fab-mini btn-danger" title="Eliminar">
-													<i class="material-icons md-18">delete</i>
-												</a>
+												<div class="text-center">
+													<a href="{{ route('calendario.editConfig', ['id' => $gestion->id_calendario]) }}" class="btn btn-fab btn-fab-mini btn-success" title="Editar">
+														<i class="material-icons md-18">mode_edit</i>
+													</a>
+													<a href="" data-target="#form-delete-{{$gestion->id_calendario}}" data-toggle="modal" class="btn btn-fab btn-fab-mini btn-danger" title="Eliminar">
+														<i class="material-icons md-18">delete</i>
+													</a>
+												</div>
 											</td>
 										</tr>
 										@include('calendario.config.form-delete')
