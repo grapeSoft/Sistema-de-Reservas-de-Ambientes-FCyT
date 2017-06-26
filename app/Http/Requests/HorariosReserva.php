@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class HorariosReserva extends FormRequest
 {
@@ -26,10 +27,16 @@ class HorariosReserva extends FormRequest
      */
     public function rules()
     {
-            return [
-                'fecha' => 'date|required|exists:fecha,id_fecha|after_or_equal:today',
-                'ambiente' => 'required',
-            ];
+        return [
+            'fecha' => [
+                'date',
+                'required',
+                Rule::exists('fecha', 'id_fecha')->where(function ($query) {
+                    $query->where('tipo', 'Normal');
+                }),
+            ],
+            'ambiente' => 'required',
+        ];
 
     }
 }
