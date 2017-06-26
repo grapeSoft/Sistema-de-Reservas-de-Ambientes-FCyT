@@ -95,11 +95,11 @@
 		<table class="table table-striped table-hover table-bordered">
 			<thead>
 				<tr>
-					<th>Usuario</th>
-					<th>Fecha</th>
-					<th>Horario</th>
-					<th>Estado</th>
-					<th>Opciones</th>
+					<th class="text-center">Usuario</th>
+					<th class="text-center">Fecha</th>
+					<th class="text-center">Horario</th>
+					<!--<th class="text-center">Estado</th>-->
+					<th class="text-center">Opciones</th>
 				</tr>
 			</thead>
 			@if(!empty($reservas))
@@ -107,9 +107,9 @@
 				@foreach($reservas as $reserva)
 				<tr>
 					<td>{{ $reserva->usuario->nombre }} {{ $reserva->usuario->apellido_paterno }} {{ $reserva->usuario->apellido_materno }}</td>
-					<td>{{ $reserva->horarios->first()->pivot->id_fecha }}</td>
-					<td>{{ $reserva->horarios->first()->hora_inicio }} -- {{ $reserva->horarios->last()->hora_fin }}</td>
-					<td>{{ $reserva->horarios->first()->pivot->estado }}</td>
+					<td class="text-center">{{ $reserva->horarios->first()->pivot->id_fecha }}</td>
+					<td class="text-center">{{ $reserva->horarios->first()->hora_inicio }} -- {{ $reserva->horarios->last()->hora_fin }}</td>
+					<!--<td class="text-center">{{ $reserva->horarios->first()->pivot->estado }}</td>-->
 					<td>
 						<div class="text-center">
 							<a href="{{ route('reservas.show',['id' => $reserva->id_reserva]) }}" class="btn btn-fab btn-fab-mini btn-info" title="Ver">
@@ -123,11 +123,11 @@
 			@endif
 		</table>
 		</div>
+		@if(!empty($reservas))
+		{{ $reservas->render() }}
+		@endif
 	</div>
-	</div>
-	@if(!empty($reservas))
-	{{ $reservas->render() }}
-	@endif
+	</div>	
 </div>            
 @endsection
 @section('script')

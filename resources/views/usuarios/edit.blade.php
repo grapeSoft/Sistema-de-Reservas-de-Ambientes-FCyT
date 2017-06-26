@@ -34,23 +34,44 @@
 						{!! Form::close() !!}
 					</div>
 					<div class="tab-pane fade" id="tab2">
-					{!! Form::model($usuario, ['route' => ['usuarios.update', $usuario->id_usuario], 'method' => 'put', 'class' => 'form-horizontal']) !!}
-						<div class="form-group">
-							{!! Form::label('password', 'Contraseña actual', ['class' => 'control-label col-md-3']) !!}
+					{!! Form::open(['route' => ['usuarios.updatePassword', $usuario->id_usuario],'method' => 'post','files' => true,'class' => 'form-horizontal']) !!}	
+						@if($errors->has('password_actual'))
+							<div class="form-group has-error">
+						@else
+							<div class="form-group">
+						@endif
+							{!! Form::label('password_actual', 'Contraseña actual', ['class' => 'control-label col-md-3']) !!}
+							<div class="col-md-8">
+								{!! Form::password('password_actual', ['class' => 'form-control']) !!}
+								<div class="help-block">
+									{{ $errors->first('password_actual') }}
+								</div>
+							</div>
+						</div>
+						@if($errors->has('password'))
+							<div class="form-group has-error">
+						@else
+							<div class="form-group">
+						@endif
+							{!! Form::label('password', 'Contraseña nueva', ['class' => 'control-label col-md-3']) !!}
 							<div class="col-md-8">
 								{!! Form::password('password', ['class' => 'form-control']) !!}
+								<div class="help-block">
+									{{ $errors->first('password') }}
+								</div>
 							</div>
 						</div>
-						<div class="form-group">
-							{!! Form::label('password_nuevo', 'Contraseña nueva', ['class' => 'control-label col-md-3']) !!}
+						@if($errors->has('password'))
+							<div class="form-group has-error">
+						@else
+							<div class="form-group">
+						@endif
+							{!! Form::label('password_confirmation', 'Confirmar contraseña nueva', ['class' => 'control-label col-md-3']) !!}
 							<div class="col-md-8">
-								{!! Form::password('password_nuevo', ['class' => 'form-control']) !!}
-							</div>
-						</div>
-						<div class="form-group">
-							{!! Form::label('password_nuevo_confirm', 'Confirmar contraseña nueva', ['class' => 'control-label col-md-3']) !!}
-							<div class="col-md-8">
-								{!! Form::password('password_nuevo_confirm', ['class' => 'form-control']) !!}
+								{!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
+								<div class="help-block">
+									{{ $errors->first('password') }}
+								</div>
 							</div>
 						</div>
 						<div class="text-center">
@@ -67,4 +88,11 @@
 		</div>
 	</div>
 </div>
+@endsection
+@section('script')
+@if($errors->has('password') || $errors->has('password_actual'))
+	<script type="text/javascript">
+		$('.nav-pills > .active').next('li').find('a').trigger('click');
+	</script>
+@endif       
 @endsection

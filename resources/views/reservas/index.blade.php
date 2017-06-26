@@ -11,18 +11,18 @@
 		<table class="table table-striped table-hover table-bordered">
 			<thead>
 				<tr>
-					<th>Fecha</th>
-					<th>Hora inicio</th>
-					<th>Hora fin</th>
-					<th>Opciones</th>
+					<th class="text-center">Fecha</th>
+					<th class="text-center">Hora inicio</th>
+					<th class="text-center">Hora fin</th>
+					<th class="text-center">Opciones</th>
 				</tr>
 			</thead>
 			<tbody>
 				@foreach($reservas as $reserva)
 				<tr>
-					<td>{{ $reserva->horarios->first()->pivot->id_fecha }}</td>
-					<td>{{ $reserva->horarios->first()->hora_inicio }}</td>
-					<td>{{ $reserva->horarios->last()->hora_fin }}</td>
+					<td class="text-center">{{ $reserva->horarios->first()->pivot->id_fecha }}</td>
+					<td class="text-center">{{ $reserva->horarios->first()->hora_inicio }}</td>
+					<td class="text-center">{{ $reserva->horarios->last()->hora_fin }}</td>
 					<td>
 						<div class="text-center">
 							<a href="{{ route('reservas.show',['id' => $reserva->id_reserva]) }}" class="btn btn-fab btn-fab-mini btn-info" title="Ver">

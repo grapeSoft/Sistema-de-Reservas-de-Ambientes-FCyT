@@ -26,20 +26,22 @@
 		<table class="table table-striped table-hover table-bordered">
 			<thead>
 				<tr>
-					<th>Nombre</th>
-					<th>Fecha</th>
-					<th>Opciones</th> 
+					<th class="text-center">Nombre</th>
+					<th class="text-center">Fecha</th>
+					<th class="text-center">Opciones</th> 
 				</tr>
 			</thead>
 			<tbody>
 			@foreach($feriados as $feriado)		
 				<tr>
 					<td>{{ $feriado->descripcion}}</td>
-					<td>{{ $feriado->id_fecha}}</td>
+					<td class="text-center">{{ $feriado->id_fecha}}</td>
 					<td>
-						<a href="" data-target="#form-delete-{{$feriado->id_fecha}}" data-toggle="modal" class="btn btn-fab btn-fab-mini btn-danger" title="Eliminar">
-							<i class="material-icons md-18">delete</i>
-						</a>
+						<div class="text-center">
+							<a href="" data-target="#form-delete-{{$feriado->id_fecha}}" data-toggle="modal" class="btn btn-fab btn-fab-mini btn-danger" title="Eliminar">
+								<i class="material-icons md-18">delete</i>
+							</a>
+						</div>
 					</td>
 				</tr>
 			@include('calendario.feriado.delete.form')

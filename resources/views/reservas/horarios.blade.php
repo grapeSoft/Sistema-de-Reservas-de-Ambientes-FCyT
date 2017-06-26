@@ -22,23 +22,24 @@
         @endif
         <div class="">
             <div class="table-responsive">
-                    <table class="table table-striped table-hover">
+                    <table class="table table-striped table-hover table-bordered">
                         <thead>
                         <tr>
-                            <th>Hora Inicio</th>
-                            <th>Hora Fin</th>
-                            <th>Estado</th>
-                            <th>Seleccion</th>
+                            <th class="text-center">Hora Inicio</th>
+                            <th class="text-center">Hora Fin</th>
+                            <th class="text-center">Estado</th>
+                            <th class="text-center">Selección</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($horarios as $horario)
-                            <tr>
-                                <td>{{ $horario->hora_inicio }}</td>
-                                <td>{{ $horario->hora_fin }}</td>
-                                <td>{{ $horario->pivot->estado }}</td>
+                            @if($horario->pivot->estado == "Ocupado")
+                            <tr style="background:#C5CAE9;">
+                                <td class="text-center">{{ $horario->hora_inicio }}</td>
+                                <td class="text-center">{{ $horario->hora_fin }}</td>
+                                <td class="text-center">{{ $horario->pivot->estado }}</td>
                                 @if($horario->pivot->estado == "Libre")
-                                    <td>
+                                    <td class="text-center">
                                     <div class="checkbox">
                                         <label>
                                             {!! Form::checkbox('ids_horas[]', $horario->id_horas) !!}
@@ -49,6 +50,24 @@
                                     <td></td>
                                 @endif
                             </tr>
+                            @else
+                                <tr>
+                                    <td class="text-center">{{ $horario->hora_inicio }}</td>
+                                    <td class="text-center">{{ $horario->hora_fin }}</td>
+                                    <td class="text-center">{{ $horario->pivot->estado }}</td>
+                                    @if($horario->pivot->estado == "Libre")
+                                        <td class="text-center">
+                                        <div class="checkbox" style="padding-top: 3px;">
+                                            <label>
+                                                {!! Form::checkbox('ids_horas[]', $horario->id_horas) !!}
+                                            </label>
+                                        </div>
+                                        </td>
+                                    @else
+                                        <td></td>
+                                    @endif
+                                </tr>
+                            @endif
                         @endforeach
                         {{--@endif--}}
                         </tbody>

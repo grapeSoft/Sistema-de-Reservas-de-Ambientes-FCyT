@@ -1,33 +1,41 @@
 <table class="table table-bordered table-hover">
-	<tr>
-		<td><strong>Nombre</strong></td>
-		<td>{{ $usuario->nombre }} {{ $usuario->apellido_paterno }} {{ $usuario->apellido_materno }} </td>
-	</tr>
-	<tr>
-		<td><strong>Tipo de Reserva</strong></td>
-		<td>{{ $eventos->first()->tipo }}</td>
-	</tr>
-	<tr>
-		<td><strong>Fecha</strong></td>				               
-		<td>{{ $horarios->first()->pivot->id_fecha }}</td>                                   
-	</tr> 
-	<tr>
-		<td><strong>Periodo</strong></td>				               
-		<td>{{ $horarios->first()->hora_inicio }} - {{ $horarios->last()->hora_fin  }}</td>                                   
-	</tr> 
+	<thead>
+		<tr>
+		<th class="text-center"  colspan="2">Detalle</th>
+		</tr>
+	</thead>
+	<tbody>
+			<tr>
+				<td><strong>Nombre</strong></td>
+				<td>{{ $usuario->nombre }} {{ $usuario->apellido_paterno }} {{ $usuario->apellido_materno }} </td>
+			</tr>
+			<tr>
+				<td><strong>Tipo de Reserva</strong></td>
+				<td>{{ $eventos->first()->tipo }}</td>
+			</tr>
+			<tr>
+				<td><strong>Fecha</strong></td>				               
+				<td>{{ $horarios->first()->pivot->id_fecha }}</td>                                   
+			</tr> 
+			<tr>
+				<td><strong>Periodo</strong></td>				               
+				<td>{{ $horarios->first()->hora_inicio }} - {{ $horarios->last()->hora_fin  }}</td>                                   
+			</tr>                                 
+	</tbody>
+	
 </table>
 <table class="table table-bordered table-hover">
 	<thead>
 		<tr>
-		<th>Materia</th>
-		<th>Grupo</th>
+		<th class="text-center">Materia</th>
+		<th class="text-center">Grupo</th>
 		</tr>
 	</thead>
 	<tbody>
 	@foreach($eventos as $evento)
 		<tr>
-		<td>{{ $evento->grupo->materia->nombre }}</td>
-		<td>{{ $evento->grupo->grupo }}</td>
+		<td class="text-center">{{ $evento->grupo->materia->nombre }}</td>
+		<td class="text-center">{{ $evento->grupo->grupo }}</td>
 		</tr>
 	@endforeach                                   
 	</tbody>
