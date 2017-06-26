@@ -52,7 +52,7 @@ class UpdateReserva extends FormRequest
             //Si no es usuario autorizado
             else{
                 $rules =  [
-                    'descripcion' => 'required|min:4|max:32',
+                    'descripcion' => 'required|min:4|max:64',
                 ];
             }
 
