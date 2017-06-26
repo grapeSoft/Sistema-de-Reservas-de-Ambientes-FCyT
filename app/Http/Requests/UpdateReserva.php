@@ -35,13 +35,21 @@ class UpdateReserva extends FormRequest
         $horas = request()->input('ids_horas');
 
         $condicionNroInscritos = $this->verificarNroInscritos($minNroParticipantes, $ids_usuario_materia);
+        $condicionNroReservasMateria = $this->verificarNroReservasMateria();
 
 
 
             if(auth()->user()->esDocente()){
                 if($condicionNroInscritos){
-                    $rules =  [
-                    ];
+                    if(empty($condicionNroReservasMateria)) {
+                        $rules = [
+                        ];
+                    }
+                    else{
+                        $rules = [
+                            'nroReservas' => 'required',
+                        ];
+                    }
                 }
                 else{
                     $rules = [
@@ -69,5 +77,54 @@ class UpdateReserva extends FormRequest
         if($totalInscritos >= $minNroParticipantes)
             $r =true;
         return $r;
+    }
+
+    private function verificarNroReservasMateria(){
+        $nroReservasMateria =TipoReserva::where('tipo', 'examen')->first()->numero_reservas_materias;
+        $res = [];
+        if(!$nroReservasMateria)
+            return $res;
+
+        $grupos=request()->input('ids_usuario_materias');
+        if(!$grupos)
+            $grupos=[];
+
+        $usuario = auth()->user();
+        $reservas = $usuario->reserva;
+        $c=0;
+        if($reservas)
+            foreach($reservas as $reserva)
+                foreach($reserva->eventos as $g1){
+                    if(in_array($g1->grupo->id_usuario_materia,$grupos) && !in_array($g1->grupo->id_usuario_materia,$res)) {
+                        foreach($reservas as $reserva1)
+                            foreach ($reserva1->eventos as $g2) {
+                                if (in_array($g2->grupo->id_usuario_materia, $grupos)) {
+                                    if ($g2->grupo->id_usuario_materia === $g1->grupo->id_usuario_materia) {
+                                        $c++;
+                                    }
+                                }
+                            }
+                    }
+                    if($c>=$nroReservasMateria){
+                        $res[]=$g1->grupo->id_usuario_materia;
+                    }
+                    $c=0;
+                }
+        return $res;
+    }
+
+    public function messages(){
+        $valores = $this->verificarNroReservasMateria();
+        $mensaje="";
+        if($valores)
+            foreach($valores as $valor){
+                $materia = Grupo::find($valor)->materia->nombre;
+                $mensaje.=  $materia. ", ";
+            }
+        return [
+            'nroReservas.required' => 'No es posible realizar la reserva, debido a que existen reservas para las materias: '.$mensaje.
+                'El numero maximo de reservas permitidas para una materia es: '
+                .TipoReserva::where('tipo', 'examen')->first()->numero_reservas_materias,
+        ];
     }
 }
