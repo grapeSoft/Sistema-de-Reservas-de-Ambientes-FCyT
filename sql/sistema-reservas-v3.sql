@@ -63,7 +63,7 @@ CREATE TABLE `evento` (
   `id_evento` int(11) NOT NULL,
   `id_reserva` int(11) NOT NULL,
   `tipo` char(32) DEFAULT NULL,
-  `descripcion` char(256) DEFAULT NULL,
+  `descripcion` char(255) DEFAULT NULL,
   `id_usuario_materia` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -246,7 +246,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nombre`, `apellido_paterno`, `apellido_materno`, `email`, `username`, `password`, `tipo`, `created_at`, `updated_at`, `remember_token`, `foto`) VALUES
-(1, 'Alexander', 'Reinaga', 'Lopez', 'alexsof9@gmail.com', 'alexsof', '$2y$10$fHb4L5UWbNr3cMG0MiHvT.12rrgbpsstqejxT6oygGljLFylTEGn6', 'administrador', '2017-04-29 10:35:28', '2017-04-29 10:35:28', 'szfTpDY0ivyjttTsBGyVrP6v8WKpJHRsAGADhhVztycFAlJ3B6fldWFP83OP', NULL),
+(1, 'Admin', 'Admin', 'Admin', 'grapesoftbolivia@gmail.com', 'admin', '$2y$10$fHb4L5UWbNr3cMG0MiHvT.12rrgbpsstqejxT6oygGljLFylTEGn6', 'administrador', '2017-04-29 10:35:28', '2017-04-29 10:35:28', 'szfTpDY0ivyjttTsBGyVrP6v8WKpJHRsAGADhhVztycFAlJ3B6fldWFP83OP', NULL),
 (6, 'Martina', 'Carrasco', 'Verduguez', 'martiv@gmail.com', 'marti78', '$2y$10$J7E4yedHtjJRhY6J/xp6d.5h1/32O63h5RPJiezLjl9aFIwa8uOF6', 'autorizado', '2017-04-29 10:35:28', '2017-04-29 10:35:28', '2K0t4rVyUrvUAusQNfyIOhxOTPK5sp5JEhym7a8ogAI3a83m9bjZQBw67y7Z', NULL),
 (7, 'Diego', 'Villarroel', 'Solis', 'diego.villarroel@outlook.com', 'diego.villarroel@outlook.com', '$2y$10$resr0iV.12C9lZ3hmHHg/OZEglNz78y2CsRoAD4xNNYCcnirj.QKW', 'autorizado', '2017-05-01 18:56:35', '2017-05-01 18:56:35', NULL, NULL),
 (14, 'Boris', 'calancha', 'navia', 'boris@gmail.com', 'boris', '$2y$10$s/pl1zzW8wnruud9okx7IOnNeVVmq4c5IG/JYJU6yjRycUvNmcyCG', 'docente', '2017-05-02 06:26:18', '2017-05-02 06:26:18', 'W5AapWcF6N9UlljkpcT90Y9HQfJXIp3tKg61cUfVnmHbl9xdVqCF5NuRtnVd', NULL),

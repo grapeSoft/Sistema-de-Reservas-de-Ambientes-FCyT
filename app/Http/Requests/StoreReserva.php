@@ -58,13 +58,13 @@ class StoreReserva extends FormRequest
                         $rules =  [
                             'reserva_aceptada' => 'required',
                             'ids_horas' => 'required',
-                            'descripcion' => 'required|min:4|max:32',
+                            'descripcion' => 'required|min:4|max:64',
                         ];
                     }
                     else{
                         $rules =  [
                             'ids_horas' => 'required',
-                            'descripcion' => 'required|min:4|max:32',
+                            'descripcion' => 'required|min:4|max:64',
                         ];
                     }
                 }
