@@ -30,4 +30,9 @@ class Reserva extends Model
         return $this->belongsToMany('App\Model\Horas', 'horario', 'id_reserva', 'id_horas')
             ->withPivot('estado', 'id_fecha');
     }
+
+    public function grupos()
+    {
+        return $this->hasManyThrough('App\Model\Grupo', 'App\Model\Evento', 'id_reserva', 'id_usuario_materia', 'id_reserva');
+    }
 }

@@ -41,3 +41,16 @@
             </div>
         </div>
     </div>
+@if($errors->has('numero_reservas_materia'))
+    <div class="form-group has-error">
+@else
+    <div class="form-group">
+@endif
+        {!! Form::label('numero_reservas_materia', '(*) Numero de Reservas por Materia', ['class' => 'control-label col-md-4']) !!}
+        <div class="col-md-7">
+            {!! Form::number('numero_reservas_materia', null, ['class' => 'form-control']) !!}
+            <div class="help-block">
+                {{ $errors->first('numero_reservas_materia') }}
+            </div>
+        </div>
+    </div>

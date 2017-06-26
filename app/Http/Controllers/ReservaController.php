@@ -208,11 +208,13 @@ class ReservaController extends Controller
             'tipo' => 'required',
             'numeroPeriodos' => 'required|numeric|min:1|max:10',
             'numeroParticipantes' => 'required|numeric|min:25|max:500',
+            'numero_reservas_materia' => 'nullable|numeric|min:1'
         ]);
-        $tipo_reserva = TipoReserva::updateOrCreate(
+        TipoReserva::updateOrCreate(
             ['tipo' => $request->tipo],
             ['max_nro_periodos' => $request->numeroPeriodos,
              'min_nro_participantes' => $request->numeroParticipantes,
+             'numero_reservas_materias' => $request->numero_reservas_materia,
             ]
         );
         return redirect()

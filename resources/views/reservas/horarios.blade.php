@@ -86,7 +86,7 @@
 </div>
 @endsection
 @section('script')
-    @if($errors->has('descripcion') || $errors->has('inscritos'))
+    @if($errors->has('descripcion') || $errors->has('inscritos') || $errors->has('nroReservas'))
         <script type="text/javascript">
             $(document).ready(function(){
             $('#formularioReserva').modal('show');

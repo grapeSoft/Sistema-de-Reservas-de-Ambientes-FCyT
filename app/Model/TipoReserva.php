@@ -11,6 +11,6 @@ class TipoReserva extends Model
     public $timestamps = false;
 
     public $fillable = [
-        'tipo', 'max_nro_periodos', 'min_nro_participantes'
+        'tipo', 'max_nro_periodos', 'min_nro_participantes', 'numero_reservas_materias',
     ];
 }
