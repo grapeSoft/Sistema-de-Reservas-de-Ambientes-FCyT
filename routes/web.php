@@ -24,6 +24,7 @@ Route::post('enviar', 'UsuarioController@enviarContrasea')->name('usuarios.envia
 Route::get('/', 'PrincipalController@inicio')->name('principal.inicio');
 Route::get('logout', 'UsuarioController@logout')->name('usuarios.logout');
 Route::get('usuarios/perfil', 'UsuarioController@perfil')->name('usuarios.perfil');
+Route::post('usuarios/updatePassword/{usuario}', 'UsuarioController@updatePassword')->name('usuarios.updatePassword');
 Route::resource('usuarios', 'UsuarioController');
 
 Route::post('reservas/config', 'ReservaController@updateConfig')->name('reservas.updateConfig');

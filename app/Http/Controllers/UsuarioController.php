@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 use App\Model\Usuario;
 use App\Http\Requests\StoreUsuario;
 use App\Http\Requests\UpdateUsuario;
+use App\Http\Requests\UpdatePassword;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Hash;
 use App\Reserva;
 
 
@@ -148,6 +150,19 @@ class UsuarioController extends Controller
             ->with('mensaje', 'Se ha eliminado el usuario');
     }
 
+    public function updatePassword(updatePassword $request, $id)
+    {
+        $usuario = Usuario::findOrFail($id);
+        if(Hash::check($request->password_actual, $usuario->password)){
+            $password_actual = $request->password_actual;
+            $usuario->password = $request->password;
+            $usuario->save();
+            return redirect()->route('usuarios.show', ['id' => $usuario->id_usuario])->with('mensaje', 'La contraseña se modifico con exito');
+        }
+        else{
+            return redirect()->route('usuarios.edit', ['id' => $usuario->id_usuario])->withErrors(['password_actual' => 'La constraseña es incorrecta']);
+        }
+    }
 
     public function login()
     {

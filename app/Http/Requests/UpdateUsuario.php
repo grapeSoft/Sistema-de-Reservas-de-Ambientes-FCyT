@@ -30,23 +30,21 @@ class UpdateUsuario extends FormRequest
         $user = Usuario::findOrFail($id);
         if(auth()->user()->esAdministrador())
         return [
-            'nombre' => ['required', 'regex:/^([a-zA-ZÁÉÍÓÚáéíóúñ ])+$/', 'min:2', 'max:32'],
-            'apellido_paterno' => ['required', 'regex:/^([a-zA-ZÁÉÍÓÚáéíóúñ ])+$/', 'min:2', 'max:32'],
-            'apellido_materno' => ['required', 'regex:/^([a-zA-ZÁÉÍÓÚáéíóúñ ])+$/', 'min:2', 'max:32'],
+            'nombre' => ['required', 'regex:/^([a-zA-Zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ])+$/', 'min:2', 'max:32'],
+            'apellido_paterno' => ['required', 'regex:/^([a-zA-Zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ])+$/', 'min:2', 'max:32'],
+            'apellido_materno' => ['required', 'regex:/^([a-zA-Zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ])+$/', 'min:2', 'max:32'],
             'email' => 'required|email|unique:usuario,email,'.$user->id_usuario.',id_usuario',
             'username' => 'required|unique:usuario,username,'.$user->id_usuario.',id_usuario',
-            'password' => 'min:6|max:32|confirmed',
             'foto' => 'image',
             'tipo' => 'required',
         ];
         else
             return [
-                'nombre' => ['required', 'regex:/^([a-zA-ZÁÉÍÓÚáéíóúñ ])+$/', 'min:2', 'max:32'],
-                'apellido_paterno' => ['required', 'regex:/^([a-zA-ZÁÉÍÓÚáéíóúñ ])+$/', 'min:2', 'max:32'],
-                'apellido_materno' => ['required', 'regex:/^([a-zA-ZÁÉÍÓÚáéíóúñ ])+$/', 'min:2', 'max:32'],
+                'nombre' => ['required', 'regex:/^([a-zA-Zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ])+$/', 'min:2', 'max:32'],
+                'apellido_paterno' => ['required', 'regex:/^([a-zA-Zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ])+$/', 'min:2', 'max:32'],
+                'apellido_materno' => ['required', 'regex:/^([a-zA-Zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ])+$/', 'min:2', 'max:32'],
                 'email' => 'required|email|unique:usuario,email,'.$user->id_usuario.',id_usuario',
                 'username' => 'required|unique:usuario,username,'.$user->id_usuario.',id_usuario',
-                'password' => 'min:6|max:32|confirmed',
                 'foto' => 'image',
             ];
 
