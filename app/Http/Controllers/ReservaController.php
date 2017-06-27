@@ -200,21 +200,22 @@ class ReservaController extends Controller
     }
 
     public function config(){
-        return view('reservas.admin.config.config');
+        $config = TipoReserva::where('tipo','examen')->first();
+        return view('reservas.admin.config.config', compact('config'));
     }
 
     public function updateConfig(Request $request){
         $this->validate($request, [
             'tipo' => 'required',
-            'numeroPeriodos' => 'required|numeric|min:1|max:10',
-            'numeroParticipantes' => 'required|numeric|min:25|max:500',
-            'numero_reservas_materia' => 'nullable|numeric|min:1'
+            'max_nro_periodos' => 'required|numeric|min:1|max:10',
+            'min_nro_participantes' => 'required|numeric|min:25|max:500',
+            'numero_reservas_materias' => 'nullable|numeric|min:1'
         ]);
         TipoReserva::updateOrCreate(
             ['tipo' => $request->tipo],
-            ['max_nro_periodos' => $request->numeroPeriodos,
-             'min_nro_participantes' => $request->numeroParticipantes,
-             'numero_reservas_materias' => $request->numero_reservas_materia,
+            ['max_nro_periodos' => $request->max_nro_periodos,
+             'min_nro_participantes' => $request->min_nro_participantes,
+             'numero_reservas_materias' => $request->numero_reservas_materias,
             ]
         );
         return redirect()
