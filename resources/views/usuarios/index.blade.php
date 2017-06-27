@@ -59,8 +59,9 @@
 							</tr>
 						@include('usuarios.delete.form-delete')
 						@endforeach
-						</tbody>
+						</tbody>						
 					</table>
+					{{$usuarios->render()}}
 				</div>	
 			</div>	
 		</div>

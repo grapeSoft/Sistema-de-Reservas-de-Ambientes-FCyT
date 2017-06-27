@@ -28,6 +28,9 @@ footer {
     background: #303F9F;
     color: #E8EAF6;
 }
+.pagination {
+    margin-top: 0px;
+}
 .table > thead{
     /*font-size: 15px;*/
     background: #5160b5;
@@ -36,3 +39,4 @@ footer {
 .table > tbody > tr > td {
      vertical-align: middle;
 }
+margin-bottom: 0px;
