@@ -4,8 +4,15 @@
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
 			<div class="well" style="margin-top: 10px;">
+				@if(count($gestiones)===0)
+					<div class="alert alert-dismissible alert-info">
+						<button type="button" class="close" data-dismiss="alert">×</button>
+						<p>Ninguna Gestion Academica registrada</p>
+					</div>
+				@endif
 				@if(session('mensaje'))
-					<div class="alert alert-danger">
+					<div class="alert alert-dismissible alert-danger">
+						<button type="button" class="close" data-dismiss="alert">×</button>
 						{{ session('mensaje') }}
 					</div>
 				@endif

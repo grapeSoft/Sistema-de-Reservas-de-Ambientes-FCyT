@@ -20,18 +20,6 @@
 					@endif
 				</div>
 				<div class="text-center">
-					<!-- <li class="list-group-item list-group-item-success">
-						<strong>Nombre</strong>
-					</li>
-					<li class="list-group-item">{{ $usuario->nombre }}</li>
-					<li class="list-group-item list-group-item-success">
-						<strong>Apellido paterno</strong>
-					</li>
-					<li class="list-group-item">{{ $usuario->apellido_paterno }}</li>
-					<li class="list-group-item list-group-item-success">
-						<strong>Apellido materno</strong>
-					</li>
-					<li class="list-group-item">{{ $usuario->apellido_materno }}</li> -->
 					<li class="list-group-item list-group-item-success">
 						<strong>Usuario</strong>
 					</li>

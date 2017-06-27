@@ -5,10 +5,16 @@
 <div class="modal-body">
 	<div class="panel">
 		@if($errors->has('inscritos'))
-			<p class="alert alert-danger">{{ $errors->first('inscritos') }} {{ \App\Model\TipoReserva::where('tipo', 'examen')->first()->min_nro_participantes }} </p>
+			<div class="alert alert-dismissible alert-danger">
+				<button type="button" class="close" data-dismiss="alert">×</button>
+				{{ $errors->first('inscritos') }} {{ \App\Model\TipoReserva::where('tipo', 'examen')->first()->min_nro_participantes }} 
+			</div>
 		@endif
 		@if($errors->has('nroReservas'))
-				<p class="alert alert-danger">{{ $errors->first('nroReservas') }} </p>
+			<div class="alert alert-dismissible alert-danger">
+				<button type="button" class="close" data-dismiss="alert">×</button>
+				{{ $errors->first('nroReservas') }}
+			</div>
 		@endif
 		<div class="table-responsive">
 	        <table class="table table-striped table-hover table-bordered">

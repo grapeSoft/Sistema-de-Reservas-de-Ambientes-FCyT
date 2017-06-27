@@ -39,7 +39,7 @@ class StoreReserva extends FormRequest
         $condicionNroPeridos = $this->verificarNroPeriodos($max_nro_periodos, $horas);
         $condicionReservaContinua = $this->verificarReservaContinua($horas);
         $condicionReservaPeriodoExamen = $this->verificarReservaPeriodoExamen($fecha_reserva);
-        $condicionNroReservasMateria = $this->verificarNroReservasMateria();
+        // $condicionNroReservasMateria = $this->verificarNroReservasMateria();
 
 
         if($condicionNroPeridos){
@@ -188,17 +188,23 @@ class StoreReserva extends FormRequest
     }
 
     public function messages(){
-        $valores = $this->verificarNroReservasMateria();
-        $mensaje="";
-        if($valores)
-            foreach($valores as $valor){
-                $materia = Grupo::find($valor)->materia->nombre;
-                $mensaje.=  $materia. ", ";
-            }
-        return [
-            'nroReservas.required' => 'No es posible realizar la reserva, debido a que existen reservas para las materias: '.$mensaje.
-                'El numero maximo de reservas permitidas para una materia es: '
-                .TipoReserva::where('tipo', 'examen')->first()->numero_reservas_materias,
-        ];
+        if (auth()->user()->esDocente()) {
+            $valores = $this->verificarNroReservasMateria();
+            $mensaje="";
+            if($valores)
+                foreach($valores as $valor){
+                    $materia = Grupo::find($valor)->materia->nombre;
+                    $mensaje.=  $materia. ", ";
+                }
+            return [
+                'nroReservas.required' => 'No es posible realizar la reserva, debido a que existen reservas para las materias: '.$mensaje.
+                    'El numero maximo de reservas permitidas para una materia es: '
+                    .TipoReserva::where('tipo', 'examen')->first()->numero_reservas_materias,
+            ];
+        }
+        else {
+            return [
+            ];
+        }        
     }
 }

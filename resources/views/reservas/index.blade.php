@@ -3,8 +3,15 @@
 @section('contenido-principal-offbody')						
 <div class="panel-body">
 	@if(session('mensaje'))
-		<div class="alert alert-success">
+		<div class="alert alert-dismissible alert-success">
+			<button type="button" class="close" data-dismiss="alert">×</button>
 			{{ session('mensaje') }}
+		</div>
+	@endif
+	@if(count($reservas)===0)
+		<div class="alert alert-dismissible alert-info">
+			<button type="button" class="close" data-dismiss="alert">×</button>
+			<p>Ninguna reserva creada</p>
 		</div>
 	@endif
 	<div class="table-responsive">

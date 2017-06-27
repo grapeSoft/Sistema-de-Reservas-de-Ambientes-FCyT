@@ -9,16 +9,28 @@
                 'class' => 'form-horizontal'
                 ]) !!}
         @if($errors->has('ids_horas'))
-            <p class="alert alert-danger">{{ $errors->first('ids_horas') }}</p>
+            <div class="alert alert-dismissible alert-danger">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                {{ $errors->first('ids_horas') }}
+            </div>
         @endif
         @if($errors->has('periodos'))
-            <p class="alert alert-danger">{{ $errors->first('periodos') }} {{ \App\Model\TipoReserva::where('tipo', 'examen')->first()->max_nro_periodos }}</p>
+            <div class="alert alert-dismissible alert-danger">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                {{ $errors->first('periodos') }} {{ \App\Model\TipoReserva::where('tipo', 'examen')->first()->max_nro_periodos }}
+            </div>
         @endif
         @if($errors->has('continuo'))
-            <p class="alert alert-danger">{{ $errors->first('continuo') }}</p>
+            <div class="alert alert-dismissible alert-danger">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                {{ $errors->first('continuo') }}
+            </div>
         @endif
         @if($errors->has('reserva_aceptada'))
-            <p class="alert alert-danger">{{ $errors->first('reserva_aceptada') }}</p>
+            <div class="alert alert-dismissible alert-danger">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                {{ $errors->first('reserva_aceptada') }}
+            </div>
         @endif
         <div class="">
             <div class="table-responsive">

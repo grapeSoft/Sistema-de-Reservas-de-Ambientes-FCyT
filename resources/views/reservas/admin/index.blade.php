@@ -4,23 +4,33 @@
 <div class="panel-body">
 	<!-- <h4>Configuración Reserva Docente</h4> -->
 	@if(session('mensaje'))
-		<div class="alert alert-success">
+		<div class="alert alert-dismissible alert-success">
+			<button type="button" class="close" data-dismiss="alert">×</button>
 			{{ session('mensaje') }}
 		</div>
 	@endif
 	@if(empty($reservas))
-		<div class="alert alert-success">
+		<div class="alert alert-dismissible alert-success">
+			<button type="button" class="close" data-dismiss="alert">×</button>
 			No se ha encontrado coincidencias
 		</div>
 	@endif
 	@if(!empty($fechanovalida) && empty($reservas))
-		<div class="alert alert-success">
+		<div class="alert alert-dismissible alert-success">
+			<button type="button" class="close" data-dismiss="alert">×</button>
 			Debe seleccionar un rango de fechas válido.
 		</div>
 	@endif
 	@if(!empty($horanovalida) && empty($reservas))
-		<div class="alert alert-success">
+		<div class="alert alert-dismissible alert-success">
+			<button type="button" class="close" data-dismiss="alert">×</button>
 			Debe seleccionar un rango de horas válido.
+		</div>
+	@endif
+	@if(count($reservas)===0)
+		<div class="alert alert-dismissible alert-info">
+			<button type="button" class="close" data-dismiss="alert">×</button>
+			<p>Ninguna reserva registrada en el sistema</p>
 		</div>
 	@endif
 	{!! Form::open(['route' => ['reservas.filtrado'], 'role' => 'search']) !!}

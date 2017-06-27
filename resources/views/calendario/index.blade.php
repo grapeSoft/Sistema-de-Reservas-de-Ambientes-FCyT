@@ -20,7 +20,8 @@
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
 			@if(session('mensaje'))
-				<div class="alert alert-success">
+				<div class="alert alert-dismissible alert-success">
+					<button type="button" class="close" data-dismiss="alert">×</button>
 					{{ session('mensaje') }}
 				</div>
 			@endif

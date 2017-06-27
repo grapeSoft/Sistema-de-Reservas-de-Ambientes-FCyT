@@ -5,7 +5,10 @@
 <div class="modal-body">
 	<div class="">
 		@if($errors->has('descripcion'))
-			<p class="alert alert-danger">{{ $errors->first('descripcion') }}</p>
+			<div class="alert alert-dismissible alert-danger">
+				<button type="button" class="close" data-dismiss="alert">×</button>
+				{{ $errors->first('descripcion') }}
+			</div>
 		@endif
 		<div class="col-md-12">
 			<div class="form-group" style="margin-top: 0;">

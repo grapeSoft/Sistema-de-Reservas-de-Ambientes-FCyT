@@ -63,7 +63,7 @@ CREATE TABLE `evento` (
   `id_evento` int(11) NOT NULL,
   `id_reserva` int(11) NOT NULL,
   `tipo` char(32) DEFAULT NULL,
-  `descripcion` char(32) DEFAULT NULL,
+  `descripcion` char(64) DEFAULT NULL,
   `id_usuario_materia` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
