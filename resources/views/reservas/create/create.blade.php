@@ -33,6 +33,9 @@
         </div>
         {!! Form::close() !!}
     </div>
+    @if($errors->has('fecha'))
+        <p class="alert alert-danger">{{ $errors->first('fecha') }}</p>
+    @endif
     @yield('contenido-create')
     </div>
 @endsection
