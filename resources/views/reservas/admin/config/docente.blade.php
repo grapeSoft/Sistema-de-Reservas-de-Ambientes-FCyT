@@ -15,42 +15,42 @@
             </div>
         </div>
     </div>
-@if($errors->has('numeroPeriodos'))
+@if($errors->has('max_nro_periodos'))
     <div class="form-group has-error">
 @else
     <div class="form-group">
 @endif
-        {!! Form::label('numeroPeriodos', 'Numero de Periodos', ['class' => 'control-label col-md-4']) !!}
+        {!! Form::label('max_nro_periodos', 'Numero de Periodos', ['class' => 'control-label col-md-4']) !!}
         <div class="col-md-7">
-            {!! Form::number('numeroPeriodos', null, ['class' => 'form-control']) !!}
+            {!! Form::number('max_nro_periodos', null, ['class' => 'form-control']) !!}
             <div class="help-block">
-                {{ $errors->first('numeroPeriodos') }}
+                {{ $errors->first('max_nro_periodos') }}
             </div>
         </div>
     </div>
-@if($errors->has('numeroParticipantes'))
+@if($errors->has('min_nro_participantes'))
     <div class="form-group has-error">
 @else
     <div class="form-group">
 @endif
-        {!! Form::label('numeroParticipantes', 'Numero de Participantes', ['class' => 'control-label col-md-4']) !!}
+        {!! Form::label('min_nro_participantes', 'Numero de Participantes', ['class' => 'control-label col-md-4']) !!}
         <div class="col-md-7">
-            {!! Form::number('numeroParticipantes', null, ['class' => 'form-control']) !!}
+            {!! Form::number('min_nro_participantes', null, ['class' => 'form-control']) !!}
             <div class="help-block">
-                {{ $errors->first('numeroParticipantes') }}
+                {{ $errors->first('min_nro_participantes') }}
             </div>
         </div>
     </div>
-@if($errors->has('numero_reservas_materia'))
+@if($errors->has('numero_reservas_materias'))
     <div class="form-group has-error">
 @else
     <div class="form-group">
 @endif
-        {!! Form::label('numero_reservas_materia', '(*) Numero de Reservas por Materia', ['class' => 'control-label col-md-4']) !!}
+        {!! Form::label('numero_reservas_materias', '(*) Numero de Reservas por Materia', ['class' => 'control-label col-md-4']) !!}
         <div class="col-md-7">
-            {!! Form::number('numero_reservas_materia', null, ['class' => 'form-control']) !!}
+            {!! Form::number('numero_reservas_materias', null, ['class' => 'form-control']) !!}
             <div class="help-block">
-                {{ $errors->first('numero_reservas_materia') }}
+                {{ $errors->first('numero_reservas_materias') }}
             </div>
         </div>
     </div>

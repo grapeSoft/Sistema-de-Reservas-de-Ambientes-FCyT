@@ -5,7 +5,7 @@
 <div class="row">
 	<dir class="col-md-8 col-md-offset-2">
 		<div class="well">
-        {!! Form::open([
+        {!! Form::model($config,[
             'route' => 'reservas.updateConfig',
             'method' => 'post',
             'files' => true,
