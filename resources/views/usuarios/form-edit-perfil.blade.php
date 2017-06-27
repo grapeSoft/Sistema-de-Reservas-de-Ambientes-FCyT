@@ -6,12 +6,7 @@
 @endif
         {!! Form::label('foto', 'Foto', ['class' => 'control-label col-md-2']) !!}
         <div class="col-md-10">
-            
-            @if($usuario->foto == null)
-                {!! Form::text(null, null, ['class' => 'form-control', 'placeholder' => 'Subir imagen...', 'readonly' => '']) !!}
-            @else
-                {!! Form::text('foto', null, ['class' => 'form-control', 'placeholder' => 'Subir imagen...', 'readonly' => '']) !!}
-            @endif
+            {!! Form::text(null, null, ['class' => 'form-control', 'placeholder' => 'Subir imagen...', 'readonly' => '']) !!}
             {!! Form::file('foto', ['class' => 'form-control', 'accept' => 'image/*']) !!}
             <div class="help-block">
                 {{ $errors->first('foto') }}

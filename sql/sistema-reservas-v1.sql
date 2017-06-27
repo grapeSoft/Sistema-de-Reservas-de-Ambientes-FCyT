@@ -77,7 +77,7 @@ CREATE TABLE `fecha` (
   `id_fecha` date NOT NULL,
   `id_calendario` int(11) UNSIGNED NOT NULL,
   `tipo` char(32) DEFAULT NULL,
-  `descripcion` varchar(255) DEFAULT NULL
+  `descripcion` varchar(64) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
