@@ -22,6 +22,12 @@
 			<p>Ningun Feriado registrado</p>
 		</div>
 	@endif
+	@if($errors->has('feriado'))
+		<div class="alert alert-dismissible alert-danger">
+			<button type="button" class="close" data-dismiss="alert">×</button>
+			{{ $errors->first('feriado') }}
+		</div>
+	@endif
 	<div class="table-responsive">
 		<table class="table table-striped table-hover table-bordered">
 			<thead>

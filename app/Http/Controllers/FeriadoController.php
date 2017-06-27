@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateFeriado;
 use App\Model\Fecha;
+use App\Model\Reserva;
 
 class FeriadoController extends Controller
 {
@@ -37,10 +38,17 @@ class FeriadoController extends Controller
      */
     public function store(UpdateFeriado $request)
     {
+        
         $feriado = Fecha::findOrFail($request->input('fecha'));
-        $feriado->descripcion = $request->titulo;
-        $feriado->tipo = "feriado";
-        $feriado->save();
+        $reservas_en_feriado =  $feriado->reservas;
+        if ($reservas_en_feriado->isEmpty()) {
+            $feriado->descripcion = $request->titulo;
+            $feriado->tipo = "feriado";
+            $feriado->save();
+        }
+        else{
+            return redirect()->route('feriado.index')->withErrors(['feriado' => 'No se puede crear un feriado en una fecha que contenga reservas']);
+        }        
         return redirect()->route('feriado.index')->with('mensaje', 'Se ha creado correctamente el feriado en el calendario academico');
     }
 
