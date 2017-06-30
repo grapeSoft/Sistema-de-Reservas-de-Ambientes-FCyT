@@ -246,7 +246,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nombre`, `apellido_paterno`, `apellido_materno`, `email`, `username`, `password`, `tipo`, `created_at`, `updated_at`, `remember_token`, `foto`) VALUES
-(1, 'Alexander', 'Reinaga', 'Lopez', 'alexsof9@gmail.com', 'alexsof', '$2y$10$EWzm/UoR7H1EyDPu8xpjCujXyqJZLxRbGOG6kbOgaAEfFsXp8cYBa', 'administrador', '2017-04-29 10:35:28', '2017-06-25 22:53:10', 'PxkVwMSehaHsPAV4ABEK8zUw6EMdMiaFERxTEYoeKx1WO2FGeiIV0nD0Nzow', NULL),
+(1, 'Admin', 'adminap', 'adminam', 'alexsof9@gmail.com', 'admin', '$2y$10$EWzm/UoR7H1EyDPu8xpjCujXyqJZLxRbGOG6kbOgaAEfFsXp8cYBa', 'administrador', '2017-04-29 10:35:28', '2017-06-25 22:53:10', 'PxkVwMSehaHsPAV4ABEK8zUw6EMdMiaFERxTEYoeKx1WO2FGeiIV0nD0Nzow', NULL),
 (6, 'Martinafgfdd', 'Carrasco', 'Verduguez', 'die.1645@gmail.com', 'marti78', '$2y$10$77i170oP6DZnaAta8D5.2eTVAIMyU47uwEOClAAjJzKtBn1GIMbsu', 'autorizado', '2017-04-29 10:35:28', '2017-06-25 22:52:12', 'ergBQr5jG92qPFX45dnBcqryf38MfRdLO8N1uYrVWCwjaNP64daSwssW9VIr', NULL),
 (7, 'Diego', 'Villarroel', 'Solis', 'diego.villarroel@outlook.com', 'diego.villarroel@outlook.com', '$2y$10$resr0iV.12C9lZ3hmHHg/OZEglNz78y2CsRoAD4xNNYCcnirj.QKW', 'autorizado', '2017-05-01 18:56:35', '2017-05-01 18:56:35', NULL, NULL),
 (14, 'Borisdsff', 'calancha', 'navia', 'boris@gmail.com', 'boris', '$2y$10$I3A2RkrApCMGPOlcudM8Nec/uMHJw3uNLRNUYv2Vr9QeBeKttaW.2', 'docente', '2017-05-02 06:26:18', '2017-06-25 22:51:12', 'oTqs3ZGEikEyFS69EMs37Xp0GNWRfyxrgV7VAs1P1DcdIR07n3pSB0VISI1w', NULL),
