@@ -18,7 +18,7 @@ Para el uso de la consola se recomienda Git Bash, que instalo junto a Git en los
 - Creación de la Base de Datos.
   - Abrir phpmyadmin en localhost de su navegador web `http://localhost/phpmyadmin/`.
   - Crear un nueva base de datos con el nombre `sistema-reservas-v1`.
-  - en la base de datos `sistema-reservas-v1` ejecutar el siguiente [script](https://github.com/grapeSoft/Sistema-de-Reservas-de-Ambientes-FCyT/blob/develop/sql/sistema-reservas-v1.sql), para crear las entidades y atributos de la BD.
+  - en la base de datos `sistema-reservas-v1` ejecutar el siguiente [script](https://github.com/grapeSoft/Sistema-de-Reservas-de-Ambientes-FCyT/blob/develop/sql/sistema-reservas-v1.sql) SQL, para crear las entidades y atributos de la BD.
   
 - Clonacion del repositorio remoto y ejecucion del servidor artisan.
   - Abrir la consola de Git Bash, en un directorio donde se encontrara su repositorio local.
